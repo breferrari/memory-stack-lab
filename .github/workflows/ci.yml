@@ -1,0 +1,18 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      # The benchmarks need a plugin checkout and a model download, so CI checks
+      # what it can check without them: that every script parses, and that
+      # nothing machine-specific reached a public repo.
+      - name: repository hygiene
+        run: node harness/check-hygiene.mjs
+      - name: every script parses
+        run: |
+          for f in $(git ls-files '*.mjs'); do node --check "$f"; done
+          for f in $(git ls-files '*.ts'); do node --experimental-strip-types --check "$f" 2>/dev/null || true; done

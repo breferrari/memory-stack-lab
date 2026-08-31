@@ -13,13 +13,15 @@
  */
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 
 const PROJECTS = Number(process.argv[2] ?? 180);
 const PER = Number(process.argv[3] ?? 20);
-const PLUGIN = process.env.VESTIGE_PLUGIN ?? "/home/brenno/Dev/vestige";
+// Sibling checkout by default; a machine-specific absolute path must never
+// reach a public repository.
+const PLUGIN = process.env.VESTIGE_PLUGIN ?? resolve(import.meta.dirname, "..", "..", "vestige");
 
 const HOME = mkdtempSync(join(tmpdir(), "scale-home-"));
 process.env.VESTIGE_HOME = HOME;

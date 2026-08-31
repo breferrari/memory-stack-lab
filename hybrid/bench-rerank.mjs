@@ -10,11 +10,13 @@
  */
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 
-const PLUGIN = process.env.VESTIGE_PLUGIN ?? "/home/brenno/Dev/vestige";
+// Sibling checkout by default; a machine-specific absolute path must never
+// reach a public repository.
+const PLUGIN = process.env.VESTIGE_PLUGIN ?? resolve(import.meta.dirname, "..", "..", "vestige");
 const SRC = process.argv[2];
 const QUERIES = process.argv[3];
 const HOME = mkdtempSync(join(tmpdir(), "rr-home-"));
