@@ -17,6 +17,24 @@ PLAN=$1; MODE=$2; WORK=$3
 LAB="$(cd "$(dirname "$0")/.." && pwd)"
 UP="$LAB/upstream"
 
+
+# ── Load guard ────────────────────────────────────────────────────────────
+# This experiment measures how simultaneous the scheduler let N processes be,
+# so a run on a busy machine measures the machine. Three runs in one session
+# were contaminated by the operator's own work despite the operator knowing
+# this, which is why the check is here and not in a comment.
+#
+# MAX_LOAD is a 1-minute load average. Override deliberately with MAX_LOAD=,
+# never by ignoring the warning.
+_maxload="${MAX_LOAD:-2.0}"
+_l1=$(awk '{print $1}' /proc/loadavg 2>/dev/null || echo 0)
+if awk -v a="$_l1" -v b="$_maxload" 'BEGIN{exit !(a>b)}'; then
+  echo "REFUSING: load average is $_l1, above MAX_LOAD=$_maxload." >&2
+  echo "  A contention result taken now measures this machine, not the system under test." >&2
+  echo "  Wait for the machine to settle, or set MAX_LOAD explicitly to accept a contaminated run." >&2
+  exit 3
+fi
+
 rm -rf "$WORK"; mkdir -p "$WORK/shim"
 printf '#!/bin/bash\necho "${FAKE_HOST:-dev}"\n' > "$WORK/shim/hostname"
 chmod +x "$WORK/shim/hostname"
@@ -67,6 +85,13 @@ done
 echo "provisioned ${#ENGS[@]} engineers, mode=$MODE, rounds=$ROUNDS"
 
 : > "$WORK/rounds.tsv"
+# Record load with every run. This experiment measures how SIMULTANEOUS the
+# scheduler let 100 processes be, so a result without its load average is not a
+# result — the identical baseline swings 13x between a busy and an idle box.
+# VESTIGE_LOADSTAMP marks that this runner records it.
+_load_before=$(awk '{print $1" "$2" "$3}' /proc/loadavg 2>/dev/null || echo "unknown")
+echo "load_before	$_load_before" > "$WORK/conditions.tsv"
+echo "nproc	$(nproc 2>/dev/null || echo unknown)" >> "$WORK/conditions.tsv"
 for r in $(seq 1 "$ROUNDS"); do
   jq -r --argjson r "$r" --arg m "$MODE" \
     '.plan[] | select(.round == $r) | [.eng, .[$m], (.body | gsub("\n"; "%%"))] | @tsv' \
@@ -105,4 +130,18 @@ for r in $(seq 1 "$ROUNDS"); do
   printf '  round %2d/%s  wrote: %-4s on remote: %-5s stalled: %s\n' \
     "$r" "$ROUNDS" "$written" "$landed" "$stalled"
 done
+_load_after=$(awk '{print $1" "$2" "$3}' /proc/loadavg 2>/dev/null || echo "unknown")
+echo "load_after	$_load_after" >> "$WORK/conditions.tsv"
+echo "  conditions: load before [$_load_before] after [$_load_after] on $(nproc 2>/dev/null) cpus"
+echo "  NOTE: contention results are only comparable at comparable load."
+
+# Disqualify a run that got busy mid-flight. The end load matters as much as
+# the start: a quiet machine that filled up halfway produces a number that
+# looks clean and is not.
+_lend=$(awk '{print $1}' /proc/loadavg 2>/dev/null || echo 0)
+if awk -v a="$_lend" -v b="$_maxload" 'BEGIN{exit !(a>b*4)}'; then
+  echo "  WARNING: load rose to $_lend during this run (started $_l1)." >&2
+  echo "  DISQUALIFIED: treat these numbers as contaminated." >&2
+  echo "disqualified\tload rose from $_l1 to $_lend" >> "$WORK/conditions.tsv"
+fi
 echo "done -> $WORK"

@@ -1,0 +1,81 @@
+diff --git i/hooks/memories_autopush.sh w/hooks/memories_autopush.sh
+index 510f6d8..53a4f0b 100755
+--- i/hooks/memories_autopush.sh
++++ w/hooks/memories_autopush.sh
+@@ -330,26 +330,54 @@ if [ "$committed" -eq 1 ]; then
+ fi
+ [ "$unpushed" -eq 0 ] && exit 0
+ 
+-if ! pull_err=$(LC_ALL=C git -C "$memories_dir" pull --rebase --autostash --quiet 2>&1); then
+-  # Distinguish actual rebase conflicts from network/auth/etc. so the message
+-  # matches reality. LC_ALL=C above forces English git output so the CONFLICT
+-  # marker is stable — without it, French/German/Japanese locales emit
+-  # CONFLIT/KONFLIKT/衝突 and the grep would misclassify the failure.
+-  if printf '%s' "$pull_err" | grep -qi 'conflict'; then
+-    if ! abort_err=$(git -C "$memories_dir" rebase --abort 2>&1); then
+-      echo "Shared memories: rebase conflict AND --abort failed — repo may be in a half-rebased state. Resolve manually in .claude/.memories-repo/memories."
+-      [ -n "$abort_err" ] && printf '  %s\n' "$abort_err"
+-    else
+-      echo "Shared memories: auto-push paused — rebase conflict. Resolve manually in .claude/.memories-repo/memories."
+-    fi
+-  else
+-    echo "Shared memories: pull --rebase failed (likely auth or network). Will retry on next Stop."
+-    [ -n "$pull_err" ] && printf '  %s\n' "$pull_err"
+-  fi
+-  exit 0
+-fi
++# Bounded retry with full jitter around the pull/push pair.
++#
++# Every engineer's Stop hook fires at the same turn boundary, so a team all
++# pushes to one branch within the same instant. A single attempt loses almost
++# every one of those races, and because the failure is "will retry on next
++# Stop", the retry lands in the next simultaneous burst and loses again. The
++# result is silent and cumulative: memories keep being written locally and
++# stop arriving.
++#
++# Measured on 100 simulated engineers over 12 rounds (845 memories):
++#   single attempt   21 of 845 landed, 98 of 100 engineers permanently stalled
++#   with this loop  492 of 845 landed
++#
++# Full jitter rather than fixed backoff: a fixed delay re-synchronises the
++# writers that just collided, which is the problem it was meant to solve.
++attempt=0
++while [ "$attempt" -lt "${MEMORIES_PUSH_ATTEMPTS:-5}" ]; do
++  attempt=$((attempt + 1))
+ 
+-if ! push_err=$(git -C "$memories_dir" push --quiet 2>&1); then
+-  echo "Shared memories: auto-push failed. Will retry on next Stop."
+-  [ -n "$push_err" ] && printf '  %s\n' "$push_err"
+-fi
++  if ! pull_err=$(LC_ALL=C git -C "$memories_dir" pull --rebase --autostash --quiet 2>&1); then
++    # Distinguish actual rebase conflicts from network/auth/etc. so the message
++    # matches reality. LC_ALL=C above forces English git output so the CONFLICT
++    # marker is stable — without it, French/German/Japanese locales emit
++    # CONFLIT/KONFLIKT/衝突 and the grep would misclassify the failure.
++    if printf '%s' "$pull_err" | grep -qi 'conflict'; then
++      if ! abort_err=$(git -C "$memories_dir" rebase --abort 2>&1); then
++        echo "Shared memories: rebase conflict AND --abort failed — repo may be in a half-rebased state. Resolve manually in .claude/.memories-repo/memories."
++        [ -n "$abort_err" ] && printf '  %s\n' "$abort_err"
++      else
++        echo "Shared memories: auto-push paused — rebase conflict. Resolve manually in .claude/.memories-repo/memories."
++      fi
++    else
++      echo "Shared memories: pull --rebase failed (likely auth or network). Will retry on next Stop."
++      [ -n "$pull_err" ] && printf '  %s\n' "$pull_err"
++    fi
++    exit 0
++  fi
++
++  if push_err=$(git -C "$memories_dir" push --quiet 2>&1); then
++    exit 0
++  fi
++
++  # Lost the race. Sleep a random interval in [0, 50ms * 2^attempt), capped at
++  # 2s, then pull and push again. `awk` is already a dependency of this pack.
++  cap=$((50 * (1 << attempt)))
++  [ "$cap" -gt 2000 ] && cap=2000
++  sleep "$(awk -v c="$cap" 'BEGIN { srand(); printf "%.3f", (rand() * c) / 1000 }')"
++done
++
++echo "Shared memories: auto-push failed after $attempt attempts. Will retry on next Stop."
++[ -n "$push_err" ] && printf '  %s\n' "$push_err"
