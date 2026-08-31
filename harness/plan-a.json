@@ -1,0 +1,2109 @@
+{
+ "engineers": [
+  {
+   "id": "eng001",
+   "ctx": "ios",
+   "projects": [
+    "ios-app"
+   ]
+  },
+  {
+   "id": "eng002",
+   "ctx": "android",
+   "projects": [
+    "android-trading"
+   ]
+  },
+  {
+   "id": "eng003",
+   "ctx": "web",
+   "projects": [
+    "web-design-system"
+   ]
+  },
+  {
+   "id": "eng004",
+   "ctx": "backend",
+   "projects": [
+    "payments-service",
+    "identity-service"
+   ]
+  },
+  {
+   "id": "eng005",
+   "ctx": "infra",
+   "projects": [
+    "secrets-platform"
+   ]
+  },
+  {
+   "id": "eng006",
+   "ctx": "data",
+   "projects": [
+    "ml-risk-models"
+   ]
+  },
+  {
+   "id": "eng007",
+   "ctx": "ios",
+   "projects": [
+    "ios-app"
+   ]
+  },
+  {
+   "id": "eng008",
+   "ctx": "android",
+   "projects": [
+    "android-design-system",
+    "android-onboarding"
+   ]
+  },
+  {
+   "id": "eng009",
+   "ctx": "web",
+   "projects": [
+    "web-bff"
+   ]
+  },
+  {
+   "id": "eng010",
+   "ctx": "backend",
+   "projects": [
+    "onboarding-service"
+   ]
+  },
+  {
+   "id": "eng011",
+   "ctx": "infra",
+   "projects": [
+    "secrets-platform"
+   ]
+  },
+  {
+   "id": "eng012",
+   "ctx": "data",
+   "projects": [
+    "reporting-etl",
+    "ml-risk-models"
+   ]
+  },
+  {
+   "id": "eng013",
+   "ctx": "ios",
+   "projects": [
+    "ios-trading"
+   ]
+  },
+  {
+   "id": "eng014",
+   "ctx": "android",
+   "projects": [
+    "android-trading"
+   ]
+  },
+  {
+   "id": "eng015",
+   "ctx": "web",
+   "projects": [
+    "web-dashboard"
+   ]
+  }
+ ],
+ "projects": [
+  "ios-app",
+  "ios-trading",
+  "ios-onboarding",
+  "ios-design-system",
+  "ios-analytics-sdk",
+  "android-app",
+  "android-trading",
+  "android-onboarding",
+  "android-design-system",
+  "android-sdk",
+  "web-app",
+  "web-dashboard",
+  "web-checkout",
+  "web-design-system",
+  "web-bff",
+  "payments-service",
+  "ledger-service",
+  "identity-service",
+  "trading-service",
+  "onboarding-service",
+  "platform-infra",
+  "k8s-platform",
+  "ci-platform",
+  "observability-stack",
+  "secrets-platform",
+  "analytics-pipeline",
+  "data-warehouse",
+  "ml-risk-models",
+  "feature-store",
+  "reporting-etl"
+ ],
+ "rounds": 20,
+ "plan": [
+  {
+   "round": 1,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "observability",
+   "flat": "decision_observability_c_variant.md",
+   "ns": "ios-app__decision_observability_c_variant.md",
+   "body": "# observability in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 1. Concerns observability (c_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "pagination",
+   "flat": "learning_pagination_a_variant.md",
+   "ns": "android-trading__learning_pagination_a_variant.md",
+   "body": "# pagination in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 1. Concerns pagination (a_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "performance",
+   "flat": "learning_performance_b_variant.md",
+   "ns": "secrets-platform__learning_performance_b_variant.md",
+   "body": "# performance in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 1. Concerns performance (b_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_a_variant.md",
+   "ns": "ml-risk-models__learning_nullhandling_a_variant.md",
+   "body": "# nullhandling in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 1. Concerns nullhandling (a_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_a_variant.md",
+   "ns": "ios-app__learning_featureflags_a_variant.md",
+   "body": "# featureflags in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 1. Concerns featureflags (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_b_variant.md",
+   "ns": "android-onboarding__learning_nullhandling_b_variant.md",
+   "body": "# nullhandling in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 1. Concerns nullhandling (b_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "retries",
+   "flat": "decision_retries_b_variant.md",
+   "ns": "web-bff__decision_retries_b_variant.md",
+   "body": "# retries in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 1. Concerns retries (b_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "caching",
+   "flat": "learning_caching_b_variant.md",
+   "ns": "secrets-platform__learning_caching_b_variant.md",
+   "body": "# caching in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 1. Concerns caching (b_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng012",
+   "proj": "reporting-etl",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_d_variant.md",
+   "ns": "reporting-etl__learning_featureflags_d_variant.md",
+   "body": "# featureflags in reporting-etl\n\n**Applies to:** reporting-etl\n\nWritten by eng012 in round 1. Concerns featureflags (d_variant) as it behaves in reporting-etl.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "pagination",
+   "flat": "learning_pagination_c_variant.md",
+   "ns": "ios-trading__learning_pagination_c_variant.md",
+   "body": "# pagination in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 1. Concerns pagination (c_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_a_variant.md",
+   "ns": "web-dashboard__learning_nullhandling_a_variant.md",
+   "body": "# nullhandling in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 1. Concerns nullhandling (a_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "secrets",
+   "flat": "decision_secrets_a_variant.md",
+   "ns": "ios-app__decision_secrets_a_variant.md",
+   "body": "# secrets in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 2. Concerns secrets (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng004",
+   "proj": "payments-service",
+   "topic": "pagination",
+   "flat": "decision_pagination_c_variant.md",
+   "ns": "payments-service__decision_pagination_c_variant.md",
+   "body": "# pagination in payments-service\n\n**Applies to:** payments-service\n\nWritten by eng004 in round 2. Concerns pagination (c_variant) as it behaves in payments-service.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_a_variant.md",
+   "ns": "secrets-platform__learning_featureflags_a_variant.md",
+   "body": "# featureflags in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 2. Concerns featureflags (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "auth",
+   "flat": "learning_auth_a_variant.md",
+   "ns": "ml-risk-models__learning_auth_a_variant.md",
+   "body": "# auth in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 2. Concerns auth (a_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "secrets",
+   "flat": "learning_secrets_d_variant.md",
+   "ns": "ios-app__learning_secrets_d_variant.md",
+   "body": "# secrets in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 2. Concerns secrets (d_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng008",
+   "proj": "android-design-system",
+   "topic": "secrets",
+   "flat": "learning_secrets_d_variant.md",
+   "ns": "android-design-system__learning_secrets_d_variant.md",
+   "body": "# secrets in android-design-system\n\n**Applies to:** android-design-system\n\nWritten by eng008 in round 2. Concerns secrets (d_variant) as it behaves in android-design-system.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "performance",
+   "flat": "decision_performance_d_variant.md",
+   "ns": "ml-risk-models__decision_performance_d_variant.md",
+   "body": "# performance in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 2. Concerns performance (d_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "errors",
+   "flat": "learning_errors_a_variant.md",
+   "ns": "ios-trading__learning_errors_a_variant.md",
+   "body": "# errors in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 2. Concerns errors (a_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_c_variant.md",
+   "ns": "web-dashboard__learning_ratelimit_c_variant.md",
+   "body": "# ratelimit in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 2. Concerns ratelimit (c_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_a_variant.md",
+   "ns": "ios-app__learning_flakytests_a_variant.md",
+   "body": "# flakytests in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 3. Concerns flakytests (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "ratelimit",
+   "flat": "decision_ratelimit_d_variant.md",
+   "ns": "web-design-system__decision_ratelimit_d_variant.md",
+   "body": "# ratelimit in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 3. Concerns ratelimit (d_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "caching",
+   "flat": "decision_caching_c_variant.md",
+   "ns": "ml-risk-models__decision_caching_c_variant.md",
+   "body": "# caching in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 3. Concerns caching (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng008",
+   "proj": "android-design-system",
+   "topic": "localization",
+   "flat": "learning_localization_c_variant.md",
+   "ns": "android-design-system__learning_localization_c_variant.md",
+   "body": "# localization in android-design-system\n\n**Applies to:** android-design-system\n\nWritten by eng008 in round 3. Concerns localization (c_variant) as it behaves in android-design-system.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "retries",
+   "flat": "decision_retries_d_variant.md",
+   "ns": "web-bff__decision_retries_d_variant.md",
+   "body": "# retries in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 3. Concerns retries (d_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "performance",
+   "flat": "learning_performance_d_variant.md",
+   "ns": "onboarding-service__learning_performance_d_variant.md",
+   "body": "# performance in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 3. Concerns performance (d_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "secrets",
+   "flat": "learning_secrets_d_variant.md",
+   "ns": "secrets-platform__learning_secrets_d_variant.md",
+   "body": "# secrets in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 3. Concerns secrets (d_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "ratelimit",
+   "flat": "decision_ratelimit_c_variant.md",
+   "ns": "ml-risk-models__decision_ratelimit_c_variant.md",
+   "body": "# ratelimit in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 3. Concerns ratelimit (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "flakytests",
+   "flat": "decision_flakytests_c_variant.md",
+   "ns": "ios-trading__decision_flakytests_c_variant.md",
+   "body": "# flakytests in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 3. Concerns flakytests (c_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 3,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "ci",
+   "flat": "decision_ci_b_variant.md",
+   "ns": "android-trading__decision_ci_b_variant.md",
+   "body": "# ci in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 3. Concerns ci (b_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "migrations",
+   "flat": "learning_migrations_c_variant.md",
+   "ns": "ios-app__learning_migrations_c_variant.md",
+   "body": "# migrations in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 4. Concerns migrations (c_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_b_variant.md",
+   "ns": "web-design-system__learning_featureflags_b_variant.md",
+   "body": "# featureflags in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 4. Concerns featureflags (b_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng004",
+   "proj": "identity-service",
+   "topic": "secrets",
+   "flat": "learning_secrets_d_variant.md",
+   "ns": "identity-service__learning_secrets_d_variant.md",
+   "body": "# secrets in identity-service\n\n**Applies to:** identity-service\n\nWritten by eng004 in round 4. Concerns secrets (d_variant) as it behaves in identity-service.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "timezones",
+   "flat": "learning_timezones_c_variant.md",
+   "ns": "secrets-platform__learning_timezones_c_variant.md",
+   "body": "# timezones in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 4. Concerns timezones (c_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "caching",
+   "flat": "learning_caching_c_variant.md",
+   "ns": "ml-risk-models__learning_caching_c_variant.md",
+   "body": "# caching in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 4. Concerns caching (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng008",
+   "proj": "android-design-system",
+   "topic": "ratelimit",
+   "flat": "decision_ratelimit_c_variant.md",
+   "ns": "android-design-system__decision_ratelimit_c_variant.md",
+   "body": "# ratelimit in android-design-system\n\n**Applies to:** android-design-system\n\nWritten by eng008 in round 4. Concerns ratelimit (c_variant) as it behaves in android-design-system.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_c_variant.md",
+   "ns": "web-bff__learning_ratelimit_c_variant.md",
+   "body": "# ratelimit in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 4. Concerns ratelimit (c_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_d_variant.md",
+   "ns": "onboarding-service__learning_nullhandling_d_variant.md",
+   "body": "# nullhandling in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 4. Concerns nullhandling (d_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "retries",
+   "flat": "learning_retries_d_variant.md",
+   "ns": "ml-risk-models__learning_retries_d_variant.md",
+   "body": "# retries in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 4. Concerns retries (d_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "localization",
+   "flat": "learning_localization_b_variant.md",
+   "ns": "ios-trading__learning_localization_b_variant.md",
+   "body": "# localization in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 4. Concerns localization (b_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "secrets",
+   "flat": "learning_secrets_c_variant.md",
+   "ns": "android-trading__learning_secrets_c_variant.md",
+   "body": "# secrets in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 4. Concerns secrets (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 4,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "localization",
+   "flat": "decision_localization_d_variant.md",
+   "ns": "web-dashboard__decision_localization_d_variant.md",
+   "body": "# localization in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 4. Concerns localization (d_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "caching",
+   "flat": "learning_caching_a_variant.md",
+   "ns": "ios-app__learning_caching_a_variant.md",
+   "body": "# caching in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 5. Concerns caching (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "timezones",
+   "flat": "decision_timezones_d_variant.md",
+   "ns": "web-design-system__decision_timezones_d_variant.md",
+   "body": "# timezones in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 5. Concerns timezones (d_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng004",
+   "proj": "identity-service",
+   "topic": "errors",
+   "flat": "learning_errors_d_variant.md",
+   "ns": "identity-service__learning_errors_d_variant.md",
+   "body": "# errors in identity-service\n\n**Applies to:** identity-service\n\nWritten by eng004 in round 5. Concerns errors (d_variant) as it behaves in identity-service.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "errors",
+   "flat": "decision_errors_d_variant.md",
+   "ns": "secrets-platform__decision_errors_d_variant.md",
+   "body": "# errors in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 5. Concerns errors (d_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "auth",
+   "flat": "learning_auth_b_variant.md",
+   "ns": "ml-risk-models__learning_auth_b_variant.md",
+   "body": "# auth in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 5. Concerns auth (b_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "retries",
+   "flat": "learning_retries_b_variant.md",
+   "ns": "ios-app__learning_retries_b_variant.md",
+   "body": "# retries in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 5. Concerns retries (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_b_variant.md",
+   "ns": "android-onboarding__learning_flakytests_b_variant.md",
+   "body": "# flakytests in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 5. Concerns flakytests (b_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "caching",
+   "flat": "decision_caching_a_variant.md",
+   "ns": "web-bff__decision_caching_a_variant.md",
+   "body": "# caching in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 5. Concerns caching (a_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "errors",
+   "flat": "learning_errors_a_variant.md",
+   "ns": "onboarding-service__learning_errors_a_variant.md",
+   "body": "# errors in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 5. Concerns errors (a_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_d_variant.md",
+   "ns": "secrets-platform__learning_flakytests_d_variant.md",
+   "body": "# flakytests in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 5. Concerns flakytests (d_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "performance",
+   "flat": "learning_performance_d_variant.md",
+   "ns": "ios-trading__learning_performance_d_variant.md",
+   "body": "# performance in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 5. Concerns performance (d_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 5,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_d_variant.md",
+   "ns": "web-dashboard__learning_ratelimit_d_variant.md",
+   "body": "# ratelimit in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 5. Concerns ratelimit (d_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "pagination",
+   "flat": "learning_pagination_c_variant.md",
+   "ns": "ios-app__learning_pagination_c_variant.md",
+   "body": "# pagination in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 6. Concerns pagination (c_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "migrations",
+   "flat": "learning_migrations_b_variant.md",
+   "ns": "android-trading__learning_migrations_b_variant.md",
+   "body": "# migrations in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 6. Concerns migrations (b_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "secrets",
+   "flat": "learning_secrets_a_variant.md",
+   "ns": "secrets-platform__learning_secrets_a_variant.md",
+   "body": "# secrets in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 6. Concerns secrets (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "localization",
+   "flat": "learning_localization_b_variant.md",
+   "ns": "ml-risk-models__learning_localization_b_variant.md",
+   "body": "# localization in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 6. Concerns localization (b_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_a_variant.md",
+   "ns": "ios-app__learning_ratelimit_a_variant.md",
+   "body": "# ratelimit in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 6. Concerns ratelimit (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "localization",
+   "flat": "decision_localization_c_variant.md",
+   "ns": "secrets-platform__decision_localization_c_variant.md",
+   "body": "# localization in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 6. Concerns localization (c_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "observability",
+   "flat": "learning_observability_b_variant.md",
+   "ns": "ml-risk-models__learning_observability_b_variant.md",
+   "body": "# observability in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 6. Concerns observability (b_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "flakytests",
+   "flat": "decision_flakytests_c_variant.md",
+   "ns": "android-trading__decision_flakytests_c_variant.md",
+   "body": "# flakytests in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 6. Concerns flakytests (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 6,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "performance",
+   "flat": "learning_performance_b_variant.md",
+   "ns": "web-dashboard__learning_performance_b_variant.md",
+   "body": "# performance in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 6. Concerns performance (b_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "observability",
+   "flat": "decision_observability_a_variant.md",
+   "ns": "ios-app__decision_observability_a_variant.md",
+   "body": "# observability in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 7. Concerns observability (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "errors",
+   "flat": "decision_errors_c_variant.md",
+   "ns": "web-design-system__decision_errors_c_variant.md",
+   "body": "# errors in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 7. Concerns errors (c_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng004",
+   "proj": "payments-service",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_b_variant.md",
+   "ns": "payments-service__learning_nullhandling_b_variant.md",
+   "body": "# nullhandling in payments-service\n\n**Applies to:** payments-service\n\nWritten by eng004 in round 7. Concerns nullhandling (b_variant) as it behaves in payments-service.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_b_variant.md",
+   "ns": "secrets-platform__learning_flakytests_b_variant.md",
+   "body": "# flakytests in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 7. Concerns flakytests (b_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "errors",
+   "flat": "learning_errors_d_variant.md",
+   "ns": "ios-app__learning_errors_d_variant.md",
+   "body": "# errors in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 7. Concerns errors (d_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "localization",
+   "flat": "learning_localization_a_variant.md",
+   "ns": "android-onboarding__learning_localization_a_variant.md",
+   "body": "# localization in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 7. Concerns localization (a_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "auth",
+   "flat": "decision_auth_c_variant.md",
+   "ns": "web-bff__decision_auth_c_variant.md",
+   "body": "# auth in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 7. Concerns auth (c_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "performance",
+   "flat": "learning_performance_b_variant.md",
+   "ns": "onboarding-service__learning_performance_b_variant.md",
+   "body": "# performance in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 7. Concerns performance (b_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 7,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "auth",
+   "flat": "learning_auth_b_variant.md",
+   "ns": "ios-trading__learning_auth_b_variant.md",
+   "body": "# auth in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 7. Concerns auth (b_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "nullhandling",
+   "flat": "decision_nullhandling_b_variant.md",
+   "ns": "ios-app__decision_nullhandling_b_variant.md",
+   "body": "# nullhandling in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 8. Concerns nullhandling (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_a_variant.md",
+   "ns": "android-trading__learning_ratelimit_a_variant.md",
+   "body": "# ratelimit in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 8. Concerns ratelimit (a_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_b_variant.md",
+   "ns": "web-design-system__learning_featureflags_b_variant.md",
+   "body": "# featureflags in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 8. Concerns featureflags (b_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng004",
+   "proj": "identity-service",
+   "topic": "nullhandling",
+   "flat": "decision_nullhandling_d_variant.md",
+   "ns": "identity-service__decision_nullhandling_d_variant.md",
+   "body": "# nullhandling in identity-service\n\n**Applies to:** identity-service\n\nWritten by eng004 in round 8. Concerns nullhandling (d_variant) as it behaves in identity-service.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_a_variant.md",
+   "ns": "secrets-platform__learning_featureflags_a_variant.md",
+   "body": "# featureflags in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 8. Concerns featureflags (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "migrations",
+   "flat": "decision_migrations_b_variant.md",
+   "ns": "ios-app__decision_migrations_b_variant.md",
+   "body": "# migrations in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 8. Concerns migrations (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "secrets",
+   "flat": "learning_secrets_a_variant.md",
+   "ns": "android-onboarding__learning_secrets_a_variant.md",
+   "body": "# secrets in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 8. Concerns secrets (a_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "auth",
+   "flat": "learning_auth_a_variant.md",
+   "ns": "web-bff__learning_auth_a_variant.md",
+   "body": "# auth in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 8. Concerns auth (a_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "localization",
+   "flat": "learning_localization_d_variant.md",
+   "ns": "onboarding-service__learning_localization_d_variant.md",
+   "body": "# localization in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 8. Concerns localization (d_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "timezones",
+   "flat": "decision_timezones_b_variant.md",
+   "ns": "ml-risk-models__decision_timezones_b_variant.md",
+   "body": "# timezones in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 8. Concerns timezones (b_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 8,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "errors",
+   "flat": "learning_errors_d_variant.md",
+   "ns": "ios-trading__learning_errors_d_variant.md",
+   "body": "# errors in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 8. Concerns errors (d_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "errors",
+   "flat": "learning_errors_d_variant.md",
+   "ns": "web-design-system__learning_errors_d_variant.md",
+   "body": "# errors in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 9. Concerns errors (d_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "auth",
+   "flat": "decision_auth_c_variant.md",
+   "ns": "secrets-platform__decision_auth_c_variant.md",
+   "body": "# auth in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 9. Concerns auth (c_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "observability",
+   "flat": "decision_observability_c_variant.md",
+   "ns": "ml-risk-models__decision_observability_c_variant.md",
+   "body": "# observability in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 9. Concerns observability (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "errors",
+   "flat": "learning_errors_b_variant.md",
+   "ns": "ios-app__learning_errors_b_variant.md",
+   "body": "# errors in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 9. Concerns errors (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_c_variant.md",
+   "ns": "android-onboarding__learning_flakytests_c_variant.md",
+   "body": "# flakytests in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 9. Concerns flakytests (c_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "ci",
+   "flat": "decision_ci_d_variant.md",
+   "ns": "web-bff__decision_ci_d_variant.md",
+   "body": "# ci in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 9. Concerns ci (d_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "timezones",
+   "flat": "learning_timezones_c_variant.md",
+   "ns": "onboarding-service__learning_timezones_c_variant.md",
+   "body": "# timezones in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 9. Concerns timezones (c_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "featureflags",
+   "flat": "decision_featureflags_a_variant.md",
+   "ns": "secrets-platform__decision_featureflags_a_variant.md",
+   "body": "# featureflags in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 9. Concerns featureflags (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "secrets",
+   "flat": "learning_secrets_d_variant.md",
+   "ns": "ios-trading__learning_secrets_d_variant.md",
+   "body": "# secrets in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 9. Concerns secrets (d_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 9,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_b_variant.md",
+   "ns": "web-dashboard__learning_featureflags_b_variant.md",
+   "body": "# featureflags in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 9. Concerns featureflags (b_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "performance",
+   "flat": "learning_performance_b_variant.md",
+   "ns": "ios-app__learning_performance_b_variant.md",
+   "body": "# performance in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 10. Concerns performance (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_c_variant.md",
+   "ns": "android-trading__learning_flakytests_c_variant.md",
+   "body": "# flakytests in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 10. Concerns flakytests (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "timezones",
+   "flat": "learning_timezones_d_variant.md",
+   "ns": "web-design-system__learning_timezones_d_variant.md",
+   "body": "# timezones in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 10. Concerns timezones (d_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_a_variant.md",
+   "ns": "secrets-platform__learning_flakytests_a_variant.md",
+   "body": "# flakytests in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 10. Concerns flakytests (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "ci",
+   "flat": "decision_ci_d_variant.md",
+   "ns": "ml-risk-models__decision_ci_d_variant.md",
+   "body": "# ci in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 10. Concerns ci (d_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_b_variant.md",
+   "ns": "ios-app__learning_nullhandling_b_variant.md",
+   "body": "# nullhandling in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 10. Concerns nullhandling (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_b_variant.md",
+   "ns": "android-onboarding__learning_flakytests_b_variant.md",
+   "body": "# flakytests in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 10. Concerns flakytests (b_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_b_variant.md",
+   "ns": "web-bff__learning_featureflags_b_variant.md",
+   "body": "# featureflags in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 10. Concerns featureflags (b_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "retries",
+   "flat": "decision_retries_a_variant.md",
+   "ns": "secrets-platform__decision_retries_a_variant.md",
+   "body": "# retries in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 10. Concerns retries (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "secrets",
+   "flat": "learning_secrets_a_variant.md",
+   "ns": "ml-risk-models__learning_secrets_a_variant.md",
+   "body": "# secrets in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 10. Concerns secrets (a_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_b_variant.md",
+   "ns": "ios-trading__learning_ratelimit_b_variant.md",
+   "body": "# ratelimit in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 10. Concerns ratelimit (b_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "secrets",
+   "flat": "learning_secrets_c_variant.md",
+   "ns": "android-trading__learning_secrets_c_variant.md",
+   "body": "# secrets in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 10. Concerns secrets (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 10,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "secrets",
+   "flat": "learning_secrets_d_variant.md",
+   "ns": "web-dashboard__learning_secrets_d_variant.md",
+   "body": "# secrets in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 10. Concerns secrets (d_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "pagination",
+   "flat": "decision_pagination_b_variant.md",
+   "ns": "ios-app__decision_pagination_b_variant.md",
+   "body": "# pagination in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 11. Concerns pagination (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "caching",
+   "flat": "learning_caching_a_variant.md",
+   "ns": "android-trading__learning_caching_a_variant.md",
+   "body": "# caching in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 11. Concerns caching (a_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "ci",
+   "flat": "learning_ci_c_variant.md",
+   "ns": "web-design-system__learning_ci_c_variant.md",
+   "body": "# ci in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 11. Concerns ci (c_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng004",
+   "proj": "payments-service",
+   "topic": "migrations",
+   "flat": "learning_migrations_d_variant.md",
+   "ns": "payments-service__learning_migrations_d_variant.md",
+   "body": "# migrations in payments-service\n\n**Applies to:** payments-service\n\nWritten by eng004 in round 11. Concerns migrations (d_variant) as it behaves in payments-service.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "secrets",
+   "flat": "decision_secrets_d_variant.md",
+   "ns": "ml-risk-models__decision_secrets_d_variant.md",
+   "body": "# secrets in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 11. Concerns secrets (d_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "pagination",
+   "flat": "decision_pagination_c_variant.md",
+   "ns": "ios-app__decision_pagination_c_variant.md",
+   "body": "# pagination in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 11. Concerns pagination (c_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng008",
+   "proj": "android-design-system",
+   "topic": "retries",
+   "flat": "decision_retries_d_variant.md",
+   "ns": "android-design-system__decision_retries_d_variant.md",
+   "body": "# retries in android-design-system\n\n**Applies to:** android-design-system\n\nWritten by eng008 in round 11. Concerns retries (d_variant) as it behaves in android-design-system.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "retries",
+   "flat": "learning_retries_c_variant.md",
+   "ns": "web-bff__learning_retries_c_variant.md",
+   "body": "# retries in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 11. Concerns retries (c_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "localization",
+   "flat": "learning_localization_d_variant.md",
+   "ns": "onboarding-service__learning_localization_d_variant.md",
+   "body": "# localization in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 11. Concerns localization (d_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "pagination",
+   "flat": "learning_pagination_a_variant.md",
+   "ns": "secrets-platform__learning_pagination_a_variant.md",
+   "body": "# pagination in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 11. Concerns pagination (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "errors",
+   "flat": "learning_errors_c_variant.md",
+   "ns": "ml-risk-models__learning_errors_c_variant.md",
+   "body": "# errors in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 11. Concerns errors (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "errors",
+   "flat": "decision_errors_a_variant.md",
+   "ns": "ios-trading__decision_errors_a_variant.md",
+   "body": "# errors in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 11. Concerns errors (a_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 11,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "caching",
+   "flat": "learning_caching_c_variant.md",
+   "ns": "web-dashboard__learning_caching_c_variant.md",
+   "body": "# caching in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 11. Concerns caching (c_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "migrations",
+   "flat": "decision_migrations_a_variant.md",
+   "ns": "ios-app__decision_migrations_a_variant.md",
+   "body": "# migrations in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 12. Concerns migrations (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng004",
+   "proj": "payments-service",
+   "topic": "ci",
+   "flat": "learning_ci_c_variant.md",
+   "ns": "payments-service__learning_ci_c_variant.md",
+   "body": "# ci in payments-service\n\n**Applies to:** payments-service\n\nWritten by eng004 in round 12. Concerns ci (c_variant) as it behaves in payments-service.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "observability",
+   "flat": "decision_observability_c_variant.md",
+   "ns": "ml-risk-models__decision_observability_c_variant.md",
+   "body": "# observability in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 12. Concerns observability (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_c_variant.md",
+   "ns": "ios-app__learning_nullhandling_c_variant.md",
+   "body": "# nullhandling in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 12. Concerns nullhandling (c_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng008",
+   "proj": "android-design-system",
+   "topic": "caching",
+   "flat": "decision_caching_d_variant.md",
+   "ns": "android-design-system__decision_caching_d_variant.md",
+   "body": "# caching in android-design-system\n\n**Applies to:** android-design-system\n\nWritten by eng008 in round 12. Concerns caching (d_variant) as it behaves in android-design-system.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "errors",
+   "flat": "decision_errors_a_variant.md",
+   "ns": "onboarding-service__decision_errors_a_variant.md",
+   "body": "# errors in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 12. Concerns errors (a_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "localization",
+   "flat": "learning_localization_d_variant.md",
+   "ns": "ios-trading__learning_localization_d_variant.md",
+   "body": "# localization in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 12. Concerns localization (d_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "pagination",
+   "flat": "learning_pagination_b_variant.md",
+   "ns": "android-trading__learning_pagination_b_variant.md",
+   "body": "# pagination in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 12. Concerns pagination (b_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 12,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_d_variant.md",
+   "ns": "web-dashboard__learning_featureflags_d_variant.md",
+   "body": "# featureflags in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 12. Concerns featureflags (d_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "pagination",
+   "flat": "learning_pagination_a_variant.md",
+   "ns": "ios-app__learning_pagination_a_variant.md",
+   "body": "# pagination in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 13. Concerns pagination (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "retries",
+   "flat": "decision_retries_a_variant.md",
+   "ns": "android-trading__decision_retries_a_variant.md",
+   "body": "# retries in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 13. Concerns retries (a_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng004",
+   "proj": "identity-service",
+   "topic": "retries",
+   "flat": "learning_retries_c_variant.md",
+   "ns": "identity-service__learning_retries_c_variant.md",
+   "body": "# retries in identity-service\n\n**Applies to:** identity-service\n\nWritten by eng004 in round 13. Concerns retries (c_variant) as it behaves in identity-service.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "ci",
+   "flat": "decision_ci_b_variant.md",
+   "ns": "ml-risk-models__decision_ci_b_variant.md",
+   "body": "# ci in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 13. Concerns ci (b_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "flakytests",
+   "flat": "decision_flakytests_c_variant.md",
+   "ns": "ios-app__decision_flakytests_c_variant.md",
+   "body": "# flakytests in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 13. Concerns flakytests (c_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "migrations",
+   "flat": "learning_migrations_a_variant.md",
+   "ns": "android-onboarding__learning_migrations_a_variant.md",
+   "body": "# migrations in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 13. Concerns migrations (a_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "secrets",
+   "flat": "decision_secrets_c_variant.md",
+   "ns": "web-bff__decision_secrets_c_variant.md",
+   "body": "# secrets in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 13. Concerns secrets (c_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "secrets",
+   "flat": "learning_secrets_a_variant.md",
+   "ns": "onboarding-service__learning_secrets_a_variant.md",
+   "body": "# secrets in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 13. Concerns secrets (a_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "timezones",
+   "flat": "learning_timezones_c_variant.md",
+   "ns": "secrets-platform__learning_timezones_c_variant.md",
+   "body": "# timezones in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 13. Concerns timezones (c_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "secrets",
+   "flat": "decision_secrets_a_variant.md",
+   "ns": "ml-risk-models__decision_secrets_a_variant.md",
+   "body": "# secrets in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 13. Concerns secrets (a_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "errors",
+   "flat": "learning_errors_b_variant.md",
+   "ns": "ios-trading__learning_errors_b_variant.md",
+   "body": "# errors in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 13. Concerns errors (b_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "observability",
+   "flat": "learning_observability_c_variant.md",
+   "ns": "android-trading__learning_observability_c_variant.md",
+   "body": "# observability in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 13. Concerns observability (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 13,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "nullhandling",
+   "flat": "decision_nullhandling_a_variant.md",
+   "ns": "web-dashboard__decision_nullhandling_a_variant.md",
+   "body": "# nullhandling in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 13. Concerns nullhandling (a_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "localization",
+   "flat": "decision_localization_d_variant.md",
+   "ns": "ios-app__decision_localization_d_variant.md",
+   "body": "# localization in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 14. Concerns localization (d_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_b_variant.md",
+   "ns": "android-trading__learning_flakytests_b_variant.md",
+   "body": "# flakytests in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 14. Concerns flakytests (b_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng004",
+   "proj": "identity-service",
+   "topic": "observability",
+   "flat": "decision_observability_b_variant.md",
+   "ns": "identity-service__decision_observability_b_variant.md",
+   "body": "# observability in identity-service\n\n**Applies to:** identity-service\n\nWritten by eng004 in round 14. Concerns observability (b_variant) as it behaves in identity-service.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "secrets",
+   "flat": "learning_secrets_d_variant.md",
+   "ns": "secrets-platform__learning_secrets_d_variant.md",
+   "body": "# secrets in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 14. Concerns secrets (d_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "ratelimit",
+   "flat": "decision_ratelimit_d_variant.md",
+   "ns": "ml-risk-models__decision_ratelimit_d_variant.md",
+   "body": "# ratelimit in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 14. Concerns ratelimit (d_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "migrations",
+   "flat": "decision_migrations_a_variant.md",
+   "ns": "android-onboarding__decision_migrations_a_variant.md",
+   "body": "# migrations in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 14. Concerns migrations (a_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "migrations",
+   "flat": "learning_migrations_b_variant.md",
+   "ns": "web-bff__learning_migrations_b_variant.md",
+   "body": "# migrations in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 14. Concerns migrations (b_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "ratelimit",
+   "flat": "decision_ratelimit_c_variant.md",
+   "ns": "onboarding-service__decision_ratelimit_c_variant.md",
+   "body": "# ratelimit in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 14. Concerns ratelimit (c_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng012",
+   "proj": "ml-risk-models",
+   "topic": "migrations",
+   "flat": "learning_migrations_b_variant.md",
+   "ns": "ml-risk-models__learning_migrations_b_variant.md",
+   "body": "# migrations in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng012 in round 14. Concerns migrations (b_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "retries",
+   "flat": "decision_retries_a_variant.md",
+   "ns": "ios-trading__decision_retries_a_variant.md",
+   "body": "# retries in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 14. Concerns retries (a_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "errors",
+   "flat": "learning_errors_c_variant.md",
+   "ns": "android-trading__learning_errors_c_variant.md",
+   "body": "# errors in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 14. Concerns errors (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 14,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_b_variant.md",
+   "ns": "web-dashboard__learning_ratelimit_b_variant.md",
+   "body": "# ratelimit in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 14. Concerns ratelimit (b_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "localization",
+   "flat": "learning_localization_b_variant.md",
+   "ns": "ios-app__learning_localization_b_variant.md",
+   "body": "# localization in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 15. Concerns localization (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "auth",
+   "flat": "learning_auth_b_variant.md",
+   "ns": "android-trading__learning_auth_b_variant.md",
+   "body": "# auth in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 15. Concerns auth (b_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "flakytests",
+   "flat": "decision_flakytests_d_variant.md",
+   "ns": "web-design-system__decision_flakytests_d_variant.md",
+   "body": "# flakytests in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 15. Concerns flakytests (d_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng004",
+   "proj": "payments-service",
+   "topic": "migrations",
+   "flat": "decision_migrations_b_variant.md",
+   "ns": "payments-service__decision_migrations_b_variant.md",
+   "body": "# migrations in payments-service\n\n**Applies to:** payments-service\n\nWritten by eng004 in round 15. Concerns migrations (b_variant) as it behaves in payments-service.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "caching",
+   "flat": "learning_caching_c_variant.md",
+   "ns": "secrets-platform__learning_caching_c_variant.md",
+   "body": "# caching in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 15. Concerns caching (c_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "performance",
+   "flat": "decision_performance_d_variant.md",
+   "ns": "ios-app__decision_performance_d_variant.md",
+   "body": "# performance in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 15. Concerns performance (d_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "localization",
+   "flat": "learning_localization_a_variant.md",
+   "ns": "onboarding-service__learning_localization_a_variant.md",
+   "body": "# localization in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 15. Concerns localization (a_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "localization",
+   "flat": "decision_localization_c_variant.md",
+   "ns": "secrets-platform__decision_localization_c_variant.md",
+   "body": "# localization in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 15. Concerns localization (c_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng012",
+   "proj": "reporting-etl",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_a_variant.md",
+   "ns": "reporting-etl__learning_featureflags_a_variant.md",
+   "body": "# featureflags in reporting-etl\n\n**Applies to:** reporting-etl\n\nWritten by eng012 in round 15. Concerns featureflags (a_variant) as it behaves in reporting-etl.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "pagination",
+   "flat": "decision_pagination_c_variant.md",
+   "ns": "ios-trading__decision_pagination_c_variant.md",
+   "body": "# pagination in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 15. Concerns pagination (c_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "observability",
+   "flat": "learning_observability_b_variant.md",
+   "ns": "android-trading__learning_observability_b_variant.md",
+   "body": "# observability in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 15. Concerns observability (b_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 15,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "migrations",
+   "flat": "learning_migrations_b_variant.md",
+   "ns": "web-dashboard__learning_migrations_b_variant.md",
+   "body": "# migrations in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 15. Concerns migrations (b_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "auth",
+   "flat": "learning_auth_b_variant.md",
+   "ns": "ios-app__learning_auth_b_variant.md",
+   "body": "# auth in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 16. Concerns auth (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "ci",
+   "flat": "decision_ci_c_variant.md",
+   "ns": "android-trading__decision_ci_c_variant.md",
+   "body": "# ci in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 16. Concerns ci (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "timezones",
+   "flat": "decision_timezones_a_variant.md",
+   "ns": "web-design-system__decision_timezones_a_variant.md",
+   "body": "# timezones in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 16. Concerns timezones (a_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng004",
+   "proj": "identity-service",
+   "topic": "timezones",
+   "flat": "decision_timezones_d_variant.md",
+   "ns": "identity-service__decision_timezones_d_variant.md",
+   "body": "# timezones in identity-service\n\n**Applies to:** identity-service\n\nWritten by eng004 in round 16. Concerns timezones (d_variant) as it behaves in identity-service.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "observability",
+   "flat": "learning_observability_d_variant.md",
+   "ns": "secrets-platform__learning_observability_d_variant.md",
+   "body": "# observability in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 16. Concerns observability (d_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "retries",
+   "flat": "learning_retries_a_variant.md",
+   "ns": "ml-risk-models__learning_retries_a_variant.md",
+   "body": "# retries in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 16. Concerns retries (a_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_b_variant.md",
+   "ns": "ios-app__learning_ratelimit_b_variant.md",
+   "body": "# ratelimit in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 16. Concerns ratelimit (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "migrations",
+   "flat": "learning_migrations_c_variant.md",
+   "ns": "android-onboarding__learning_migrations_c_variant.md",
+   "body": "# migrations in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 16. Concerns migrations (c_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_c_variant.md",
+   "ns": "web-bff__learning_featureflags_c_variant.md",
+   "body": "# featureflags in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 16. Concerns featureflags (c_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "observability",
+   "flat": "learning_observability_b_variant.md",
+   "ns": "secrets-platform__learning_observability_b_variant.md",
+   "body": "# observability in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 16. Concerns observability (b_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_d_variant.md",
+   "ns": "ios-trading__learning_flakytests_d_variant.md",
+   "body": "# flakytests in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 16. Concerns flakytests (d_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "auth",
+   "flat": "decision_auth_d_variant.md",
+   "ns": "android-trading__decision_auth_d_variant.md",
+   "body": "# auth in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 16. Concerns auth (d_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 16,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "timezones",
+   "flat": "decision_timezones_c_variant.md",
+   "ns": "web-dashboard__decision_timezones_c_variant.md",
+   "body": "# timezones in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 16. Concerns timezones (c_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "featureflags",
+   "flat": "decision_featureflags_b_variant.md",
+   "ns": "ios-app__decision_featureflags_b_variant.md",
+   "body": "# featureflags in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 17. Concerns featureflags (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "timezones",
+   "flat": "learning_timezones_c_variant.md",
+   "ns": "ml-risk-models__learning_timezones_c_variant.md",
+   "body": "# timezones in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 17. Concerns timezones (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "featureflags",
+   "flat": "learning_featureflags_a_variant.md",
+   "ns": "ios-app__learning_featureflags_a_variant.md",
+   "body": "# featureflags in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 17. Concerns featureflags (a_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng008",
+   "proj": "android-design-system",
+   "topic": "ci",
+   "flat": "decision_ci_b_variant.md",
+   "ns": "android-design-system__decision_ci_b_variant.md",
+   "body": "# ci in android-design-system\n\n**Applies to:** android-design-system\n\nWritten by eng008 in round 17. Concerns ci (b_variant) as it behaves in android-design-system.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "ci",
+   "flat": "learning_ci_a_variant.md",
+   "ns": "web-bff__learning_ci_a_variant.md",
+   "body": "# ci in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 17. Concerns ci (a_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "ratelimit",
+   "flat": "decision_ratelimit_b_variant.md",
+   "ns": "onboarding-service__decision_ratelimit_b_variant.md",
+   "body": "# ratelimit in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 17. Concerns ratelimit (b_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "secrets",
+   "flat": "decision_secrets_a_variant.md",
+   "ns": "secrets-platform__decision_secrets_a_variant.md",
+   "body": "# secrets in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 17. Concerns secrets (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng013",
+   "proj": "ios-trading",
+   "topic": "errors",
+   "flat": "learning_errors_c_variant.md",
+   "ns": "ios-trading__learning_errors_c_variant.md",
+   "body": "# errors in ios-trading\n\n**Applies to:** ios-trading\n\nWritten by eng013 in round 17. Concerns errors (c_variant) as it behaves in ios-trading.\n"
+  },
+  {
+   "round": 17,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "pagination",
+   "flat": "decision_pagination_d_variant.md",
+   "ns": "web-dashboard__decision_pagination_d_variant.md",
+   "body": "# pagination in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 17. Concerns pagination (d_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "retries",
+   "flat": "decision_retries_a_variant.md",
+   "ns": "android-trading__decision_retries_a_variant.md",
+   "body": "# retries in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 18. Concerns retries (a_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "observability",
+   "flat": "learning_observability_b_variant.md",
+   "ns": "web-design-system__learning_observability_b_variant.md",
+   "body": "# observability in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 18. Concerns observability (b_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng004",
+   "proj": "identity-service",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_c_variant.md",
+   "ns": "identity-service__learning_nullhandling_c_variant.md",
+   "body": "# nullhandling in identity-service\n\n**Applies to:** identity-service\n\nWritten by eng004 in round 18. Concerns nullhandling (c_variant) as it behaves in identity-service.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "ratelimit",
+   "flat": "learning_ratelimit_b_variant.md",
+   "ns": "secrets-platform__learning_ratelimit_b_variant.md",
+   "body": "# ratelimit in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 18. Concerns ratelimit (b_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "featureflags",
+   "flat": "decision_featureflags_c_variant.md",
+   "ns": "ml-risk-models__decision_featureflags_c_variant.md",
+   "body": "# featureflags in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 18. Concerns featureflags (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_d_variant.md",
+   "ns": "ios-app__learning_flakytests_d_variant.md",
+   "body": "# flakytests in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 18. Concerns flakytests (d_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng008",
+   "proj": "android-design-system",
+   "topic": "errors",
+   "flat": "decision_errors_a_variant.md",
+   "ns": "android-design-system__decision_errors_a_variant.md",
+   "body": "# errors in android-design-system\n\n**Applies to:** android-design-system\n\nWritten by eng008 in round 18. Concerns errors (a_variant) as it behaves in android-design-system.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng009",
+   "proj": "web-bff",
+   "topic": "observability",
+   "flat": "decision_observability_d_variant.md",
+   "ns": "web-bff__decision_observability_d_variant.md",
+   "body": "# observability in web-bff\n\n**Applies to:** web-bff\n\nWritten by eng009 in round 18. Concerns observability (d_variant) as it behaves in web-bff.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "timezones",
+   "flat": "learning_timezones_a_variant.md",
+   "ns": "onboarding-service__learning_timezones_a_variant.md",
+   "body": "# timezones in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 18. Concerns timezones (a_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "timezones",
+   "flat": "learning_timezones_d_variant.md",
+   "ns": "secrets-platform__learning_timezones_d_variant.md",
+   "body": "# timezones in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 18. Concerns timezones (d_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng012",
+   "proj": "reporting-etl",
+   "topic": "ci",
+   "flat": "decision_ci_b_variant.md",
+   "ns": "reporting-etl__decision_ci_b_variant.md",
+   "body": "# ci in reporting-etl\n\n**Applies to:** reporting-etl\n\nWritten by eng012 in round 18. Concerns ci (b_variant) as it behaves in reporting-etl.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "secrets",
+   "flat": "learning_secrets_b_variant.md",
+   "ns": "android-trading__learning_secrets_b_variant.md",
+   "body": "# secrets in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 18. Concerns secrets (b_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 18,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "timezones",
+   "flat": "learning_timezones_a_variant.md",
+   "ns": "web-dashboard__learning_timezones_a_variant.md",
+   "body": "# timezones in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 18. Concerns timezones (a_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng001",
+   "proj": "ios-app",
+   "topic": "caching",
+   "flat": "decision_caching_d_variant.md",
+   "ns": "ios-app__decision_caching_d_variant.md",
+   "body": "# caching in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng001 in round 19. Concerns caching (d_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng003",
+   "proj": "web-design-system",
+   "topic": "pagination",
+   "flat": "learning_pagination_b_variant.md",
+   "ns": "web-design-system__learning_pagination_b_variant.md",
+   "body": "# pagination in web-design-system\n\n**Applies to:** web-design-system\n\nWritten by eng003 in round 19. Concerns pagination (b_variant) as it behaves in web-design-system.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng004",
+   "proj": "identity-service",
+   "topic": "nullhandling",
+   "flat": "decision_nullhandling_c_variant.md",
+   "ns": "identity-service__decision_nullhandling_c_variant.md",
+   "body": "# nullhandling in identity-service\n\n**Applies to:** identity-service\n\nWritten by eng004 in round 19. Concerns nullhandling (c_variant) as it behaves in identity-service.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "secrets",
+   "flat": "learning_secrets_d_variant.md",
+   "ns": "ml-risk-models__learning_secrets_d_variant.md",
+   "body": "# secrets in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 19. Concerns secrets (d_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng007",
+   "proj": "ios-app",
+   "topic": "flakytests",
+   "flat": "learning_flakytests_b_variant.md",
+   "ns": "ios-app__learning_flakytests_b_variant.md",
+   "body": "# flakytests in ios-app\n\n**Applies to:** ios-app\n\nWritten by eng007 in round 19. Concerns flakytests (b_variant) as it behaves in ios-app.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng008",
+   "proj": "android-design-system",
+   "topic": "ratelimit",
+   "flat": "decision_ratelimit_d_variant.md",
+   "ns": "android-design-system__decision_ratelimit_d_variant.md",
+   "body": "# ratelimit in android-design-system\n\n**Applies to:** android-design-system\n\nWritten by eng008 in round 19. Concerns ratelimit (d_variant) as it behaves in android-design-system.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng010",
+   "proj": "onboarding-service",
+   "topic": "ci",
+   "flat": "decision_ci_a_variant.md",
+   "ns": "onboarding-service__decision_ci_a_variant.md",
+   "body": "# ci in onboarding-service\n\n**Applies to:** onboarding-service\n\nWritten by eng010 in round 19. Concerns ci (a_variant) as it behaves in onboarding-service.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "performance",
+   "flat": "decision_performance_d_variant.md",
+   "ns": "secrets-platform__decision_performance_d_variant.md",
+   "body": "# performance in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 19. Concerns performance (d_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng012",
+   "proj": "reporting-etl",
+   "topic": "errors",
+   "flat": "learning_errors_c_variant.md",
+   "ns": "reporting-etl__learning_errors_c_variant.md",
+   "body": "# errors in reporting-etl\n\n**Applies to:** reporting-etl\n\nWritten by eng012 in round 19. Concerns errors (c_variant) as it behaves in reporting-etl.\n"
+  },
+  {
+   "round": 19,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "performance",
+   "flat": "decision_performance_b_variant.md",
+   "ns": "web-dashboard__decision_performance_b_variant.md",
+   "body": "# performance in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 19. Concerns performance (b_variant) as it behaves in web-dashboard.\n"
+  },
+  {
+   "round": 20,
+   "eng": "eng002",
+   "proj": "android-trading",
+   "topic": "observability",
+   "flat": "decision_observability_c_variant.md",
+   "ns": "android-trading__decision_observability_c_variant.md",
+   "body": "# observability in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng002 in round 20. Concerns observability (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 20,
+   "eng": "eng004",
+   "proj": "payments-service",
+   "topic": "timezones",
+   "flat": "learning_timezones_b_variant.md",
+   "ns": "payments-service__learning_timezones_b_variant.md",
+   "body": "# timezones in payments-service\n\n**Applies to:** payments-service\n\nWritten by eng004 in round 20. Concerns timezones (b_variant) as it behaves in payments-service.\n"
+  },
+  {
+   "round": 20,
+   "eng": "eng005",
+   "proj": "secrets-platform",
+   "topic": "ci",
+   "flat": "learning_ci_a_variant.md",
+   "ns": "secrets-platform__learning_ci_a_variant.md",
+   "body": "# ci in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng005 in round 20. Concerns ci (a_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 20,
+   "eng": "eng006",
+   "proj": "ml-risk-models",
+   "topic": "ci",
+   "flat": "decision_ci_c_variant.md",
+   "ns": "ml-risk-models__decision_ci_c_variant.md",
+   "body": "# ci in ml-risk-models\n\n**Applies to:** ml-risk-models\n\nWritten by eng006 in round 20. Concerns ci (c_variant) as it behaves in ml-risk-models.\n"
+  },
+  {
+   "round": 20,
+   "eng": "eng008",
+   "proj": "android-onboarding",
+   "topic": "secrets",
+   "flat": "learning_secrets_a_variant.md",
+   "ns": "android-onboarding__learning_secrets_a_variant.md",
+   "body": "# secrets in android-onboarding\n\n**Applies to:** android-onboarding\n\nWritten by eng008 in round 20. Concerns secrets (a_variant) as it behaves in android-onboarding.\n"
+  },
+  {
+   "round": 20,
+   "eng": "eng011",
+   "proj": "secrets-platform",
+   "topic": "observability",
+   "flat": "learning_observability_d_variant.md",
+   "ns": "secrets-platform__learning_observability_d_variant.md",
+   "body": "# observability in secrets-platform\n\n**Applies to:** secrets-platform\n\nWritten by eng011 in round 20. Concerns observability (d_variant) as it behaves in secrets-platform.\n"
+  },
+  {
+   "round": 20,
+   "eng": "eng014",
+   "proj": "android-trading",
+   "topic": "retries",
+   "flat": "learning_retries_c_variant.md",
+   "ns": "android-trading__learning_retries_c_variant.md",
+   "body": "# retries in android-trading\n\n**Applies to:** android-trading\n\nWritten by eng014 in round 20. Concerns retries (c_variant) as it behaves in android-trading.\n"
+  },
+  {
+   "round": 20,
+   "eng": "eng015",
+   "proj": "web-dashboard",
+   "topic": "timezones",
+   "flat": "learning_timezones_a_variant.md",
+   "ns": "web-dashboard__learning_timezones_a_variant.md",
+   "body": "# timezones in web-dashboard\n\n**Applies to:** web-dashboard\n\nWritten by eng015 in round 20. Concerns timezones (a_variant) as it behaves in web-dashboard.\n"
+  }
+ ]
+}

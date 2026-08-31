@@ -1,0 +1,90 @@
+ios-svc-01	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+ios-svc-01	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+ios-svc-01	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+ios-svc-02	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+ios-svc-02	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+ios-svc-02	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+ios-svc-03	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+ios-svc-03	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+ios-svc-03	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+ios-svc-04	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+ios-svc-04	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+ios-svc-04	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+ios-svc-05	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+ios-svc-05	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+ios-svc-05	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+android-svc-01	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+android-svc-01	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+android-svc-01	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+android-svc-02	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+android-svc-02	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+android-svc-02	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+android-svc-03	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+android-svc-03	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+android-svc-03	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+android-svc-04	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+android-svc-04	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+android-svc-04	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+android-svc-05	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+android-svc-05	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+android-svc-05	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+web-svc-01	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+web-svc-01	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+web-svc-01	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+web-svc-02	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+web-svc-02	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+web-svc-02	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+web-svc-03	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+web-svc-03	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+web-svc-03	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+web-svc-04	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+web-svc-04	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+web-svc-04	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+web-svc-05	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+web-svc-05	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+web-svc-05	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+backend-svc-01	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+backend-svc-01	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+backend-svc-01	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+backend-svc-02	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+backend-svc-02	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+backend-svc-02	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+backend-svc-03	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+backend-svc-03	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+backend-svc-03	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+backend-svc-04	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+backend-svc-04	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+backend-svc-04	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+backend-svc-05	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+backend-svc-05	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+backend-svc-05	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+infra-svc-01	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+infra-svc-01	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+infra-svc-01	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+infra-svc-02	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+infra-svc-02	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+infra-svc-02	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+infra-svc-03	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+infra-svc-03	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+infra-svc-03	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+infra-svc-04	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+infra-svc-04	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+infra-svc-04	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+infra-svc-05	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+infra-svc-05	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+infra-svc-05	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+data-svc-01	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+data-svc-01	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+data-svc-01	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+data-svc-02	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+data-svc-02	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+data-svc-02	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+data-svc-03	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+data-svc-03	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+data-svc-03	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+data-svc-04	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+data-svc-04	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+data-svc-04	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+data-svc-05	caching	lex: cache invalidation stale entry%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+data-svc-05	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+data-svc-05	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes

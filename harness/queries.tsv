@@ -1,0 +1,64 @@
+mobile-ios	observability	lex: logging tracing context span%%vec: how is trace context propagated and what must never be logged
+mobile-ios	ci	lex: ci pipeline cache build stage%%vec: why is the pipeline slow and how should the cache key be chosen
+mobile-ios	performance	lex: performance memory concurrency budget%%vec: what causes memory growth or starvation under load and how is it bounded
+mobile-ios	localization	lex: localization translation placeholder locale%%vec: how is user-facing copy translated and what breaks in other languages
+mobile-android	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+mobile-android	nullhandling	lex: null optional boundary%%vec: how do we handle a missing or null value coming across a boundary
+mobile-android	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+mobile-android	ratelimit	lex: rate limit throttling backoff%%vec: what should happen when we get rate limited by a dependency
+web-app	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+web-app	timezones	lex: timezone utc date daylight%%vec: how are timestamps stored and converted so the day boundary is correct
+web-app	migrations	lex: migration schema lock deploy%%vec: how do we run a schema change safely without blocking during a deploy window
+web-app	observability	lex: logging tracing context span%%vec: how is trace context propagated and what must never be logged
+payments-service	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+payments-service	pagination	lex: pagination cursor offset page%%vec: why are records being skipped between pages when new rows arrive
+payments-service	timezones	lex: timezone utc date daylight%%vec: how are timestamps stored and converted so the day boundary is correct
+payments-service	featureflags	lex: feature flag toggle default%%vec: when is a feature flag evaluated and what if the flag service is unreachable
+onboarding-service	errors	lex: error handling status code failure%%vec: how should a failure be surfaced so callers know whether to retry
+onboarding-service	timezones	lex: timezone utc date daylight%%vec: how are timestamps stored and converted so the day boundary is correct
+onboarding-service	secrets	lex: secret credential injection rotation%%vec: where do credentials come from at runtime and how do we avoid committing them
+onboarding-service	ratelimit	lex: rate limit throttling backoff%%vec: what should happen when we get rate limited by a dependency
+ledger-service	ci	lex: ci pipeline cache build stage%%vec: why is the pipeline slow and how should the cache key be chosen
+ledger-service	localization	lex: localization translation placeholder locale%%vec: how is user-facing copy translated and what breaks in other languages
+ledger-service	secrets	lex: secret credential injection rotation%%vec: where do credentials come from at runtime and how do we avoid committing them
+ledger-service	performance	lex: performance memory concurrency budget%%vec: what causes memory growth or starvation under load and how is it bounded
+identity-service	errors	lex: error handling status code failure%%vec: how should a failure be surfaced so callers know whether to retry
+identity-service	secrets	lex: secret credential injection rotation%%vec: where do credentials come from at runtime and how do we avoid committing them
+identity-service	pagination	lex: pagination cursor offset page%%vec: why are records being skipped between pages when new rows arrive
+identity-service	migrations	lex: migration schema lock deploy%%vec: how do we run a schema change safely without blocking during a deploy window
+trading-service	featureflags	lex: feature flag toggle default%%vec: when is a feature flag evaluated and what if the flag service is unreachable
+trading-service	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+trading-service	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+trading-service	pagination	lex: pagination cursor offset page%%vec: why are records being skipped between pages when new rows arrive
+notification-service	ratelimit	lex: rate limit throttling backoff%%vec: what should happen when we get rate limited by a dependency
+notification-service	performance	lex: performance memory concurrency budget%%vec: what causes memory growth or starvation under load and how is it bounded
+notification-service	migrations	lex: migration schema lock deploy%%vec: how do we run a schema change safely without blocking during a deploy window
+notification-service	secrets	lex: secret credential injection rotation%%vec: where do credentials come from at runtime and how do we avoid committing them
+reporting-service	pagination	lex: pagination cursor offset page%%vec: why are records being skipped between pages when new rows arrive
+reporting-service	errors	lex: error handling status code failure%%vec: how should a failure be surfaced so callers know whether to retry
+reporting-service	performance	lex: performance memory concurrency budget%%vec: what causes memory growth or starvation under load and how is it bounded
+reporting-service	retries	lex: retry idempotency duplicate%%vec: how do we stop a retried request from applying the same change twice
+document-service	caching	lex: cache invalidation stale entry key%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+document-service	featureflags	lex: feature flag toggle default%%vec: when is a feature flag evaluated and what if the flag service is unreachable
+document-service	localization	lex: localization translation placeholder locale%%vec: how is user-facing copy translated and what breaks in other languages
+document-service	flakytests	lex: flaky test isolation shared state%%vec: why does this test only fail sometimes and how do we make it deterministic
+platform-infra	pagination	lex: pagination cursor offset page%%vec: why are records being skipped between pages when new rows arrive
+platform-infra	migrations	lex: migration schema lock deploy%%vec: how do we run a schema change safely without blocking during a deploy window
+platform-infra	ci	lex: ci pipeline cache build stage%%vec: why is the pipeline slow and how should the cache key be chosen
+platform-infra	secrets	lex: secret credential injection rotation%%vec: where do credentials come from at runtime and how do we avoid committing them
+k8s-platform	localization	lex: localization translation placeholder locale%%vec: how is user-facing copy translated and what breaks in other languages
+k8s-platform	caching	lex: cache invalidation stale entry key%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+k8s-platform	migrations	lex: migration schema lock deploy%%vec: how do we run a schema change safely without blocking during a deploy window
+k8s-platform	flakytests	lex: flaky test isolation shared state%%vec: why does this test only fail sometimes and how do we make it deterministic
+analytics-pipeline	ci	lex: ci pipeline cache build stage%%vec: why is the pipeline slow and how should the cache key be chosen
+analytics-pipeline	errors	lex: error handling status code failure%%vec: how should a failure be surfaced so callers know whether to retry
+analytics-pipeline	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+analytics-pipeline	ratelimit	lex: rate limit throttling backoff%%vec: what should happen when we get rate limited by a dependency
+data-warehouse	caching	lex: cache invalidation stale entry key%%vec: how do we invalidate a cached entry after a write so it stops serving stale data
+data-warehouse	secrets	lex: secret credential injection rotation%%vec: where do credentials come from at runtime and how do we avoid committing them
+data-warehouse	auth	lex: token refresh credential expiry%%vec: when should an access token be refreshed and how do we avoid concurrent refreshes
+data-warehouse	timezones	lex: timezone utc date daylight%%vec: how are timestamps stored and converted so the day boundary is correct
+ml-risk-models	performance	lex: performance memory concurrency budget%%vec: what causes memory growth or starvation under load and how is it bounded
+ml-risk-models	migrations	lex: migration schema lock deploy%%vec: how do we run a schema change safely without blocking during a deploy window
+ml-risk-models	ci	lex: ci pipeline cache build stage%%vec: why is the pipeline slow and how should the cache key be chosen
+ml-risk-models	secrets	lex: secret credential injection rotation%%vec: where do credentials come from at runtime and how do we avoid committing them

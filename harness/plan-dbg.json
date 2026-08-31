@@ -1,0 +1,78 @@
+{
+ "engineers": [
+  {
+   "id": "eng001",
+   "ctx": "ios",
+   "projects": [
+    "ios-svc-01"
+   ]
+  },
+  {
+   "id": "eng002",
+   "ctx": "android",
+   "projects": [
+    "android-svc-01"
+   ]
+  },
+  {
+   "id": "eng003",
+   "ctx": "web",
+   "projects": [
+    "web-svc-02"
+   ]
+  }
+ ],
+ "projects": [
+  "ios-svc-01",
+  "ios-svc-02",
+  "android-svc-01",
+  "android-svc-02",
+  "web-svc-01",
+  "web-svc-02",
+  "backend-svc-01",
+  "backend-svc-02",
+  "infra-svc-01",
+  "infra-svc-02",
+  "data-svc-01",
+  "data-svc-02"
+ ],
+ "rounds": 2,
+ "plan": [
+  {
+   "round": 1,
+   "eng": "eng001",
+   "proj": "ios-svc-01",
+   "topic": "nullhandling",
+   "flat": "learning_nullhandling_guard_alpha.md",
+   "ns": "ios-svc-01__learning_nullhandling_guard_alpha.md",
+   "body": "# nullhandling in ios-svc-01\n\n**Applies to:** ios-svc-01\n\nWritten by eng001 in round 1. Concerns nullhandling (guard_alpha) as it behaves in ios-svc-01.\n"
+  },
+  {
+   "round": 1,
+   "eng": "eng003",
+   "proj": "web-svc-02",
+   "topic": "migrations",
+   "flat": "decision_migrations_state_delta.md",
+   "ns": "web-svc-02__decision_migrations_state_delta.md",
+   "body": "# migrations in web-svc-02\n\n**Applies to:** web-svc-02\n\nWritten by eng003 in round 1. Concerns migrations (state_delta) as it behaves in web-svc-02.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng002",
+   "proj": "android-svc-01",
+   "topic": "observability",
+   "flat": "decision_observability_guard_alpha.md",
+   "ns": "android-svc-01__decision_observability_guard_alpha.md",
+   "body": "# observability in android-svc-01\n\n**Applies to:** android-svc-01\n\nWritten by eng002 in round 2. Concerns observability (guard_alpha) as it behaves in android-svc-01.\n"
+  },
+  {
+   "round": 2,
+   "eng": "eng003",
+   "proj": "web-svc-02",
+   "topic": "pagination",
+   "flat": "learning_pagination_key_delta.md",
+   "ns": "web-svc-02__learning_pagination_key_delta.md",
+   "body": "# pagination in web-svc-02\n\n**Applies to:** web-svc-02\n\nWritten by eng003 in round 2. Concerns pagination (key_delta) as it behaves in web-svc-02.\n"
+  }
+ ]
+}
