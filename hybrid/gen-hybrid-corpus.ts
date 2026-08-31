@@ -9,7 +9,7 @@
  */
 import { readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { capture } from "./memory.ts";
+import { capture } from "./plugin.ts";
 
 const SRC = process.argv[2];
 const OUT = process.argv[3];

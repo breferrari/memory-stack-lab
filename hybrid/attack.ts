@@ -2,8 +2,7 @@
 import { mkdtempSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { capture, readPool, visibleTo, isForeign, rankBySpecificity } from "./memory.ts";
-import { scan } from "./sanitize.ts";
+import { capture, readPool, visibleTo, isForeign, rankBySpecificity, scan } from "./plugin.ts";
 
 const d = mkdtempSync(join(tmpdir(), "attack-"));
 const pool = join(d, "memories");

@@ -58,17 +58,43 @@ writeFileSync(join(HOME, "_map.json"), JSON.stringify(idMap, null, 1));
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 let qmdRuns = 0, facetRuns = 0;
+const lat = [];
+const seenProj = new Set();
+const cold = [], warm = [];
 for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
 	const [proj, topic, doc] = line.split("\t");
 	// the fixture is a structured lex/vec document; the plugin takes one string
 	const q = doc.replace(/%%/g, " ").replace(/\b(lex|vec):\s*/g, "");
-	const r = search(q, { cwd: repoOf[proj], limit: 5 });
+	const t0 = performance.now();
+	const r = await search(q, { cwd: repoOf[proj], limit: 5 });
+	const dt = performance.now() - t0;
+	lat.push(dt);
+	// The first query for a project pays to build that caller's view index. Mixing
+	// it into one mean reports neither cost: not the build, not the steady state.
+	(seenProj.has(proj) ? warm : cold).push(dt); seenProj.add(proj);
+	// `search` became async; calling it without await yielded a Promise whose
+	// .hits is undefined. Guard rather than trust, because the shape that scores
+	// zero and the shape that throws are one edit apart.
+	if (!r || !Array.isArray(r.hits)) throw new Error(`search returned no hits array for ${proj}/${topic}: ${JSON.stringify(r)?.slice(0, 200)}`);
 	r.engine === "qmd" ? qmdRuns++ : facetRuns++;
 	writeFileSync(join(OUT, `${proj}__${topic}.txt`), r.hits.map((h) => h.name).join("\n"));
 }
 
+// Every timing this machine has produced under load has been wrong, twice by a
+// factor that inverted the conclusion. A number without its load average is not
+// interpretable later, and "I will remember the machine was busy" has failed
+// every time it was relied on. So the run stamps its own conditions.
+const loadavg = (() => { try { return readFileSync("/proc/loadavg", "utf8").split(" ").slice(0, 3).map(Number); } catch { return null; } })();
 console.log(JSON.stringify({
 	projects: projects.length, memories_written: landed, refused,
 	queries_served_by_qmd: qmdRuns, queries_fallen_back_to_facets: facetRuns,
+	// Retrieval quality was measured for a week before anyone timed a query. A
+	// slow search is one the agent stops calling, which silently undoes the
+	// behavioural layer — so latency is reported beside accuracy, always.
+	latency_ms: (() => { const s = [...lat].sort((a, b) => a - b); return { mean: +(lat.reduce((a, b) => a + b, 0) / lat.length).toFixed(1), p50: +s[Math.floor(s.length / 2)].toFixed(1), p95: +s[Math.floor(s.length * 0.95)].toFixed(1), max: +s[s.length - 1].toFixed(1),
+		first_query_per_project_mean: +(cold.reduce((a, b) => a + b, 0) / cold.length).toFixed(1), first_query_per_project_n: cold.length,
+		steady_state_mean: +(warm.reduce((a, b) => a + b, 0) / warm.length).toFixed(1), steady_state_n: warm.length,
+		samples: lat.map((x) => +x.toFixed(1)) }; })(),
+	loadavg_1_5_15: loadavg, timings_trustworthy: loadavg ? loadavg[0] < 1.0 : null,
 	map: join(HOME, "_map.json"), home: HOME,
 }, null, 2));
