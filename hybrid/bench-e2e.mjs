@@ -19,6 +19,7 @@ const SRC = process.argv[2];                       // the 183-memory corpus
 const OUT = process.argv[3];                       // artifact dir for the scorer
 const QUERIES = process.argv[4];
 
+const loadAtStart = (() => { try { return readFileSync("/proc/loadavg", "utf8").split(" ").slice(0, 3).map(Number); } catch { return null; } })();
 const HOME = mkdtempSync(join(tmpdir(), "vh-e2e-"));
 process.env.VESTIGE_HOME = HOME;
 process.env.VESTIGE_NO_UPDATE = "1";
@@ -84,7 +85,7 @@ for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
 // factor that inverted the conclusion. A number without its load average is not
 // interpretable later, and "I will remember the machine was busy" has failed
 // every time it was relied on. So the run stamps its own conditions.
-const loadavg = (() => { try { return readFileSync("/proc/loadavg", "utf8").split(" ").slice(0, 3).map(Number); } catch { return null; } })();
+const loadAtEnd = (() => { try { return readFileSync("/proc/loadavg", "utf8").split(" ").slice(0, 3).map(Number); } catch { return null; } })();
 console.log(JSON.stringify({
 	projects: projects.length, memories_written: landed, refused,
 	queries_served_by_qmd: qmdRuns, queries_fallen_back_to_facets: facetRuns,
@@ -95,6 +96,9 @@ console.log(JSON.stringify({
 		first_query_per_project_mean: +(cold.reduce((a, b) => a + b, 0) / cold.length).toFixed(1), first_query_per_project_n: cold.length,
 		steady_state_mean: +(warm.reduce((a, b) => a + b, 0) / warm.length).toFixed(1), steady_state_n: warm.length,
 		samples: lat.map((x) => +x.toFixed(1)) }; })(),
-	loadavg_1_5_15: loadavg, timings_trustworthy: loadavg ? loadavg[0] < 1.0 : null,
+	load_ambient_before: loadAtStart, load_during_run: loadAtEnd,
+	// Only the AMBIENT figure says whether this machine was someone else's at the
+	// time. The during-run figure is mostly this benchmark and is kept for context.
+	timings_trustworthy: loadAtStart ? loadAtStart[0] < 0.7 : null,
 	map: join(HOME, "_map.json"), home: HOME,
 }, null, 2));
