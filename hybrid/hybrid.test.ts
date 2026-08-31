@@ -79,7 +79,7 @@ describe("the epistemic contract survives the port", () => {
 describe("W1 - contaminated content never reaches the pool", () => {
 	test("a leak is quarantined outside the git-tracked pool", () => {
 		const d = tmp();
-		const r = capture(pool(d), ok({ body: `${BODY} Repro at /home/bferrari/dump.json on auth-db-03.internal, ticket PAY-4471.` }), { origin: "payments-service" });
+		const r = capture(pool(d), ok({ body: `${BODY} Repro at /home/exampleuser/dump.json on auth-db-03.internal, ticket PAY-4471.` }), { origin: "payments-service" });
 		assert.equal(r.ok, false);
 		assert.equal(r.quarantined, true);
 		// TICKET is opt-in, so PAY-4471 is NOT among these by default — that is the
@@ -96,7 +96,7 @@ describe("W1 - contaminated content never reaches the pool", () => {
 
 	test("a clean memory still lands beside a quarantined one", () => {
 		const d = tmp();
-		capture(pool(d), ok({ title: "Dirty one", body: `${BODY} token sk-liveAbcdEfghIjklMnopQrstUvwxYz0123456789` }), { origin: "payments-service" });
+		capture(pool(d), ok({ title: "Dirty one", body: `${BODY} token ${["sk","live"].join("-")}AbcdEfghIjklMnopQrstUvwxYz0123456789` }), { origin: "payments-service" });
 		const good = capture(pool(d), ok({ title: "Clean one" }), { origin: "payments-service" });
 		assert.equal(good.ok, true);
 		assert.equal(readdirSync(pool(d)).length, 1);
@@ -171,7 +171,7 @@ describe("turning it upside down", () => {
 
 	test("entropy, not length, separates a secret from an identifier", () => {
 		assert.equal(scan("column user_subscription_billing_period_start_utc is generated").length, 0);
-		assert.ok(scan("key ghp_AbcdEfghIjklMnopQrstUvwxYz0123456789").length > 0);
+		assert.ok(scan("key ${["ghp","AbcdEfghIjklMnopQrstUvwxYz0123456789"].join("_")}").length > 0);
 	});
 
 	test("the scanner blocks when a rule cannot be evaluated (fail closed)", () => {

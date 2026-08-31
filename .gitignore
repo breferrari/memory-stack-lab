@@ -4,3 +4,6 @@ tools/
 *.log
 .qmd/
 node_modules/
+
+# generated contamination fixture - regenerate with harness/gen-leaky-plan.mjs
+harness/plan-x-leaky.json
