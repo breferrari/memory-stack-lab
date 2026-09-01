@@ -52,7 +52,18 @@ const SERVICES = [
 const SHARED = {
   libs: ["retry-go v2.4", "pg-pool 8.11", "opentelemetry-js 1.24", "sqs-consumer 9.0", "swift-log 1.5", "tenacity 8.2"],
   keys: ["IDEMPOTENCY_TTL_SECONDS", "PGPOOL_MAX", "OTEL_TRACES_SAMPLER_ARG", "SQS_VISIBILITY_TIMEOUT", "FEATURE_CACHE_TTL", "TOKEN_REFRESH_SKEW"],
-  signals: ["p99_latency_ms", "pool_wait_ms", "dlq_depth", "cache_hit_ratio", "token_refresh_failures", "capture_lag_seconds"],
+  // A signal carries its own unit. Drawing the magnitude separately produced
+  // lines like "cache_hit_ratio had climbed to around 350MB", which no engineer
+  // would write and no query would match — visible only by reading the prose,
+  // never by any count. Each signal now says what a bad value of it looks like.
+  signals: [
+    { name: "p99_latency_ms", mag: (n) => `${400 + n * 55}ms` },
+    { name: "pool_wait_ms", mag: (n) => `${120 + n * 40}ms` },
+    { name: "dlq_depth", mag: (n) => `${(n + 2) * 180} messages` },
+    { name: "cache_hit_ratio", mag: (n) => `${Math.min(61, 12 + n * 3)}%, down from the usual 94%` },
+    { name: "token_refresh_failures", mag: (n) => `${(n + 1) * 30} per minute` },
+    { name: "capture_lag_seconds", mag: (n) => `${20 + n * 9} seconds` },
+  ],
 };
 
 /** Incident classes. Each names the shape a person would recognise it by. */
@@ -88,8 +99,8 @@ while (memories.length < COUNT) {
     id: `INC-${String(incidents.length + 1).padStart(3, "0")}`,
     day, class: cls.key, symptom: cls.symptom, involved,
     artefact: pick(cls.artefacts),
-    lib: pick(SHARED.libs), key: pick(SHARED.keys), signal: pick(SHARED.signals),
-    magnitude: `${int(2, 40) * 25}${pick(["ms", " requests", " rows", "MB"])}`,
+    lib: pick(SHARED.libs), key: pick(SHARED.keys),
+    ...(() => { const sig = pick(SHARED.signals); return { signal: sig.name, magnitude: sig.mag(int(0, 9)) }; })(),
   };
   incidents.push(inc);
 

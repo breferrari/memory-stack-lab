@@ -1,0 +1,22 @@
+{
+ "name": "a working vault's MCP captures (n=214)",
+ "n": 214,
+ "word_deciles": [
+  52,
+  318,
+  416,
+  451,
+  477,
+  503,
+  525,
+  555,
+  593,
+  684,
+  918
+ ],
+ "median_words": 503,
+ "p10_words": 318,
+ "p90_words": 684,
+ "distinct_words_per_doc": 240.4,
+ "specifics_per_doc": 14.1
+}

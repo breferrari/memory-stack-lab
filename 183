@@ -1,0 +1,104 @@
+{
+ "services": [
+  {
+   "repo": "payments-api",
+   "stack": "Node 20 + Postgres 15",
+   "role": "takes card payments and issues refunds",
+   "deps": [
+    "ledger",
+    "notifications",
+    "risk-scoring"
+   ]
+  },
+  {
+   "repo": "ledger",
+   "stack": "Go 1.22 + Postgres 15",
+   "role": "the double-entry book of record",
+   "deps": []
+  },
+  {
+   "repo": "risk-scoring",
+   "stack": "Python 3.12 + PyTorch",
+   "role": "scores a transaction before it is captured",
+   "deps": [
+    "feature-store"
+   ]
+  },
+  {
+   "repo": "feature-store",
+   "stack": "Python 3.12 + Redis 7",
+   "role": "serves precomputed features to models",
+   "deps": []
+  },
+  {
+   "repo": "notifications",
+   "stack": "Node 20 + SQS",
+   "role": "sends receipts by email and push",
+   "deps": []
+  },
+  {
+   "repo": "merchant-dashboard",
+   "stack": "TypeScript + React 18",
+   "role": "what merchants log into",
+   "deps": [
+    "payments-api",
+    "ledger"
+   ]
+  },
+  {
+   "repo": "mobile-ios",
+   "stack": "Swift 5.9 + CoreData",
+   "role": "the consumer app",
+   "deps": [
+    "payments-api",
+    "auth-gateway"
+   ]
+  },
+  {
+   "repo": "auth-gateway",
+   "stack": "Go 1.22 + Redis 7",
+   "role": "issues and refreshes session tokens",
+   "deps": []
+  }
+ ],
+ "shared": {
+  "libs": [
+   "retry-go v2.4",
+   "pg-pool 8.11",
+   "opentelemetry-js 1.24",
+   "sqs-consumer 9.0",
+   "swift-log 1.5",
+   "tenacity 8.2"
+  ],
+  "keys": [
+   "IDEMPOTENCY_TTL_SECONDS",
+   "PGPOOL_MAX",
+   "OTEL_TRACES_SAMPLER_ARG",
+   "SQS_VISIBILITY_TIMEOUT",
+   "FEATURE_CACHE_TTL",
+   "TOKEN_REFRESH_SKEW"
+  ],
+  "signals": [
+   {
+    "name": "p99_latency_ms"
+   },
+   {
+    "name": "pool_wait_ms"
+   },
+   {
+    "name": "dlq_depth"
+   },
+   {
+    "name": "cache_hit_ratio"
+   },
+   {
+    "name": "token_refresh_failures"
+   },
+   {
+    "name": "capture_lag_seconds"
+   }
+  ]
+ },
+ "incidents": [],
+ "memories": []
+}

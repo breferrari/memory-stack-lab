@@ -1,0 +1,53 @@
+/**
+ * One definition of "what this corpus looks like", used by both the generator
+ * that targets a shape and the gate that checks one. Two implementations drift;
+ * a fixture that passes its gate because the two disagree is worse than no gate.
+ */
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { join } from "node:path";
+
+/** Things an embedder grips and a symptom query collides with. */
+export const SPECIFIC =
+  /`[^`]+`|\b[a-z_]+\.(?:ts|js|mjs|rs|py|json|toml|yaml|yml|md)\b|\b[A-Z][A-Za-z0-9]*(?:::|\.)[A-Za-z0-9_]+\b|\b\d+(?:\.\d+)?\s?(?:ms|s|MB|KB|GB|x|×|%)\b|\b[A-Z]{2,}[A-Z0-9_]*\b|\bv?\d+\.\d+(?:\.\d+)?\b/g;
+
+export const words = (s) => s.trim().split(/\s+/).filter(Boolean);
+export const tokens = (s) => (s.match(/[A-Za-z][A-Za-z0-9_.-]+/g) ?? []).map((t) => t.toLowerCase());
+export const stripFrontmatter = (s) => s.replace(/^---[\s\S]*?---\n/, "");
+
+/** Word count, computed rather than estimated. A model cannot count its own output. */
+export const countWords = (s) => words(s).length;
+
+const quantile = (sorted, p) => sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * p))];
+
+export function profileBodies(bodies) {
+  const w = bodies.map(countWords).sort((a, b) => a - b);
+  return {
+    n: bodies.length,
+    // Deciles, so a generator can sample the real shape instead of a guess at it.
+    word_deciles: Array.from({ length: 11 }, (_, i) => quantile(w, i / 10)),
+    median_words: quantile(w, 0.5),
+    p10_words: quantile(w, 0.1),
+    p90_words: quantile(w, 0.9),
+    distinct_words_per_doc: +(bodies.reduce((a, b) => a + new Set(tokens(b)).size, 0) / bodies.length).toFixed(1),
+    specifics_per_doc: +(bodies.reduce((a, b) => a + (b.match(SPECIFIC) ?? []).length, 0) / bodies.length).toFixed(1),
+  };
+}
+
+/** Recursive: a real store is dated subdirectories, a fixture is flat. Both are corpora. */
+export function bodiesIn(dir) {
+  const out = [];
+  for (const e of readdirSync(dir)) {
+    if (e.startsWith("_") || e.startsWith(".")) continue;
+    const p = join(dir, e);
+    if (statSync(p).isDirectory()) out.push(...bodiesIn(p));
+    else if (e.endsWith(".md")) out.push(stripFrontmatter(readFileSync(p, "utf8")));
+  }
+  return out;
+}
+
+/** Sample a length from an empirical decile table: pick a decile, then within it. */
+export const sampleWords = (deciles, rnd) => {
+  const i = Math.min(9, Math.floor(rnd() * 10));
+  const [lo, hi] = [deciles[i], deciles[i + 1]];
+  return Math.round(lo + rnd() * Math.max(1, hi - lo));
+};
