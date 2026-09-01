@@ -58,10 +58,16 @@ const warm = [];
 const sample = [repos[0], repos[Math.floor(PROJECTS / 2)], repos[PROJECTS - 1]];
 for (const r of sample) {
 	let t = Date.now();
-	const first = search("idempotency key for a retried mutation", { cwd: r.dir, limit: 5 });
+	// `search` is async. It was not when this bench was written, and calling it
+	// without await yields a Promise whose .hits is undefined — the same defect
+	// that hit bench-e2e, because making it async updated the plugin's own
+	// callers and none of the benchmarks that measure it.
+	const first = await search("idempotency key for a retried mutation", { cwd: r.dir, limit: 5 });
+	if (!first || !Array.isArray(first.hits)) throw new Error(`search returned no hits array for ${r.dir}: ${JSON.stringify(first)?.slice(0, 200)}`);
 	cold.push({ ms: Date.now() - t, engine: first.engine, hits: first.hits.length });
 	t = Date.now();
-	const second = search("how do we handle rate limiting here", { cwd: r.dir, limit: 5 });
+	const second = await search("how do we handle rate limiting here", { cwd: r.dir, limit: 5 });
+	if (!second || !Array.isArray(second.hits)) throw new Error(`search returned no hits array on the warm path for ${r.dir}`);
 	warm.push({ ms: Date.now() - t, engine: second.engine, hits: second.hits.length });
 }
 
