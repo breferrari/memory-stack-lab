@@ -101,8 +101,12 @@ for (const m of world.memories) {
   const priorBlock = priors.length
     ? `\nEarlier notes in this same repository, which you may refer to by name if it is natural:\n${priors.map((p) => `- "${p.title}" — ${p.gist}`).join("\n")}`
     : "";
+  // The correcting note revisits the SAME incident, so it can say what the
+  // earlier explanation got wrong about it. When it was allowed to be about a
+  // different event, the model wrote up that event and bolted on two words of
+  // correction language, which reads as a correction and is not one.
   const supersedeBlock = m.supersedes && written.get(m.supersedes)
-    ? `\nThis note CORRECTS the earlier one titled "${written.get(m.supersedes).title}". Say what that note got wrong and why, without repeating it in full.`
+    ? `\nYou are revisiting an incident you already wrote up, in the note titled "${written.get(m.supersedes).title}". THIS IS THE SAME EVENT, understood better. Open by saying what that earlier note concluded and why it was wrong — name the mechanism it blamed — then give the real one. Do not describe it as a new incident.`
     : "";
   const counterpart = m.counterpart.length
     ? `\nThe same incident is also being written up by the ${m.counterpart.join(" and ")} team. Write it from ${m.project}'s side only — ${m.perspective} — and mention the other service by name where the boundary matters.`

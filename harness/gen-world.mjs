@@ -116,19 +116,43 @@ while (memories.length < COUNT) {
     const inRepo = memories.filter((m) => m.project === repo);
     const prior = inRepo.slice(-2);
     const sameTopic = inRepo.filter((m) => m.topic === inc.class);
+    const corrects = sameTopic.length && rnd() < 0.35 ? sameTopic[sameTopic.length - 1] : null;
+    // A correction is a REVISIT of the same event, so it takes its predecessor's
+    // incident and that incident's artefact and signal. Letting it keep its own
+    // produced 27 notes claiming to correct a write-up of a different incident:
+    // two accurate records of two different things, with an edge between them
+    // the prose could not support. Every count said the graph was fine — reading
+    // two of them was what showed it.
+    const subject = corrects ? incidents.find((i) => i.id === corrects.incident) : inc;
     memories.push({
       id: `${repo}__${inc.class}__${String(memories.length).padStart(3, "0")}`,
-      project: repo, topic: inc.class, incident: inc.id, day: inc.day,
+      project: repo, topic: inc.class, incident: subject.id, day: inc.day,
+      revisits: Boolean(corrects),
       stack: svc.stack, role: svc.role,
       perspective: repo === primary.repo ? "where it originated" : "the service that saw the effect",
       counterpart: involved.filter((r) => r !== repo),
-      artefact: inc.artefact, lib: inc.lib, configKey: inc.key, signal: inc.signal, magnitude: inc.magnitude,
+      artefact: subject.artefact, lib: inc.lib, configKey: inc.key, signal: subject.signal, magnitude: subject.magnitude,
       // Later memories in the same repo can reference earlier ones by name, and
       // occasionally correct them outright.
       references: prior.map((p) => p.id),
-      supersedes: sameTopic.length && rnd() < 0.35 ? sameTopic[sameTopic.length - 1].id : null,
+      supersedes: corrects ? corrects.id : null,
     });
   }
+}
+
+// Assert the properties this world claims, rather than trusting that the code
+// above produced them. The supersession graph was wrong for a full run and no
+// count could see it: 27 edges, all present, all pointing at a note about a
+// different event. A generator that states its invariants is the only thing that
+// would have caught it before a benchmark did not.
+{
+  const byId = new Map(memories.map((m) => [m.id, m]));
+  const bad = memories.filter((m) => m.supersedes && byId.get(m.supersedes)?.incident !== m.incident);
+  if (bad.length) { console.error(`${bad.length} corrections point at a different incident than the note they correct`); process.exit(1); }
+  const crossTopic = memories.filter((m) => m.supersedes && byId.get(m.supersedes)?.topic !== m.topic);
+  if (crossTopic.length) { console.error(`${crossTopic.length} corrections cross topics`); process.exit(1); }
+  const crossProject = memories.filter((m) => m.supersedes && byId.get(m.supersedes)?.project !== m.project);
+  if (crossProject.length) { console.error(`${crossProject.length} corrections cross projects`); process.exit(1); }
 }
 
 writeFileSync(OUT, JSON.stringify({ services: SERVICES, shared: SHARED, incidents, memories }, null, 1));

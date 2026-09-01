@@ -24,7 +24,7 @@ node harness/gen-rich-corpus.mjs "$R/world.json" "$R/corpus" haiku > "$R/corpus-
 echo "STAGE corpus done: $(ls "$R/corpus"/*.md 2>/dev/null | wc -l) memories"
 
 # 2 — the gate. A thin corpus stops the run rather than producing a number.
-if ! node harness/verify-corpus.mjs "$R/corpus" > "$R/realism.json"; then
+if ! node harness/verify-corpus.mjs "$R/corpus" --world "$R/world.json" > "$R/realism.json"; then
   echo "STAGE gate FAILED — corpus too thin, not benchmarking"; cat "$R/realism.json"; exit 1
 fi
 echo "STAGE gate passed"

@@ -30,12 +30,37 @@
  * Exits non-zero when the corpus is not something worth benchmarking on.
  */
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { bodiesIn, profileBodies, tokens } from "./lib/measure.mjs";
 
 const DIR = process.argv[2];
+const wi = process.argv.indexOf("--world");
 const ri = process.argv.indexOf("--reference");
 const REF = ri > 0 ? process.argv[ri + 1] : "reference/vault-memories.json";
 if (!DIR) { console.error("usage: verify-corpus.mjs <corpus-dir> [--reference <profile.json>]"); process.exit(1); }
+
+/**
+ * Fidelity: does the prose contain the facts a query will be built from?
+ *
+ * Queries are written from the incident record — the artefact and the metric
+ * name. A memory whose prose never names them cannot be found by its own
+ * identifier query, and that scores as a retrieval failure when it is a fixture
+ * defect. Measured rather than assumed, because the two are indistinguishable
+ * in the result.
+ */
+const fidelity = (() => {
+  if (wi < 0) return null;
+  const world = JSON.parse(readFileSync(process.argv[wi + 1], "utf8"));
+  let n = 0, artefact = 0, signal = 0;
+  for (const m of world.memories) {
+    let body;
+    try { body = readFileSync(join(DIR, `${m.id}.md`), "utf8").toLowerCase(); } catch { continue; }
+    n++;
+    if (m.artefact && body.includes(m.artefact.toLowerCase())) artefact++;
+    if (m.signal && body.includes(m.signal.toLowerCase())) signal++;
+  }
+  return n ? { memories: n, names_its_artefact: +(artefact / n).toFixed(3), names_its_signal: +(signal / n).toFixed(3) } : null;
+})();
 
 const bodies = bodiesIn(DIR);
 if (!bodies.length) { console.error("empty corpus"); process.exit(1); }
@@ -55,6 +80,7 @@ const report = {
   distinct_specifics_per_memory: p.distinct_specifics_per_doc,
   memories_naming_another_service_or_incident: bodies.filter((b) => SERVICES.test(b)).length,
   reference: `${ref.name} (n=${ref.n})`,
+  fidelity_to_the_world: fidelity ?? "pass --world <world.json> to check that prose names the facts queries are built from",
 };
 
 /**
@@ -70,6 +96,9 @@ const GATES = [
   ["median_words", p.median_words, ref.median_words],
   ["p90_words", p.p90_words, ref.p90_words],
 ];
+if (fidelity && (fidelity.names_its_artefact < 0.95 || fidelity.names_its_signal < 0.95)) {
+  GATES.push(["fidelity_names_its_artefact", fidelity.names_its_artefact, 1], ["fidelity_names_its_signal", fidelity.names_its_signal, 1]);
+}
 const failures = GATES.flatMap(([k, v, r]) =>
   v < r / 2 ? [`${k} = ${v}, below ${(r / 2).toFixed(1)} — too thin to tell documents apart (reference ${r})`]
   : v > r * 2 ? [`${k} = ${v}, above ${(r * 2).toFixed(1)} — richer than production, which flatters the result (reference ${r})`]
