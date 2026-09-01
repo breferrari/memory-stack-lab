@@ -93,7 +93,7 @@ const target = (proj, key) => {
 };
 
 const bins = [[0, 0.005], [0.005, 0.02], [0.02, 0.06], [0.06, 1]];
-const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sameIncidentOtherVersion: 0, sibling: 0, otherProject: 0, junk: 0 }, sup: { n: 0, strict: 0, accepting: 0, stale_outranks: 0, current_on_top: 0 } };
+const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sameIncidentOtherVersion: 0, sibling: 0, otherProject: 0, junk: 0, returnedNothing: 0 }, sup: { n: 0, strict: 0, accepting: 0, stale_outranks: 0, current_on_top: 0 } };
 
 for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
   const [proj, key, doc] = line.split("\t");
@@ -132,7 +132,14 @@ for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
     if (rank >= 0 && (bestCorrection < 0 || rank < bestCorrection)) acc.sup.stale_outranks++;
   }
 
-  // What took the top slot when the gold did not? Three causes, three fixes.
+  // What took the top slot when the gold did not?
+  //
+  // A query that returned NOTHING is a miss too, and it used to fall out of this
+  // table entirely — the classes summed to fewer than rank-1 implied, by exactly
+  // the number of empty results. It is also the one class Vestige never enters
+  // and the other stack does, which makes it worth its own row rather than a
+  // silent omission.
+  if (rank !== 0 && !ids.length) acc.miss.returnedNothing++;
   if (rank !== 0 && ids.length) {
     const top = ids[0];
     const m = map[top];
@@ -156,7 +163,7 @@ console.log(JSON.stringify({
   median_rank_when_found: med(acc.ranks),
   rank1_by_overlap_bin: bins.map(([lo, hi], i) => ({ bin: `${lo}-${hi}`, n: acc.byBin[i].n, rank1: acc.byBin[i].n ? +(acc.byBin[i].r1 / acc.byBin[i].n).toFixed(3) : null })),
   when_gold_not_first: acc.miss,
-  reading: "sameIncidentOtherVersion = another write-up of the SAME event (the predecessor, its correction, or the other service's side) — a version-policy question, not a retrieval failure; sibling = a different incident in the same project, which is topical confusion; other-project = the view is too wide; junk = embeddings",
+  reading: "sameIncidentOtherVersion = another write-up of the SAME event (the predecessor, its correction, or the other service's side) — a version-policy question, not a retrieval failure; sibling = a different incident in the same project, which is topical confusion; other-project = the view is too wide; junk = embeddings; returnedNothing = the engine had nothing to say, which is a different failure from saying the wrong thing",
   // The candidate set every found@5 above is measured against. A found@5 over 22
   // documents is not a found@5 over a real store, and quoting one without the
   // other invites the comparison it cannot support.
