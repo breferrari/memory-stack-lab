@@ -23,7 +23,7 @@
  *   short       four or five words, the way people actually search
  */
 import { execFileSync } from "node:child_process";
-import { readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 
 const [WORLD, PREFIX, MODEL = "haiku"] = process.argv.slice(2);
 if (!WORLD || !PREFIX) { console.error("usage: gen-world-queries.mjs <world.json> <out-prefix> [model]"); process.exit(1); }
@@ -41,10 +41,38 @@ const ask = (prompt) => {
   return [];
 };
 
+/**
+ * Resumable, because it is not: a run is one model call per memory and the
+ * previous version wrote nothing until the last one returned, so a crash at
+ * 180 of 183 cost the whole hour. The corpus generator has been resumable from
+ * the start and this one was not, which is an asymmetry that costs nothing
+ * until the day it does.
+ *
+ * Each query is appended to a JSONL as it is produced; a restart reads it back
+ * and skips what is already there. The TSVs are still written at the end, from
+ * the log, so their format is unchanged for every consumer.
+ */
+const LOG = `${PREFIX}-queries.jsonl`;
+const already = new Map();
+if (existsSync(LOG)) {
+  for (const line of readFileSync(LOG, "utf8").split("\n").filter(Boolean)) {
+    try { const r = JSON.parse(line); already.set(r.id, r); } catch { /* a torn last line */ }
+  }
+  process.stderr.write(`  resuming: ${already.size} queries already written\n`);
+}
+
 const rows = { symptom: [], identifier: [], short: [] };
 let done = 0;
 
 for (const m of world.memories) {
+  const prior = already.get(m.id);
+  if (prior) {
+    rows.symptom.push(`${m.project}\t${m.id}\tlex: ${prior.symptom}%%vec: ${prior.symptom}`);
+    rows.identifier.push(`${m.project}\t${m.id}\tlex: ${prior.ident}%%vec: ${prior.ident}`);
+    rows.short.push(`${m.project}\t${m.id}\tlex: ${prior.short}%%vec: ${prior.short}`);
+    done++;
+    continue;
+  }
   const inc = incidents.get(m.incident);
   // One query set per memory, so every memory is findable and the gold is
   // unambiguous within the caller's view.
@@ -60,6 +88,7 @@ Write exactly three lines, nothing else, no numbering, no quotes:
 
   if (out.length < 3) { done++; continue; }
   const [symptom, ident, short] = out;
+  appendFileSync(LOG, `${JSON.stringify({ id: m.id, project: m.project, symptom, ident, short })}\n`);
   rows.symptom.push(`${m.project}\t${m.id}\tlex: ${symptom}%%vec: ${symptom}`);
   rows.identifier.push(`${m.project}\t${m.id}\tlex: ${ident}%%vec: ${ident}`);
   rows.short.push(`${m.project}\t${m.id}\tlex: ${short}%%vec: ${short}`);
