@@ -16,3 +16,23 @@ jobs:
         run: |
           for f in $(git ls-files '*.mjs'); do node --check "$f"; done
           for f in $(git ls-files '*.ts'); do node --experimental-strip-types --check "$f" 2>/dev/null || true; done
+
+  chain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # The plugin is public, and the write path is what the contract test needs.
+      # No search engine and no model download: the test covers the pure steps
+      # around retrieval, which is where the format assumptions live.
+      - uses: actions/checkout@v4
+        with: { repository: breferrari/vestige, path: .vestige }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      # Three format assumptions once turned a changed generator into an empty
+      # pool, a corpus of topic "unknown", and gold resolved to the wrong
+      # document. Each produced a number rather than an error, which is why this
+      # runs on every push rather than before a benchmark someone remembers to run.
+      - name: corpus-to-score contract
+        env:
+          VESTIGE_PLUGIN: ${{ github.workspace }}/.vestige
+        run: node harness/test-chain.mjs
