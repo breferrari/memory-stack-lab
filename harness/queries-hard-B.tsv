@@ -1,0 +1,183 @@
+analytics-pipeline	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+analytics-pipeline	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+analytics-pipeline	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+analytics-pipeline	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+analytics-pipeline	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+analytics-pipeline	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+analytics-pipeline	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+analytics-pipeline	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+analytics-pipeline	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+analytics-pipeline	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+analytics-pipeline	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+analytics-pipeline	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+analytics-pipeline	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+analytics-pipeline	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+data-warehouse	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+data-warehouse	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+data-warehouse	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+data-warehouse	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+data-warehouse	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+data-warehouse	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+data-warehouse	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+data-warehouse	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+data-warehouse	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+data-warehouse	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+document-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+document-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+document-service	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+document-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+document-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+document-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+document-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+document-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+document-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+document-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+document-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+document-service	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+document-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+identity-service	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+identity-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+identity-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+identity-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+identity-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+identity-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+identity-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+identity-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+identity-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+identity-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+identity-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+identity-service	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+identity-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+identity-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+k8s-platform	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+k8s-platform	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+k8s-platform	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+k8s-platform	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+k8s-platform	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+k8s-platform	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+k8s-platform	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+k8s-platform	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+k8s-platform	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+k8s-platform	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+k8s-platform	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+ledger-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+ledger-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+ledger-service	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+ledger-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+ledger-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+ledger-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+ledger-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+ledger-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+ledger-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+ml-risk-models	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+ml-risk-models	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+ml-risk-models	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+ml-risk-models	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+ml-risk-models	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+ml-risk-models	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+ml-risk-models	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+ml-risk-models	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+ml-risk-models	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+ml-risk-models	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+ml-risk-models	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+mobile-android	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+mobile-android	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+mobile-android	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+mobile-android	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+mobile-android	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+mobile-android	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+mobile-android	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+mobile-android	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+mobile-android	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+mobile-android	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+mobile-ios	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+mobile-ios	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+mobile-ios	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+mobile-ios	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+mobile-ios	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+mobile-ios	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+mobile-ios	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+mobile-ios	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+mobile-ios	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+mobile-ios	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+mobile-ios	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+mobile-ios	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+mobile-ios	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+notification-service	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+notification-service	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+notification-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+notification-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+notification-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+notification-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+notification-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+notification-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+notification-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+notification-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+notification-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+notification-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+notification-service	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+notification-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+onboarding-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+onboarding-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+onboarding-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+onboarding-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+onboarding-service	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+onboarding-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+onboarding-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+onboarding-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+onboarding-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+payments-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+payments-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+payments-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+payments-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+payments-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+payments-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+payments-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+payments-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+payments-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+payments-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+platform-infra	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+platform-infra	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+platform-infra	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+platform-infra	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+platform-infra	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+platform-infra	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+platform-infra	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+platform-infra	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+platform-infra	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+platform-infra	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+platform-infra	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+platform-infra	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+reporting-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+reporting-service	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+reporting-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+reporting-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+reporting-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+reporting-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+reporting-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+reporting-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+reporting-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+reporting-service	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+trading-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+trading-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+trading-service	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+trading-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+trading-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+trading-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+trading-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+trading-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+trading-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+web-app	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+web-app	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+web-app	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+web-app	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+web-app	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+web-app	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+web-app	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+web-app	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+web-app	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+web-app	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+web-app	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+web-app	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+web-app	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+web-app	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users

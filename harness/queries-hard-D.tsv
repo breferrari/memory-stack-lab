@@ -1,0 +1,183 @@
+analytics-pipeline	ci	lex: slow build%%vec: slow build
+analytics-pipeline	errors	lex: silent failure%%vec: silent failure
+analytics-pipeline	migrations	lex: deploy broke schema%%vec: deploy broke schema
+analytics-pipeline	nullhandling	lex: null crash%%vec: null crash
+analytics-pipeline	pagination	lex: missing rows%%vec: missing rows
+analytics-pipeline	performance	lex: memory growth%%vec: memory growth
+analytics-pipeline	secrets	lex: leaked key%%vec: leaked key
+analytics-pipeline	timezones	lex: off by one day%%vec: off by one day
+analytics-pipeline	auth	lex: token expiry%%vec: token expiry
+analytics-pipeline	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+analytics-pipeline	localization	lex: text overflow%%vec: text overflow
+analytics-pipeline	observability	lex: cannot trace%%vec: cannot trace
+analytics-pipeline	ratelimit	lex: throttled%%vec: throttled
+analytics-pipeline	retries	lex: duplicate writes%%vec: duplicate writes
+data-warehouse	auth	lex: token expiry%%vec: token expiry
+data-warehouse	flakytests	lex: flaky%%vec: flaky
+data-warehouse	localization	lex: text overflow%%vec: text overflow
+data-warehouse	migrations	lex: deploy broke schema%%vec: deploy broke schema
+data-warehouse	retries	lex: duplicate writes%%vec: duplicate writes
+data-warehouse	caching	lex: stale data%%vec: stale data
+data-warehouse	ci	lex: slow build%%vec: slow build
+data-warehouse	performance	lex: memory growth%%vec: memory growth
+data-warehouse	secrets	lex: leaked key%%vec: leaked key
+data-warehouse	timezones	lex: off by one day%%vec: off by one day
+document-service	ci	lex: slow build%%vec: slow build
+document-service	auth	lex: token expiry%%vec: token expiry
+document-service	caching	lex: stale data%%vec: stale data
+document-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+document-service	flakytests	lex: flaky%%vec: flaky
+document-service	localization	lex: text overflow%%vec: text overflow
+document-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+document-service	nullhandling	lex: null crash%%vec: null crash
+document-service	pagination	lex: missing rows%%vec: missing rows
+document-service	performance	lex: memory growth%%vec: memory growth
+document-service	ratelimit	lex: throttled%%vec: throttled
+document-service	retries	lex: duplicate writes%%vec: duplicate writes
+document-service	secrets	lex: leaked key%%vec: leaked key
+identity-service	caching	lex: stale data%%vec: stale data
+identity-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+identity-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+identity-service	performance	lex: memory growth%%vec: memory growth
+identity-service	timezones	lex: off by one day%%vec: off by one day
+identity-service	auth	lex: token expiry%%vec: token expiry
+identity-service	ci	lex: slow build%%vec: slow build
+identity-service	errors	lex: silent failure%%vec: silent failure
+identity-service	flakytests	lex: flaky%%vec: flaky
+identity-service	localization	lex: text overflow%%vec: text overflow
+identity-service	nullhandling	lex: null crash%%vec: null crash
+identity-service	observability	lex: cannot trace%%vec: cannot trace
+identity-service	pagination	lex: missing rows%%vec: missing rows
+identity-service	secrets	lex: leaked key%%vec: leaked key
+k8s-platform	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+k8s-platform	flakytests	lex: flaky%%vec: flaky
+k8s-platform	performance	lex: memory growth%%vec: memory growth
+k8s-platform	caching	lex: stale data%%vec: stale data
+k8s-platform	errors	lex: silent failure%%vec: silent failure
+k8s-platform	localization	lex: text overflow%%vec: text overflow
+k8s-platform	migrations	lex: deploy broke schema%%vec: deploy broke schema
+k8s-platform	nullhandling	lex: null crash%%vec: null crash
+k8s-platform	observability	lex: cannot trace%%vec: cannot trace
+k8s-platform	pagination	lex: missing rows%%vec: missing rows
+k8s-platform	retries	lex: duplicate writes%%vec: duplicate writes
+ledger-service	ci	lex: slow build%%vec: slow build
+ledger-service	localization	lex: text overflow%%vec: text overflow
+ledger-service	observability	lex: cannot trace%%vec: cannot trace
+ledger-service	performance	lex: memory growth%%vec: memory growth
+ledger-service	timezones	lex: off by one day%%vec: off by one day
+ledger-service	flakytests	lex: flaky%%vec: flaky
+ledger-service	pagination	lex: missing rows%%vec: missing rows
+ledger-service	ratelimit	lex: throttled%%vec: throttled
+ledger-service	secrets	lex: leaked key%%vec: leaked key
+ml-risk-models	flakytests	lex: flaky%%vec: flaky
+ml-risk-models	secrets	lex: leaked key%%vec: leaked key
+ml-risk-models	auth	lex: token expiry%%vec: token expiry
+ml-risk-models	caching	lex: stale data%%vec: stale data
+ml-risk-models	ci	lex: slow build%%vec: slow build
+ml-risk-models	migrations	lex: deploy broke schema%%vec: deploy broke schema
+ml-risk-models	observability	lex: cannot trace%%vec: cannot trace
+ml-risk-models	performance	lex: memory growth%%vec: memory growth
+ml-risk-models	ratelimit	lex: throttled%%vec: throttled
+ml-risk-models	retries	lex: duplicate writes%%vec: duplicate writes
+ml-risk-models	timezones	lex: off by one day%%vec: off by one day
+mobile-android	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+mobile-android	migrations	lex: deploy broke schema%%vec: deploy broke schema
+mobile-android	nullhandling	lex: null crash%%vec: null crash
+mobile-android	observability	lex: cannot trace%%vec: cannot trace
+mobile-android	ratelimit	lex: throttled%%vec: throttled
+mobile-android	auth	lex: token expiry%%vec: token expiry
+mobile-android	errors	lex: silent failure%%vec: silent failure
+mobile-android	retries	lex: duplicate writes%%vec: duplicate writes
+mobile-android	secrets	lex: leaked key%%vec: leaked key
+mobile-android	timezones	lex: off by one day%%vec: off by one day
+mobile-ios	auth	lex: token expiry%%vec: token expiry
+mobile-ios	ci	lex: slow build%%vec: slow build
+mobile-ios	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+mobile-ios	flakytests	lex: flaky%%vec: flaky
+mobile-ios	localization	lex: text overflow%%vec: text overflow
+mobile-ios	migrations	lex: deploy broke schema%%vec: deploy broke schema
+mobile-ios	retries	lex: duplicate writes%%vec: duplicate writes
+mobile-ios	timezones	lex: off by one day%%vec: off by one day
+mobile-ios	errors	lex: silent failure%%vec: silent failure
+mobile-ios	nullhandling	lex: null crash%%vec: null crash
+mobile-ios	observability	lex: cannot trace%%vec: cannot trace
+mobile-ios	performance	lex: memory growth%%vec: memory growth
+mobile-ios	secrets	lex: leaked key%%vec: leaked key
+notification-service	caching	lex: stale data%%vec: stale data
+notification-service	observability	lex: cannot trace%%vec: cannot trace
+notification-service	secrets	lex: leaked key%%vec: leaked key
+notification-service	auth	lex: token expiry%%vec: token expiry
+notification-service	ci	lex: slow build%%vec: slow build
+notification-service	errors	lex: silent failure%%vec: silent failure
+notification-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+notification-service	flakytests	lex: flaky%%vec: flaky
+notification-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+notification-service	nullhandling	lex: null crash%%vec: null crash
+notification-service	performance	lex: memory growth%%vec: memory growth
+notification-service	ratelimit	lex: throttled%%vec: throttled
+notification-service	retries	lex: duplicate writes%%vec: duplicate writes
+notification-service	timezones	lex: off by one day%%vec: off by one day
+onboarding-service	auth	lex: token expiry%%vec: token expiry
+onboarding-service	errors	lex: silent failure%%vec: silent failure
+onboarding-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+onboarding-service	nullhandling	lex: null crash%%vec: null crash
+onboarding-service	observability	lex: cannot trace%%vec: cannot trace
+onboarding-service	pagination	lex: missing rows%%vec: missing rows
+onboarding-service	ratelimit	lex: throttled%%vec: throttled
+onboarding-service	secrets	lex: leaked key%%vec: leaked key
+onboarding-service	timezones	lex: off by one day%%vec: off by one day
+payments-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+payments-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+payments-service	ratelimit	lex: throttled%%vec: throttled
+payments-service	auth	lex: token expiry%%vec: token expiry
+payments-service	ci	lex: slow build%%vec: slow build
+payments-service	localization	lex: text overflow%%vec: text overflow
+payments-service	nullhandling	lex: null crash%%vec: null crash
+payments-service	pagination	lex: missing rows%%vec: missing rows
+payments-service	secrets	lex: leaked key%%vec: leaked key
+payments-service	timezones	lex: off by one day%%vec: off by one day
+platform-infra	ci	lex: slow build%%vec: slow build
+platform-infra	nullhandling	lex: null crash%%vec: null crash
+platform-infra	pagination	lex: missing rows%%vec: missing rows
+platform-infra	ratelimit	lex: throttled%%vec: throttled
+platform-infra	timezones	lex: off by one day%%vec: off by one day
+platform-infra	auth	lex: token expiry%%vec: token expiry
+platform-infra	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+platform-infra	flakytests	lex: flaky%%vec: flaky
+platform-infra	localization	lex: text overflow%%vec: text overflow
+platform-infra	migrations	lex: deploy broke schema%%vec: deploy broke schema
+platform-infra	performance	lex: memory growth%%vec: memory growth
+platform-infra	secrets	lex: leaked key%%vec: leaked key
+reporting-service	nullhandling	lex: null crash%%vec: null crash
+reporting-service	caching	lex: stale data%%vec: stale data
+reporting-service	ci	lex: slow build%%vec: slow build
+reporting-service	errors	lex: silent failure%%vec: silent failure
+reporting-service	flakytests	lex: flaky%%vec: flaky
+reporting-service	localization	lex: text overflow%%vec: text overflow
+reporting-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+reporting-service	pagination	lex: missing rows%%vec: missing rows
+reporting-service	performance	lex: memory growth%%vec: memory growth
+reporting-service	retries	lex: duplicate writes%%vec: duplicate writes
+trading-service	auth	lex: token expiry%%vec: token expiry
+trading-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+trading-service	retries	lex: duplicate writes%%vec: duplicate writes
+trading-service	errors	lex: silent failure%%vec: silent failure
+trading-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+trading-service	pagination	lex: missing rows%%vec: missing rows
+trading-service	performance	lex: memory growth%%vec: memory growth
+trading-service	ratelimit	lex: throttled%%vec: throttled
+trading-service	timezones	lex: off by one day%%vec: off by one day
+web-app	auth	lex: token expiry%%vec: token expiry
+web-app	ci	lex: slow build%%vec: slow build
+web-app	nullhandling	lex: null crash%%vec: null crash
+web-app	pagination	lex: missing rows%%vec: missing rows
+web-app	performance	lex: memory growth%%vec: memory growth
+web-app	ratelimit	lex: throttled%%vec: throttled
+web-app	retries	lex: duplicate writes%%vec: duplicate writes
+web-app	caching	lex: stale data%%vec: stale data
+web-app	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+web-app	flakytests	lex: flaky%%vec: flaky
+web-app	localization	lex: text overflow%%vec: text overflow
+web-app	migrations	lex: deploy broke schema%%vec: deploy broke schema
+web-app	observability	lex: cannot trace%%vec: cannot trace
+web-app	timezones	lex: off by one day%%vec: off by one day

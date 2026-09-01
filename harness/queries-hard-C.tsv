@@ -1,0 +1,183 @@
+analytics-pipeline	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+analytics-pipeline	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+analytics-pipeline	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+analytics-pipeline	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+analytics-pipeline	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+analytics-pipeline	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+analytics-pipeline	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+analytics-pipeline	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+analytics-pipeline	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+analytics-pipeline	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+analytics-pipeline	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+analytics-pipeline	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+analytics-pipeline	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+analytics-pipeline	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+data-warehouse	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+data-warehouse	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+data-warehouse	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+data-warehouse	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+data-warehouse	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+data-warehouse	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+data-warehouse	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+data-warehouse	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+data-warehouse	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+data-warehouse	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+document-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+document-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+document-service	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+document-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+document-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+document-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+document-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+document-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+document-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+document-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+document-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+document-service	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+document-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+identity-service	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+identity-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+identity-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+identity-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+identity-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+identity-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+identity-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+identity-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+identity-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+identity-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+identity-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+identity-service	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+identity-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+identity-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+k8s-platform	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+k8s-platform	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+k8s-platform	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+k8s-platform	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+k8s-platform	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+k8s-platform	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+k8s-platform	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+k8s-platform	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+k8s-platform	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+k8s-platform	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+k8s-platform	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+ledger-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+ledger-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+ledger-service	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+ledger-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+ledger-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+ledger-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+ledger-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+ledger-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+ledger-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+ml-risk-models	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+ml-risk-models	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+ml-risk-models	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+ml-risk-models	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+ml-risk-models	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+ml-risk-models	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+ml-risk-models	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+ml-risk-models	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+ml-risk-models	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+ml-risk-models	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+ml-risk-models	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+mobile-android	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+mobile-android	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+mobile-android	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+mobile-android	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+mobile-android	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+mobile-android	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+mobile-android	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+mobile-android	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+mobile-android	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+mobile-android	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+mobile-ios	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+mobile-ios	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+mobile-ios	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+mobile-ios	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+mobile-ios	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+mobile-ios	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+mobile-ios	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+mobile-ios	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+mobile-ios	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+mobile-ios	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+mobile-ios	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+mobile-ios	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+mobile-ios	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+notification-service	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+notification-service	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+notification-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+notification-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+notification-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+notification-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+notification-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+notification-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+notification-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+notification-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+notification-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+notification-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+notification-service	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+notification-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+onboarding-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+onboarding-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+onboarding-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+onboarding-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+onboarding-service	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+onboarding-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+onboarding-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+onboarding-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+onboarding-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+payments-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+payments-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+payments-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+payments-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+payments-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+payments-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+payments-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+payments-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+payments-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+payments-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+platform-infra	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+platform-infra	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+platform-infra	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+platform-infra	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+platform-infra	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+platform-infra	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+platform-infra	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+platform-infra	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+platform-infra	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+platform-infra	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+platform-infra	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+platform-infra	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+reporting-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+reporting-service	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+reporting-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+reporting-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+reporting-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+reporting-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+reporting-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+reporting-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+reporting-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+reporting-service	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+trading-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+trading-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+trading-service	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+trading-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+trading-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+trading-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+trading-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+trading-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+trading-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+web-app	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+web-app	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+web-app	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+web-app	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+web-app	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+web-app	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+web-app	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+web-app	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+web-app	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+web-app	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+web-app	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+web-app	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+web-app	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+web-app	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion

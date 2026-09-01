@@ -1,0 +1,549 @@
+analytics-pipeline	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+analytics-pipeline	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+analytics-pipeline	ci	lex: slow build%%vec: slow build
+analytics-pipeline	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+analytics-pipeline	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+analytics-pipeline	errors	lex: silent failure%%vec: silent failure
+analytics-pipeline	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+analytics-pipeline	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+analytics-pipeline	migrations	lex: deploy broke schema%%vec: deploy broke schema
+analytics-pipeline	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+analytics-pipeline	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+analytics-pipeline	nullhandling	lex: null crash%%vec: null crash
+analytics-pipeline	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+analytics-pipeline	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+analytics-pipeline	pagination	lex: missing rows%%vec: missing rows
+analytics-pipeline	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+analytics-pipeline	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+analytics-pipeline	performance	lex: memory growth%%vec: memory growth
+analytics-pipeline	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+analytics-pipeline	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+analytics-pipeline	secrets	lex: leaked key%%vec: leaked key
+analytics-pipeline	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+analytics-pipeline	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+analytics-pipeline	timezones	lex: off by one day%%vec: off by one day
+analytics-pipeline	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+analytics-pipeline	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+analytics-pipeline	auth	lex: token expiry%%vec: token expiry
+analytics-pipeline	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+analytics-pipeline	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+analytics-pipeline	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+analytics-pipeline	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+analytics-pipeline	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+analytics-pipeline	localization	lex: text overflow%%vec: text overflow
+analytics-pipeline	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+analytics-pipeline	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+analytics-pipeline	observability	lex: cannot trace%%vec: cannot trace
+analytics-pipeline	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+analytics-pipeline	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+analytics-pipeline	ratelimit	lex: throttled%%vec: throttled
+analytics-pipeline	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+analytics-pipeline	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+analytics-pipeline	retries	lex: duplicate writes%%vec: duplicate writes
+data-warehouse	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+data-warehouse	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+data-warehouse	auth	lex: token expiry%%vec: token expiry
+data-warehouse	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+data-warehouse	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+data-warehouse	flakytests	lex: flaky%%vec: flaky
+data-warehouse	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+data-warehouse	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+data-warehouse	localization	lex: text overflow%%vec: text overflow
+data-warehouse	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+data-warehouse	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+data-warehouse	migrations	lex: deploy broke schema%%vec: deploy broke schema
+data-warehouse	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+data-warehouse	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+data-warehouse	retries	lex: duplicate writes%%vec: duplicate writes
+data-warehouse	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+data-warehouse	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+data-warehouse	caching	lex: stale data%%vec: stale data
+data-warehouse	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+data-warehouse	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+data-warehouse	ci	lex: slow build%%vec: slow build
+data-warehouse	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+data-warehouse	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+data-warehouse	performance	lex: memory growth%%vec: memory growth
+data-warehouse	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+data-warehouse	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+data-warehouse	secrets	lex: leaked key%%vec: leaked key
+data-warehouse	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+data-warehouse	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+data-warehouse	timezones	lex: off by one day%%vec: off by one day
+document-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+document-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+document-service	ci	lex: slow build%%vec: slow build
+document-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+document-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+document-service	auth	lex: token expiry%%vec: token expiry
+document-service	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+document-service	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+document-service	caching	lex: stale data%%vec: stale data
+document-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+document-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+document-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+document-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+document-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+document-service	flakytests	lex: flaky%%vec: flaky
+document-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+document-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+document-service	localization	lex: text overflow%%vec: text overflow
+document-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+document-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+document-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+document-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+document-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+document-service	nullhandling	lex: null crash%%vec: null crash
+document-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+document-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+document-service	pagination	lex: missing rows%%vec: missing rows
+document-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+document-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+document-service	performance	lex: memory growth%%vec: memory growth
+document-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+document-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+document-service	ratelimit	lex: throttled%%vec: throttled
+document-service	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+document-service	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+document-service	retries	lex: duplicate writes%%vec: duplicate writes
+document-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+document-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+document-service	secrets	lex: leaked key%%vec: leaked key
+identity-service	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+identity-service	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+identity-service	caching	lex: stale data%%vec: stale data
+identity-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+identity-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+identity-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+identity-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+identity-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+identity-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+identity-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+identity-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+identity-service	performance	lex: memory growth%%vec: memory growth
+identity-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+identity-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+identity-service	timezones	lex: off by one day%%vec: off by one day
+identity-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+identity-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+identity-service	auth	lex: token expiry%%vec: token expiry
+identity-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+identity-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+identity-service	ci	lex: slow build%%vec: slow build
+identity-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+identity-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+identity-service	errors	lex: silent failure%%vec: silent failure
+identity-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+identity-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+identity-service	flakytests	lex: flaky%%vec: flaky
+identity-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+identity-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+identity-service	localization	lex: text overflow%%vec: text overflow
+identity-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+identity-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+identity-service	nullhandling	lex: null crash%%vec: null crash
+identity-service	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+identity-service	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+identity-service	observability	lex: cannot trace%%vec: cannot trace
+identity-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+identity-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+identity-service	pagination	lex: missing rows%%vec: missing rows
+identity-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+identity-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+identity-service	secrets	lex: leaked key%%vec: leaked key
+k8s-platform	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+k8s-platform	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+k8s-platform	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+k8s-platform	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+k8s-platform	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+k8s-platform	flakytests	lex: flaky%%vec: flaky
+k8s-platform	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+k8s-platform	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+k8s-platform	performance	lex: memory growth%%vec: memory growth
+k8s-platform	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+k8s-platform	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+k8s-platform	caching	lex: stale data%%vec: stale data
+k8s-platform	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+k8s-platform	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+k8s-platform	errors	lex: silent failure%%vec: silent failure
+k8s-platform	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+k8s-platform	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+k8s-platform	localization	lex: text overflow%%vec: text overflow
+k8s-platform	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+k8s-platform	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+k8s-platform	migrations	lex: deploy broke schema%%vec: deploy broke schema
+k8s-platform	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+k8s-platform	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+k8s-platform	nullhandling	lex: null crash%%vec: null crash
+k8s-platform	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+k8s-platform	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+k8s-platform	observability	lex: cannot trace%%vec: cannot trace
+k8s-platform	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+k8s-platform	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+k8s-platform	pagination	lex: missing rows%%vec: missing rows
+k8s-platform	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+k8s-platform	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+k8s-platform	retries	lex: duplicate writes%%vec: duplicate writes
+ledger-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+ledger-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+ledger-service	ci	lex: slow build%%vec: slow build
+ledger-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+ledger-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+ledger-service	localization	lex: text overflow%%vec: text overflow
+ledger-service	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+ledger-service	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+ledger-service	observability	lex: cannot trace%%vec: cannot trace
+ledger-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+ledger-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+ledger-service	performance	lex: memory growth%%vec: memory growth
+ledger-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+ledger-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+ledger-service	timezones	lex: off by one day%%vec: off by one day
+ledger-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+ledger-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+ledger-service	flakytests	lex: flaky%%vec: flaky
+ledger-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+ledger-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+ledger-service	pagination	lex: missing rows%%vec: missing rows
+ledger-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+ledger-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+ledger-service	ratelimit	lex: throttled%%vec: throttled
+ledger-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+ledger-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+ledger-service	secrets	lex: leaked key%%vec: leaked key
+ml-risk-models	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+ml-risk-models	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+ml-risk-models	flakytests	lex: flaky%%vec: flaky
+ml-risk-models	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+ml-risk-models	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+ml-risk-models	secrets	lex: leaked key%%vec: leaked key
+ml-risk-models	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+ml-risk-models	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+ml-risk-models	auth	lex: token expiry%%vec: token expiry
+ml-risk-models	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+ml-risk-models	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+ml-risk-models	caching	lex: stale data%%vec: stale data
+ml-risk-models	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+ml-risk-models	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+ml-risk-models	ci	lex: slow build%%vec: slow build
+ml-risk-models	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+ml-risk-models	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+ml-risk-models	migrations	lex: deploy broke schema%%vec: deploy broke schema
+ml-risk-models	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+ml-risk-models	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+ml-risk-models	observability	lex: cannot trace%%vec: cannot trace
+ml-risk-models	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+ml-risk-models	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+ml-risk-models	performance	lex: memory growth%%vec: memory growth
+ml-risk-models	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+ml-risk-models	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+ml-risk-models	ratelimit	lex: throttled%%vec: throttled
+ml-risk-models	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+ml-risk-models	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+ml-risk-models	retries	lex: duplicate writes%%vec: duplicate writes
+ml-risk-models	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+ml-risk-models	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+ml-risk-models	timezones	lex: off by one day%%vec: off by one day
+mobile-android	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+mobile-android	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+mobile-android	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+mobile-android	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+mobile-android	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+mobile-android	migrations	lex: deploy broke schema%%vec: deploy broke schema
+mobile-android	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+mobile-android	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+mobile-android	nullhandling	lex: null crash%%vec: null crash
+mobile-android	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+mobile-android	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+mobile-android	observability	lex: cannot trace%%vec: cannot trace
+mobile-android	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+mobile-android	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+mobile-android	ratelimit	lex: throttled%%vec: throttled
+mobile-android	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+mobile-android	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+mobile-android	auth	lex: token expiry%%vec: token expiry
+mobile-android	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+mobile-android	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+mobile-android	errors	lex: silent failure%%vec: silent failure
+mobile-android	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+mobile-android	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+mobile-android	retries	lex: duplicate writes%%vec: duplicate writes
+mobile-android	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+mobile-android	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+mobile-android	secrets	lex: leaked key%%vec: leaked key
+mobile-android	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+mobile-android	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+mobile-android	timezones	lex: off by one day%%vec: off by one day
+mobile-ios	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+mobile-ios	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+mobile-ios	auth	lex: token expiry%%vec: token expiry
+mobile-ios	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+mobile-ios	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+mobile-ios	ci	lex: slow build%%vec: slow build
+mobile-ios	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+mobile-ios	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+mobile-ios	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+mobile-ios	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+mobile-ios	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+mobile-ios	flakytests	lex: flaky%%vec: flaky
+mobile-ios	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+mobile-ios	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+mobile-ios	localization	lex: text overflow%%vec: text overflow
+mobile-ios	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+mobile-ios	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+mobile-ios	migrations	lex: deploy broke schema%%vec: deploy broke schema
+mobile-ios	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+mobile-ios	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+mobile-ios	retries	lex: duplicate writes%%vec: duplicate writes
+mobile-ios	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+mobile-ios	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+mobile-ios	timezones	lex: off by one day%%vec: off by one day
+mobile-ios	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+mobile-ios	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+mobile-ios	errors	lex: silent failure%%vec: silent failure
+mobile-ios	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+mobile-ios	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+mobile-ios	nullhandling	lex: null crash%%vec: null crash
+mobile-ios	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+mobile-ios	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+mobile-ios	observability	lex: cannot trace%%vec: cannot trace
+mobile-ios	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+mobile-ios	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+mobile-ios	performance	lex: memory growth%%vec: memory growth
+mobile-ios	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+mobile-ios	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+mobile-ios	secrets	lex: leaked key%%vec: leaked key
+notification-service	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+notification-service	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+notification-service	caching	lex: stale data%%vec: stale data
+notification-service	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+notification-service	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+notification-service	observability	lex: cannot trace%%vec: cannot trace
+notification-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+notification-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+notification-service	secrets	lex: leaked key%%vec: leaked key
+notification-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+notification-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+notification-service	auth	lex: token expiry%%vec: token expiry
+notification-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+notification-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+notification-service	ci	lex: slow build%%vec: slow build
+notification-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+notification-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+notification-service	errors	lex: silent failure%%vec: silent failure
+notification-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+notification-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+notification-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+notification-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+notification-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+notification-service	flakytests	lex: flaky%%vec: flaky
+notification-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+notification-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+notification-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+notification-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+notification-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+notification-service	nullhandling	lex: null crash%%vec: null crash
+notification-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+notification-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+notification-service	performance	lex: memory growth%%vec: memory growth
+notification-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+notification-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+notification-service	ratelimit	lex: throttled%%vec: throttled
+notification-service	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+notification-service	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+notification-service	retries	lex: duplicate writes%%vec: duplicate writes
+notification-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+notification-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+notification-service	timezones	lex: off by one day%%vec: off by one day
+onboarding-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+onboarding-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+onboarding-service	auth	lex: token expiry%%vec: token expiry
+onboarding-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+onboarding-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+onboarding-service	errors	lex: silent failure%%vec: silent failure
+onboarding-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+onboarding-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+onboarding-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+onboarding-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+onboarding-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+onboarding-service	nullhandling	lex: null crash%%vec: null crash
+onboarding-service	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+onboarding-service	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+onboarding-service	observability	lex: cannot trace%%vec: cannot trace
+onboarding-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+onboarding-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+onboarding-service	pagination	lex: missing rows%%vec: missing rows
+onboarding-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+onboarding-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+onboarding-service	ratelimit	lex: throttled%%vec: throttled
+onboarding-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+onboarding-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+onboarding-service	secrets	lex: leaked key%%vec: leaked key
+onboarding-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+onboarding-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+onboarding-service	timezones	lex: off by one day%%vec: off by one day
+payments-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+payments-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+payments-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+payments-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+payments-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+payments-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+payments-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+payments-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+payments-service	ratelimit	lex: throttled%%vec: throttled
+payments-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+payments-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+payments-service	auth	lex: token expiry%%vec: token expiry
+payments-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+payments-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+payments-service	ci	lex: slow build%%vec: slow build
+payments-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+payments-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+payments-service	localization	lex: text overflow%%vec: text overflow
+payments-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+payments-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+payments-service	nullhandling	lex: null crash%%vec: null crash
+payments-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+payments-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+payments-service	pagination	lex: missing rows%%vec: missing rows
+payments-service	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+payments-service	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+payments-service	secrets	lex: leaked key%%vec: leaked key
+payments-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+payments-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+payments-service	timezones	lex: off by one day%%vec: off by one day
+platform-infra	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+platform-infra	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+platform-infra	ci	lex: slow build%%vec: slow build
+platform-infra	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+platform-infra	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+platform-infra	nullhandling	lex: null crash%%vec: null crash
+platform-infra	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+platform-infra	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+platform-infra	pagination	lex: missing rows%%vec: missing rows
+platform-infra	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+platform-infra	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+platform-infra	ratelimit	lex: throttled%%vec: throttled
+platform-infra	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+platform-infra	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+platform-infra	timezones	lex: off by one day%%vec: off by one day
+platform-infra	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+platform-infra	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+platform-infra	auth	lex: token expiry%%vec: token expiry
+platform-infra	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+platform-infra	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+platform-infra	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+platform-infra	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+platform-infra	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+platform-infra	flakytests	lex: flaky%%vec: flaky
+platform-infra	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+platform-infra	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+platform-infra	localization	lex: text overflow%%vec: text overflow
+platform-infra	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+platform-infra	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+platform-infra	migrations	lex: deploy broke schema%%vec: deploy broke schema
+platform-infra	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+platform-infra	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+platform-infra	performance	lex: memory growth%%vec: memory growth
+platform-infra	secrets	lex: a token ended up somewhere it should not have been%%vec: a token ended up somewhere it should not have been
+platform-infra	secrets	lex: AWS_SECRET_ACCESS_KEY committed%%vec: AWS_SECRET_ACCESS_KEY committed
+platform-infra	secrets	lex: leaked key%%vec: leaked key
+reporting-service	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+reporting-service	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+reporting-service	nullhandling	lex: null crash%%vec: null crash
+reporting-service	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+reporting-service	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+reporting-service	caching	lex: stale data%%vec: stale data
+reporting-service	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+reporting-service	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+reporting-service	ci	lex: slow build%%vec: slow build
+reporting-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+reporting-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+reporting-service	errors	lex: silent failure%%vec: silent failure
+reporting-service	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+reporting-service	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+reporting-service	flakytests	lex: flaky%%vec: flaky
+reporting-service	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+reporting-service	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+reporting-service	localization	lex: text overflow%%vec: text overflow
+reporting-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+reporting-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+reporting-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+reporting-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+reporting-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+reporting-service	pagination	lex: missing rows%%vec: missing rows
+reporting-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+reporting-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+reporting-service	performance	lex: memory growth%%vec: memory growth
+reporting-service	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+reporting-service	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+reporting-service	retries	lex: duplicate writes%%vec: duplicate writes
+trading-service	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+trading-service	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+trading-service	auth	lex: token expiry%%vec: token expiry
+trading-service	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+trading-service	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+trading-service	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+trading-service	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+trading-service	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+trading-service	retries	lex: duplicate writes%%vec: duplicate writes
+trading-service	errors	lex: the client shows a spinner forever instead of telling the user what went wrong%%vec: the client shows a spinner forever instead of telling the user what went wrong
+trading-service	errors	lex: unhandled promise rejection 500%%vec: unhandled promise rejection 500
+trading-service	errors	lex: silent failure%%vec: silent failure
+trading-service	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+trading-service	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+trading-service	migrations	lex: deploy broke schema%%vec: deploy broke schema
+trading-service	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+trading-service	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+trading-service	pagination	lex: missing rows%%vec: missing rows
+trading-service	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+trading-service	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+trading-service	performance	lex: memory growth%%vec: memory growth
+trading-service	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+trading-service	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+trading-service	ratelimit	lex: throttled%%vec: throttled
+trading-service	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+trading-service	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+trading-service	timezones	lex: off by one day%%vec: off by one day
+web-app	auth	lex: people get signed out halfway through a long form%%vec: people get signed out halfway through a long form
+web-app	auth	lex: 401 invalid_grant refresh_token_expired%%vec: 401 invalid_grant refresh_token_expired
+web-app	auth	lex: token expiry%%vec: token expiry
+web-app	ci	lex: the build takes twenty minutes and most of it is downloading things%%vec: the build takes twenty minutes and most of it is downloading things
+web-app	ci	lex: cache miss job took 20m%%vec: cache miss job took 20m
+web-app	ci	lex: slow build%%vec: slow build
+web-app	nullhandling	lex: a crash with 'undefined is not an object' only for accounts with no address%%vec: a crash with 'undefined is not an object' only for accounts with no address
+web-app	nullhandling	lex: TypeError undefined is not an object%%vec: TypeError undefined is not an object
+web-app	nullhandling	lex: null crash%%vec: null crash
+web-app	pagination	lex: scrolling the list shows the same row twice and skips another%%vec: scrolling the list shows the same row twice and skips another
+web-app	pagination	lex: OFFSET_SKEW cursor_invalid%%vec: OFFSET_SKEW cursor_invalid
+web-app	pagination	lex: missing rows%%vec: missing rows
+web-app	performance	lex: memory climbs all afternoon until the process is killed%%vec: memory climbs all afternoon until the process is killed
+web-app	performance	lex: OOMKilled heap_used_bytes%%vec: OOMKilled heap_used_bytes
+web-app	performance	lex: memory growth%%vec: memory growth
+web-app	ratelimit	lex: the third party started returning 429 during the nightly job%%vec: the third party started returning 429 during the nightly job
+web-app	ratelimit	lex: HTTP 429 Retry-After%%vec: HTTP 429 Retry-After
+web-app	ratelimit	lex: throttled%%vec: throttled
+web-app	retries	lex: two charges appeared for one checkout when the network blipped%%vec: two charges appeared for one checkout when the network blipped
+web-app	retries	lex: ERR_DUPLICATE_CHARGE idempotency_key%%vec: ERR_DUPLICATE_CHARGE idempotency_key
+web-app	retries	lex: duplicate writes%%vec: duplicate writes
+web-app	caching	lex: the page shows yesterday's numbers even right after a change was saved%%vec: the page shows yesterday's numbers even right after a change was saved
+web-app	caching	lex: stale_cache_hit ETag mismatch%%vec: stale_cache_hit ETag mismatch
+web-app	caching	lex: stale data%%vec: stale data
+web-app	featureflags	lex: half the users see the new screen and half do not, in the same build%%vec: half the users see the new screen and half do not, in the same build
+web-app	featureflags	lex: FLAG_EVAL_DEFAULT variant_mismatch%%vec: FLAG_EVAL_DEFAULT variant_mismatch
+web-app	featureflags	lex: inconsistent rollout%%vec: inconsistent rollout
+web-app	flakytests	lex: the suite passes locally and fails maybe one run in five on the server%%vec: the suite passes locally and fails maybe one run in five on the server
+web-app	flakytests	lex: test_timeout intermittent CI failure%%vec: test_timeout intermittent CI failure
+web-app	flakytests	lex: flaky%%vec: flaky
+web-app	localization	lex: German text overflows the button and Japanese sorts in the wrong order%%vec: German text overflows the button and Japanese sorts in the wrong order
+web-app	localization	lex: i18n missing_key layout overflow%%vec: i18n missing_key layout overflow
+web-app	localization	lex: text overflow%%vec: text overflow
+web-app	migrations	lex: the deploy went out and the old servers started throwing on a column%%vec: the deploy went out and the old servers started throwing on a column
+web-app	migrations	lex: column_does_not_exist relation already exists%%vec: column_does_not_exist relation already exists
+web-app	migrations	lex: deploy broke schema%%vec: deploy broke schema
+web-app	observability	lex: we cannot tell which service was slow for one particular customer%%vec: we cannot tell which service was slow for one particular customer
+web-app	observability	lex: trace_id missing span_context null%%vec: trace_id missing span_context null
+web-app	observability	lex: cannot trace%%vec: cannot trace
+web-app	timezones	lex: a report for the last day of the month is off by one for some users%%vec: a report for the last day of the month is off by one for some users
+web-app	timezones	lex: DST_OFFSET_ERROR UTC conversion%%vec: DST_OFFSET_ERROR UTC conversion
+web-app	timezones	lex: off by one day%%vec: off by one day

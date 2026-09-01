@@ -19,7 +19,7 @@
  * design swung 14x between a busy and an idle box, in both directions.
  */
 import { execFileSync, spawnSync } from "node:child_process";
-import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 
@@ -69,12 +69,16 @@ for (let i = 0; i < WRITERS; i++) {
 // Each writer: block on the barrier, then run the hook exactly as Stop would.
 const worker = join(root, "worker.mjs");
 writeFileSync(worker, `
-import { existsSync } from "node:fs";
+import { existsSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 const [proj, barrier] = process.argv.slice(2);
 while (!existsSync(barrier)) { Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5); }
 const hook = proj + "/.claude/hooks/shared-memories/memories_autopush.sh";
+const t0 = Date.now();
 spawnSync("bash", [hook], { input: JSON.stringify({ cwd: proj, hook_event_name: "Stop" }), encoding: "utf8", env: process.env, stdio: ["pipe", "pipe", "pipe"] });
+// A hook has a declared timeout. What it COSTS under contention is therefore
+// as much a correctness property as whether the push lands.
+writeFileSync(proj + "/.hook-ms", String(Date.now() - t0));
 `);
 
 const { spawn } = await import("node:child_process");
@@ -98,6 +102,10 @@ console.log(JSON.stringify({
 	env: EXTRA_ENV,
 	landed,
 	lost: WRITERS - landed,
+	hook_ms: (() => {
+		const ms = projects.map((p) => { try { return Number(readFileSync(p + "/.hook-ms", "utf8")); } catch { return null; } }).filter((x) => x !== null);
+		return ms.length ? { max: Math.max(...ms), mean: Math.round(ms.reduce((a, b) => a + b, 0) / ms.length) } : null;
+	})(),
 	note: landed === WRITERS ? "all writers landed" : `${WRITERS - landed} memories exist only on their author's machine`,
 }, null, 1));
 
