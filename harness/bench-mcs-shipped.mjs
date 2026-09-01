@@ -30,15 +30,30 @@ const BIN = resolve("tools/node_modules/.bin/docs-mcp-server");
 if (!existsSync(BIN)) { console.error(`docs-mcp-server not installed at ${BIN}`); process.exit(1); }
 const STORE = resolve("runs/mcs-shipped-store");
 const env = { ...process.env, OPENAI_API_KEY: "ollama", OPENAI_API_BASE: "http://127.0.0.1:11434/v1", DOCS_MCP_EMBEDDING_MODEL: "openai:nomic-embed-text" };
-const run = (args, timeout = 600_000) => execFileSync(BIN, args, { env, encoding: "utf8", timeout, maxBuffer: 32 * 1024 * 1024 });
+
+// 3.1.0 refuses to index a local directory outside its configured roots — a
+// security policy the version this row was first measured with did not have.
+// Declared here rather than worked around silently: the allowed root is the
+// lab's runs/ directory and nothing else.
+const CONFIG = resolve("runs/mcs-shipped-config.json");
+writeFileSync(CONFIG, JSON.stringify({ scraper: { security: { fileAccess: { allowedRoots: [resolve("runs")] } } } }, null, 1));
+const run = (args, timeout = 600_000) => execFileSync(BIN, [...args, "--config", CONFIG], { env, encoding: "utf8", timeout, maxBuffer: 32 * 1024 * 1024 });
 
 // Build the store once and reuse it across registers; scraping 183 documents
 // through an embedding model is the expensive part and the queries do not
 // change it.
-if (!existsSync(join(STORE, "documents.db")) && !existsSync(STORE)) {
+// Build once, reuse across registers. The guard used to also require the store
+// DIRECTORY to be absent, which mkdirSync had just created — so a second
+// register skipped the build and every query failed with "library not found".
+if (!existsSync(join(STORE, "documents.db"))) {
 	process.stderr.write("  building the shipped store (one shared pool)\n");
 	mkdirSync(STORE, { recursive: true });
-	run(["scrape", "pool", `file://${resolve(POOL)}`, "--store-path", STORE, "--telemetry", "false", "--quiet"], 3_600_000);
+	// Only the memories. Without this it also indexes _map.json and
+	// _queries.json, putting two documents in the store that are not memories.
+	const out = run(["scrape", "pool", `file://${resolve(POOL)}`, "--store-path", STORE, "--include-pattern", "*.md", "--telemetry", "false"], 3_600_000);
+	const n = (out.match(/scraped\s+(\d+)\s+pages/i) ?? [])[1];
+	process.stderr.write(`  indexed ${n ?? "?"} documents\n`);
+	if (Number(n) < 100) { console.error(`the shipped store indexed only ${n} documents — refusing to score a vacuous run`); process.exit(1); }
 }
 
 mkdirSync(OUT, { recursive: true });
@@ -57,7 +72,7 @@ for (const q of queries) {
 	const t = Date.now();
 	let hits = [];
 	try {
-		const out = run(["search", "pool", q.vec, "--store-path", STORE, "--telemetry", "false", "--output", "json", "--quiet"]);
+		const out = run(["search", "pool", q.vec, "--store-path", STORE, "--telemetry", "false", "--output", "json"]);
 		const j = JSON.parse(out.slice(out.indexOf("[") >= 0 ? out.indexOf("[") : 0) || "[]");
 		hits = (Array.isArray(j) ? j : j.results ?? []).slice(0, 5)
 			.map((r) => basename(String(r.url ?? r.path ?? "")).replace(/\.md$/, "")).filter(Boolean);
