@@ -160,6 +160,11 @@ const withRefs = memories.filter((m) => m.references.length).length;
 console.log(JSON.stringify({
   memories: memories.length, incidents: incidents.length, services: SERVICES.length,
   multi_service_incidents: incidents.filter((i) => i.involved.length > 1).length,
-  memories_referencing_another: withRefs,
+  // What the world OFFERS, not what the prose does. The generator shows a
+  // memory the titles of earlier notes in its repo and says it may refer to
+  // them; roughly a third actually do. Reporting this as "memories referencing
+  // another" overstated the corpus's connectivity by about three times. The
+  // realised rate is measured on the corpus by verify-corpus.
+  memories_offered_a_prior_note: withRefs,
   supersessions: memories.filter((m) => m.supersedes).length,
 }, null, 1));

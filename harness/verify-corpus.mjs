@@ -59,7 +59,29 @@ const fidelity = (() => {
     if (m.artefact && body.includes(m.artefact.toLowerCase())) artefact++;
     if (m.signal && body.includes(m.signal.toLowerCase())) signal++;
   }
-  return n ? { memories: n, names_its_artefact: +(artefact / n).toFixed(3), names_its_signal: +(signal / n).toFixed(3) } : null;
+  // Connectivity as REALISED, not as offered. The world hands each memory the
+  // titles of earlier notes in its repo and invites a reference; the prose takes
+  // that up about a third of the time. Reporting the offer as the fact overstated
+  // how interlinked this corpus is.
+  let offered = 0, refers = 0;
+  const BACKREF = /\b(earlier|previously|prior|as noted|we wrote|last month|back in|that note|the note)\b/i;
+  for (const m of world.memories) {
+    if (!m.references?.length) continue;
+    let body;
+    try { body = readFileSync(join(DIR, `${m.id}.md`), "utf8"); } catch { continue; }
+    offered++;
+    if (BACKREF.test(body)) refers++;
+  }
+  return n
+    ? {
+      memories: n,
+      names_its_artefact: +(artefact / n).toFixed(3),
+      names_its_signal: +(signal / n).toFixed(3),
+      offered_a_prior_note: offered,
+      actually_refers_back: refers,
+      realised_reference_rate: offered ? +(refers / offered).toFixed(3) : null,
+    }
+    : null;
 })();
 
 const bodies = bodiesIn(DIR);
