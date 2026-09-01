@@ -1,0 +1,23 @@
+{
+ "name": "the thin fixture this project published from, kept as an ablation arm",
+ "n": 0,
+ "word_deciles": [
+  25,
+  33,
+  42,
+  50,
+  61,
+  75,
+  89,
+  103,
+  142,
+  208,
+  499
+ ],
+ "median_words": 75,
+ "p10_words": 33,
+ "p90_words": 208,
+ "distinct_words_per_doc": 56.2,
+ "specifics_per_doc": 6.0,
+ "note": "NOT a measurement of any real store. These are the numbers this project mistakenly believed were real, reconstructed so the thin corpus can be regenerated from the same world and used as the control arm in a corpus-quality ablation."
+}
