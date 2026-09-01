@@ -75,7 +75,11 @@ for (const q of queries) {
 		const out = run(["search", "pool", q.vec, "--store-path", STORE, "--telemetry", "false", "--output", "json"]);
 		const j = JSON.parse(out.slice(out.indexOf("[") >= 0 ? out.indexOf("[") : 0) || "[]");
 		hits = (Array.isArray(j) ? j : j.results ?? []).slice(0, 5)
-			.map((r) => basename(String(r.url ?? r.path ?? "")).replace(/\.md$/, "")).filter(Boolean);
+			// The url comes back PERCENT-ENCODED. 94 of this pool's 183 documents
+			// carry a `(2)` suffix with a space in it, so more than half of every
+			// hit list resolved to a name no document has — scored as junk, and
+			// reported as their system returning nonsense. It was the parser.
+			.map((r) => basename(decodeURIComponent(String(r.url ?? r.path ?? ""))).replace(/\.md$/, "")).filter(Boolean);
 	} catch { /* a failed query is an empty result, counted */ }
 	ms += Date.now() - t;
 	if (!hits.length) empty++;
