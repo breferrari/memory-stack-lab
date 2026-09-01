@@ -56,6 +56,6 @@ done
 echo "STAGE leakage measured"
 
 echo "STAGE abstention"
-node harness/bench-abstention.mjs "$R/pool" "$R/abstention.json" >/dev/null 2>>"$R/bench.err"
+node --experimental-strip-types harness/bench-abstention.mjs "$R/pool" "$R/abstention.json" >/dev/null 2>>"$R/bench.err"
 
 echo REALISTIC-DONE
