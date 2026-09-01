@@ -43,3 +43,4 @@ node harness/score.mjs runs/res <corpus> <label> 5 64
 Requires Node 22+, `git`, `jq`, and [qmd](https://github.com/tobi/qmd) for retrieval experiments.
 
 > The write matrix spawns 100 concurrent processes per round. It is heavy — check load before and after, and do not leave it unattended.
+

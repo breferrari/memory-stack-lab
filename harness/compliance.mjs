@@ -32,6 +32,15 @@ import { join, resolve } from "node:path";
 
 const OUT = process.argv[2] ?? "runs/compliance";
 const SAMPLES = Number(process.argv[3] ?? 1);
+/**
+ * The model is a factor, not a detail.
+ *
+ * The first run used the cheapest model available, and instruction-following is
+ * one of the properties that differs most between models — deciding whether to
+ * delete a protocol based on a model nobody runs this on would be measuring the
+ * wrong population.
+ */
+const MODEL = process.argv[4] ?? "sonnet";
 mkdirSync(OUT, { recursive: true });
 
 // Fresh prompts: not from the README, not from any fixture, so they cannot have
@@ -54,6 +63,14 @@ const EDIT = [
 ];
 
 const MEMORY_TOOL = /vestige.*__(search|recall)$/i;
+
+/**
+ * Not discovery. Loading a tool schema or opening a skill is infrastructure the
+ * host makes the model do; counting it as "the first other tool" made
+ * searched-first impossible by construction and produced a clean 0/24 that
+ * looked like a finding about the protocol.
+ */
+const INFRA = /^(ToolSearch|Skill|TodoWrite|Task(Create|Update|List))$/;
 
 /**
  * Isolate the MCP surface.
@@ -130,10 +147,14 @@ for (const [family, prompts] of [["debug", DEBUG], ["edit", EDIT]]) {
     for (const prompt of prompts) {
       for (let s = 0; s < SAMPLES; s++) {
         const tools = episode(prompt, protocolOn);
-        const firstOther = tools.findIndex((t) => !MEMORY_TOOL.test(t));
-        const firstMemory = tools.findIndex((t) => MEMORY_TOOL.test(t));
-        const searchedFirst =
-          firstMemory >= 0 && (firstOther < 0 || firstMemory < firstOther);
+        // Infrastructure is not discovery. Counting the host's own schema-loading
+        // call as "the first other tool" makes searched-first unreachable by
+        // construction — it reported 0 for every cell of every model, which
+        // reads as a finding about the protocol and is arithmetic.
+        const acts = tools.filter((t) => !INFRA.test(t.split("__").pop() ?? t));
+        const firstOther = acts.findIndex((t) => !MEMORY_TOOL.test(t));
+        const firstMemory = acts.findIndex((t) => MEMORY_TOOL.test(t));
+        const searchedFirst = firstMemory >= 0 && (firstOther < 0 || firstMemory < firstOther);
         rows.push({
           family,
           protocol: protocolOn ? "present" : "absent",
@@ -164,6 +185,7 @@ const cell = (family, protocol) => {
   };
 };
 const summary = {
+  model: MODEL,
   samples_per_prompt: SAMPLES,
   gate: "off in every cell — this measures the protocol text, not the hook",
   debug: { present: cell("debug", "present"), absent: cell("debug", "absent") },
