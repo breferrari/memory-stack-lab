@@ -31,10 +31,17 @@ const map = JSON.parse(readFileSync(join(SRC, "_map.json"), "utf8"));
 const docs = readdirSync(SRC).filter((f) => f.endsWith(".md"));
 const projects = [...new Set(Object.values(map).map((v) => v.project))].sort();
 const queries = readFileSync(QUERIES, "utf8").split("\n").filter(Boolean).map((l) => {
-  const [proj, topic, doc] = l.split("\t");
+  // The second column is an opaque KEY: a topic in the ladder's corpora, a
+  // memory id in the generated one. It used to be treated as a topic and baked
+  // into the artifact filename, which the scorers then split on `__` — a
+  // separator memory ids contain. Both arms now write _queries.json beside their
+  // artifacts, the same contract the Vestige arms use, so the two sides are
+  // scored identically. Comparing a fixed scorer against an unfixed one would
+  // make the comparison meaningless in our favour.
+  const [proj, key, doc] = l.split("\t");
   const lex = doc.split("%%")[0].replace(/^lex:\s*/, "");
   const vec = (doc.split("%%")[1] ?? "").replace(/^vec:\s*/, "");
-  return { proj, topic, lex, vec };
+  return { proj, key, lex, vec };
 });
 
 const EMBED = "hf:ggml-org/embeddinggemma-300M-GGUF/embeddinggemma-300M-Q8_0.gguf";
@@ -104,8 +111,9 @@ rmSync(OUT, { recursive: true, force: true });
     const r = qmdIn(cfg, idxPath, ["--index", "memory-loop", "query", doc, "-n", "5", "--no-rerank", "--format", "files"]);
     ms += Date.now() - t;
     const hits = [...r.stdout.matchAll(/qmd:\/\/[^/]+\/([^\s:,]+\.md)/g)].map((m) => m[1]);
-    writeFileSync(join(out, `${q.proj}__${q.topic}.txt`), hits.join("\n"));
+    writeFileSync(join(out, `${q.proj}__${q.key}.txt`), hits.join("\n"));
   }
+  writeFileSync(join(out, "_queries.json"), JSON.stringify(queries.map((q) => ({ artifact: `${q.proj}__${q.key}.txt`, project: q.proj, key: q.key })), null, 1));
   results["mcs-perproject"] = { mean_ms: Math.round(ms / queries.length), artifacts: out };
   rmSync(root, { recursive: true, force: true });
 }
@@ -133,8 +141,9 @@ rmSync(OUT, { recursive: true, force: true });
     const r = qmdIn(cfg, idxPath, ["--index", "memory-loop", "query", doc, "-n", "5", "--no-rerank", "--format", "files"]);
     ms += Date.now() - t;
     const hits = [...r.stdout.matchAll(/qmd:\/\/[^/]+\/([^\s:,]+\.md)/g)].map((m) => m[1]);
-    writeFileSync(join(out, `${q.proj}__${q.topic}.txt`), hits.join("\n"));
+    writeFileSync(join(out, `${q.proj}__${q.key}.txt`), hits.join("\n"));
   }
+  writeFileSync(join(out, "_queries.json"), JSON.stringify(queries.map((q) => ({ artifact: `${q.proj}__${q.key}.txt`, project: q.proj, key: q.key })), null, 1));
   results["mcs-shared"] = { mean_ms: Math.round(ms / queries.length), artifacts: out };
   rmSync(root, { recursive: true, force: true });
 }
