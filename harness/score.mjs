@@ -29,13 +29,32 @@ const EXPECTED = Number(process.argv[6] || 64);
 // scorer still serves every rung; only the source of the mapping differs.
 const owner = new Map();
 const topicOf = new Map();
+// world memory id -> the document it became after the plugin renamed it on write
+const sourceOf = new Map();
 try {
   const explicit = JSON.parse(readFileSync(join(CORPUS, "_map.json"), "utf8"));
   for (const [id, v] of Object.entries(explicit)) {
     owner.set(id, v.project);
     topicOf.set(id, v.topic);
+    if (v.source) sourceOf.set(v.source, id);
   }
 } catch { /* fall through to the Applies-to convention below */ }
+
+/**
+ * How a query names its answer.
+ *
+ * The ladder's corpora ask by topic, and any memory in the asking project on
+ * that topic counts. The generated corpus asks for ONE memory by id, because a
+ * project there holds many memories on a topic and several of them correct each
+ * other. Both are read from `_queries.json`, written beside the artifacts, so
+ * neither is re-derived by splitting a filename on `__` — which memory ids
+ * contain, and which silently resolved every generated query to the wrong
+ * document.
+ *
+ * Where a gold id resolves, scoring is STRICT: a same-topic sibling is not a
+ * hit. That keeps this scorer and analyse-stratum reporting the same number.
+ */
+const manifest = (() => { try { return JSON.parse(readFileSync(join(ART, "_queries.json"), "utf8")); } catch { return null; } })();
 for (const f of readdirSync(CORPUS).filter(f => f.endsWith('.md'))) {
   const body = readFileSync(join(CORPUS, f), 'utf8');
   const m = body.match(/\*\*Applies to:\*\*\s*([a-z0-9-]+)/i);
@@ -53,8 +72,12 @@ const idOf = line => {
 
 const rows = [];
 const files = readdirSync(ART).filter(f => f.endsWith('.txt')).sort();
-for (const f of files) {
-  const [proj, topic] = basename(f, '.txt').split('__');
+const entries = manifest
+  ? manifest.map(q => ({ f: q.artifact, proj: q.project, key: q.key }))
+  : files.map(f => { const [proj, key] = basename(f, '.txt').split('__'); return { f, proj, key }; });
+for (const { f, proj, key } of entries) {
+  const gold = sourceOf.get(key) ?? null;
+  const topic = gold ? (topicOf.get(gold) ?? key) : key;
   const hits = readFileSync(join(ART, f), 'utf8')
     .split('\n').map(idOf).filter(Boolean).slice(0, K);
   const owners = hits.map(h => owner.get(h) ?? null);
@@ -64,7 +87,7 @@ for (const f of files) {
   // saying nothing about whether the question was answered. This is the axis
   // that separates "scoped" from "useful".
   const relevant = hits.map((h, i) => owners[i] === proj
-    && (topicOf.size ? topicOf.get(h) === topic : h.includes(`_${topic}_`)));
+    && (gold ? h === gold : topicOf.size ? topicOf.get(h) === topic : h.includes(`_${topic}_`)));
   const unknown = owners.filter(o => o === null).length;
   const own = owners.filter(o => o === proj).length;
   rows.push({

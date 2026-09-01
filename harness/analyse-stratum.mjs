@@ -27,8 +27,18 @@ const tok = (s) => new Set(String(s).toLowerCase().replace(/[^a-z0-9\s-]/g, " ")
 const jac = (a, b) => { let h = 0; for (const t of a) if (b.has(t)) h++; return h / (a.size + b.size - h || 1); };
 
 const map = JSON.parse(readFileSync(join(POOL, "_map.json"), "utf8"));
-const target = (proj, topic) => {
-  const hit = Object.entries(map).filter(([, m]) => m.project === proj && m.topic === topic);
+// world memory id -> the document it became after the plugin renamed it
+const sourceOf = new Map(Object.entries(map).filter(([, m]) => m.source).map(([id, m]) => [m.source, id]));
+/**
+ * A query names its gold by memory id where the corpus has ids, and by topic in
+ * the ladder's older corpora, where a project holds one memory per topic. Here a
+ * project holds many on a topic and some of them correct each other, so the
+ * (project, topic) pair identifies nothing and returning null for it is right.
+ */
+const target = (proj, key) => {
+  const byId = sourceOf.get(key);
+  if (byId) return byId;
+  const hit = Object.entries(map).filter(([, m]) => m.project === proj && m.topic === key);
   return hit.length === 1 ? hit[0][0] : null;
 };
 
@@ -36,10 +46,10 @@ const bins = [[0, 0.005], [0.005, 0.02], [0.02, 0.06], [0.06, 1]];
 const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sibling: 0, otherProject: 0, junk: 0 } };
 
 for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
-  const [proj, topic, doc] = line.split("\t");
-  const gold = target(proj, topic);
+  const [proj, key, doc] = line.split("\t");
+  const gold = target(proj, key);
   if (!gold) { acc.noGold++; continue; }
-  const f = join(HITS, `${proj}__${topic}.txt`);
+  const f = join(HITS, `${proj}__${key}.txt`);
   if (!existsSync(f)) continue;
   const ids = readFileSync(f, "utf8").split("\n").filter(Boolean).map((x) => basename(x).replace(/\.md$/, ""));
   const rank = ids.indexOf(gold);

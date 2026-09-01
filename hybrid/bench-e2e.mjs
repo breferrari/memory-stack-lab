@@ -61,9 +61,10 @@ mkdirSync(OUT, { recursive: true });
 let qmdRuns = 0, facetRuns = 0;
 const lat = [];
 const seenProj = new Set();
+const queries = [];
 const cold = [], warm = [];
 for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
-	const [proj, topic, doc] = line.split("\t");
+	const [proj, key, doc] = line.split("\t");
 	// the fixture is a structured lex/vec document; the plugin takes one string
 	const q = doc.replace(/%%/g, " ").replace(/\b(lex|vec):\s*/g, "");
 	const t0 = performance.now();
@@ -76,10 +77,18 @@ for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
 	// `search` became async; calling it without await yielded a Promise whose
 	// .hits is undefined. Guard rather than trust, because the shape that scores
 	// zero and the shape that throws are one edit apart.
-	if (!r || !Array.isArray(r.hits)) throw new Error(`search returned no hits array for ${proj}/${topic}: ${JSON.stringify(r)?.slice(0, 200)}`);
+	if (!r || !Array.isArray(r.hits)) throw new Error(`search returned no hits array for ${proj}/${key}: ${JSON.stringify(r)?.slice(0, 200)}`);
 	r.engine === "qmd" ? qmdRuns++ : facetRuns++;
-	writeFileSync(join(OUT, `${proj}__${topic}.txt`), r.hits.map((h) => h.name).join("\n"));
+	// The second column is an opaque key: a topic in the ladder's corpora, a
+	// memory id in the generated one. It was being parsed out of the artifact
+	// filename by splitting on `__`, which a memory id contains, so every
+	// generated query resolved to the wrong document or to none. The mapping is
+	// written down now instead of being re-derived from a name.
+	const artifact = `${proj}__${key}.txt`;
+	writeFileSync(join(OUT, artifact), r.hits.map((h) => h.name).join("\n"));
+	queries.push({ artifact, project: proj, key });
 }
+writeFileSync(join(OUT, "_queries.json"), JSON.stringify(queries, null, 1));
 
 // Every timing this machine has produced under load has been wrong, twice by a
 // factor that inverted the conclusion. A number without its load average is not
