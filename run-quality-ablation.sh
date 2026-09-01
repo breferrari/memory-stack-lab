@@ -54,7 +54,8 @@ echo "STAGE profiled both arms"
 
 # 3 - write the thin corpus through the real plugin, same as the realistic one
 node --experimental-strip-types hybrid/gen-hybrid-corpus.ts "$A/corpus-thin" "$A/pool-thin" 0 > "$A/write-thin.json" 2>>"$A/bench.err"
-N=$(ls "$A/pool-thin"/*.md 2>/dev/null | wc -l)
+POOL_N=$(ls "$A/pool-thin"/*.md 2>/dev/null | wc -l)
+echo "STAGE thin pool: $POOL_N memories"
 
 # 4 - the same queries, the same registers, retrieval held fixed at the default arm
 for REG in symptom identifier short; do
@@ -62,7 +63,7 @@ for REG in symptom identifier short; do
   echo "STAGE ablation register=$REG load=$(cut -d' ' -f1 /proc/loadavg)"
   unset VESTIGE_RERANK VESTIGE_QUERY_SHAPE
   node hybrid/bench-e2e.mjs "$A/pool-thin" "$A/hits-thin-$REG" "$R/q-$REG.tsv" > "$A/e2e-thin-$REG.json" 2>>"$A/bench.err"
-  node harness/score.mjs "$A/hits-thin-$REG" "$A/pool-thin" "thin-$REG" 5 "$N" > "$A/score-thin-$REG.json" 2>>"$A/bench.err"
+  node harness/score.mjs "$A/hits-thin-$REG" "$A/pool-thin" "thin-$REG" 5 "$(grep -c . "$R/q-$REG.tsv")" > "$A/score-thin-$REG.json" 2>>"$A/bench.err"
   node harness/analyse-stratum.mjs "$A/hits-thin-$REG" "$A/pool-thin" "$R/q-$REG.tsv" --world "$R/world.json" > "$A/analysis-thin-$REG.json" 2>>"$A/bench.err"
 done
 echo ABLATION-DONE

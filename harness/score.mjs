@@ -19,6 +19,11 @@ const ART = process.argv[2];                 // runs/res-<rung>
 const CORPUS = process.argv[3];              // runs/scale/<variant>
 const LABEL = process.argv[4] || basename(ART);
 const K = Number(process.argv[5] || 5);
+// The number of QUERIES this run must score, not the size of the corpus. The
+// pipeline was passing the pool's document count, which matched only because
+// this world happens to produce exactly one query per memory. A guard whose
+// reference value is right by coincidence stops being a guard the moment either
+// number moves, and says nothing while it does.
 const EXPECTED = Number(process.argv[6] || 64);
 
 // ── ownership map: document id -> owning project ─────────────────────
@@ -105,7 +110,7 @@ for (const { f, proj, key } of entries) {
   });
 }
 
-// ── non-vacuity guard: the fixture is 64 queries; anything else is a bug ──
+// ── non-vacuity guard: a short run silently changes every average ──
 if (rows.length !== EXPECTED) {
   console.error(`FATAL: scored ${rows.length} queries, expected ${EXPECTED}. `
     + `A short run silently changes every average — refusing to report.`);

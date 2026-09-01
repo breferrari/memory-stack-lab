@@ -35,7 +35,8 @@ echo "STAGE queries done"
 
 # 4 — write the corpus through the real plugin, then benchmark every register
 node --experimental-strip-types hybrid/gen-hybrid-corpus.ts "$R/corpus" "$R/pool" 0 > "$R/write.json" 2>>"$R/bench.err"
-N=$(ls "$R/pool"/*.md 2>/dev/null | wc -l)
+POOL_N=$(ls "$R/pool"/*.md 2>/dev/null | wc -l)
+echo "STAGE pool: $POOL_N memories"
 for REG in symptom identifier short; do
   for ARM in typed expand rerank; do
     cool
@@ -43,8 +44,13 @@ for REG in symptom identifier short; do
     if [ "$ARM" = "rerank" ]; then export VESTIGE_RERANK=1; else unset VESTIGE_RERANK; fi
     if [ "$ARM" = "expand" ]; then export VESTIGE_QUERY_SHAPE=expand; else unset VESTIGE_QUERY_SHAPE; fi
     node hybrid/bench-e2e.mjs "$R/pool" "$R/hits-$REG-$ARM" "$R/q-$REG.tsv" > "$R/e2e-$REG-$ARM.json" 2>>"$R/bench.err"
-    node harness/score.mjs "$R/hits-$REG-$ARM" "$R/pool" "$REG-$ARM" 5 "$N" > "$R/score-$REG-$ARM.json" 2>>"$R/bench.err"
+    node harness/score.mjs "$R/hits-$REG-$ARM" "$R/pool" "$REG-$ARM" 5 "$(grep -c . "$R/q-$REG.tsv")" > "$R/score-$REG-$ARM.json" 2>>"$R/bench.err"
     node harness/analyse-stratum.mjs "$R/hits-$REG-$ARM" "$R/pool" "$R/q-$REG.tsv" --world "$R/world.json" > "$R/analysis-$REG-$ARM.json" 2>>"$R/bench.err"
   done
 done
+# 5 — can it decline? Every other query in this suite has an answer in the store,
+#     so nothing here could ever be punished for answering when it should not.
+echo "STAGE abstention"
+node harness/bench-abstention.mjs "$R/pool" "$R/abstention.json" >/dev/null 2>>"$R/bench.err"
+
 echo REALISTIC-DONE
