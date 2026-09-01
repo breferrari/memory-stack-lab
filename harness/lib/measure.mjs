@@ -20,6 +20,11 @@ export const countWords = (s) => words(s).length;
 const quantile = (sorted, p) => sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * p))];
 
 export function profileBodies(bodies) {
+  // An empty corpus otherwise emits a VALID-LOOKING profile: n 0, a decile table
+  // of nulls, NaN rates that JSON renders as null. A generator handed that samples
+  // a target of one word for every document and reports nothing wrong. A wrong
+  // path is the likeliest way to get here, and it must not produce a reference.
+  if (!bodies.length) throw new Error("cannot profile an empty corpus — check the path");
   const w = bodies.map(countWords).sort((a, b) => a - b);
   return {
     n: bodies.length,

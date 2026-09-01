@@ -46,9 +46,21 @@ const map = JSON.parse(readFileSync(join(POOL, "_map.json"), "utf8"));
  */
 const wi = process.argv.indexOf("--world");
 const correctionOf = new Map();
+// stale id -> every memory that corrects it, in order, ending with the current one
+const chainOf = new Map();
 if (wi > 0) {
   const world = JSON.parse(readFileSync(process.argv[wi + 1], "utf8"));
   for (const m of world.memories) if (m.supersedes) correctionOf.set(m.supersedes, m.id);
+  // Corrections chain: A is corrected by B, which is itself corrected by C. The
+  // memory an agent should get is the one at the END of that chain, and crediting
+  // only the immediate corrector marks the CURRENT memory as a miss. One such
+  // chain exists in this world, which is exactly few enough to have been missed.
+  for (const [stale] of [...correctionOf]) {
+    const seen = new Set([stale]);
+    let cur = correctionOf.get(stale);
+    while (correctionOf.has(cur) && !seen.has(cur)) { seen.add(cur); cur = correctionOf.get(cur); }
+    chainOf.set(stale, [...seen].slice(1).concat(cur).filter((x, i, a) => x && a.indexOf(x) === i));
+  }
 }
 // world memory id -> the document it became after the plugin renamed it
 const sourceOf = new Map(Object.entries(map).filter(([, m]) => m.source).map(([id, m]) => [m.source, id]));
@@ -66,7 +78,7 @@ const target = (proj, key) => {
 };
 
 const bins = [[0, 0.005], [0.005, 0.02], [0.02, 0.06], [0.06, 1]];
-const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sibling: 0, otherProject: 0, junk: 0 }, sup: { n: 0, strict: 0, accepting: 0, stale_on_top: 0 } };
+const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sibling: 0, otherProject: 0, junk: 0 }, sup: { n: 0, strict: 0, accepting: 0, stale_on_top: 0, current_on_top: 0 } };
 
 for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
   const [proj, key, doc] = line.split("\t");
@@ -89,12 +101,12 @@ for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
   if (rank >= 0) acc.ranks.push(rank + 1);
 
   // Graded, on the queries whose gold the world has since corrected.
-  const correction = correctionOf.get(key);
-  const correctionDoc = correction ? sourceOf.get(correction) : null;
-  if (correctionDoc) {
+  const chain = (chainOf.get(key) ?? []).map((id) => sourceOf.get(id)).filter(Boolean);
+  if (chain.length) {
     acc.sup.n++;
     if (rank === 0) { acc.sup.strict++; acc.sup.stale_on_top++; }
-    if (rank === 0 || ids[0] === correctionDoc) acc.sup.accepting++;
+    if (rank === 0 || chain.includes(ids[0])) acc.sup.accepting++;
+    if (ids[0] === chain[chain.length - 1]) acc.sup.current_on_top++;
   }
 
   // What took the top slot when the gold did not? Three causes, three fixes.
@@ -133,6 +145,7 @@ console.log(JSON.stringify({
     rank1_strict: +(acc.sup.strict / acc.sup.n).toFixed(3),
     rank1_accepting_the_correction: +(acc.sup.accepting / acc.sup.n).toFixed(3),
     stale_memory_on_top_while_its_correction_exists: acc.sup.stale_on_top,
+    current_memory_on_top: acc.sup.current_on_top,
     reading: "strict scores the superseded memory as the only right answer, which is the wrong ask for a memory system; accepting counts either it or the memory that corrects it. The third row is the outcome that actually harms an agent.",
   } : wi > 0
     ? "world graph passed; no query in this set has a gold that a later memory corrects"

@@ -38,6 +38,12 @@ mkdirSync(OUT, { recursive: true });
 
 const world = JSON.parse(readFileSync(WORLD, "utf8"));
 const profile = JSON.parse(readFileSync(REF, "utf8"));
+// Validate the reference rather than trusting it. A profile whose deciles are
+// not finite numbers yields a one-word target for every memory, and the run
+// completes.
+if (!Array.isArray(profile.word_deciles) || profile.word_deciles.length !== 11 || !profile.word_deciles.every((d) => Number.isFinite(d) && d > 0)) {
+	console.error(`reference ${REF} has no usable decile table`); process.exit(1);
+}
 const incidents = new Map(world.incidents.map((i) => [i.id, i]));
 
 let rs = 424242;

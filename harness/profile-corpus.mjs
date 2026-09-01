@@ -16,4 +16,8 @@ import { bodiesIn, profileBodies } from "./lib/measure.mjs";
 const dir = process.argv[2];
 const i = process.argv.indexOf("--name");
 if (!dir) { console.error("usage: profile-corpus.mjs <dir> [--name <label>]"); process.exit(1); }
-console.log(JSON.stringify({ name: i > 0 ? process.argv[i + 1] : dir, ...profileBodies(bodiesIn(dir)) }, null, 1));
+try {
+	console.log(JSON.stringify({ name: i > 0 ? process.argv[i + 1] : dir, ...profileBodies(bodiesIn(dir)) }, null, 1));
+} catch (e) {
+	console.error(`${e.message}`); process.exit(1);
+}
