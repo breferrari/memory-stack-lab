@@ -93,7 +93,18 @@ const lengths = [];
 
 for (const m of world.memories) {
   const file = `${m.id}.md`;
-  if (existsSync(join(OUT, file))) { map[m.id] = { project: m.project, topic: m.topic, incident: m.incident }; done++; continue; }
+  // Resume, and REGISTER what is already there. Skipping straight to `continue`
+  // left `written` holding only what this process generated, so on a resumed run
+  // every memory already on disk was invisible: `priors` came back empty and the
+  // supersede instruction vanished. The 27 corrections regenerated that way were
+  // written with no instruction to correct anything, and the run reported
+  // success. A resume path that silently drops context is worse than no resume.
+  if (existsSync(join(OUT, file))) {
+    const prev = readFileSync(join(OUT, file), "utf8");
+    written.set(m.id, { title: titleOf(m), gist: prev.replace(/^---[\s\S]*?---\n/, "").replace(/^\s*#[^\n]*\n/, "").replace(/^\s*\*\*Applies to:\*\*[^\n]*\n/, "").trim().slice(0, 140).replace(/\s+/g, " ") });
+    map[m.id] = { project: m.project, topic: m.topic, incident: m.incident };
+    done++; continue;
+  }
   const inc = incidents.get(m.incident);
   const priors = m.references.map((r) => written.get(r)).filter(Boolean);
   const target = sampleWords(profile.word_deciles, rnd);
@@ -105,6 +116,13 @@ for (const m of world.memories) {
   // earlier explanation got wrong about it. When it was allowed to be about a
   // different event, the model wrote up that event and bolted on two words of
   // correction language, which reads as a correction and is not one.
+  // Loudly, because the failure this replaces was silent. A correction whose
+  // predecessor is not in hand gets written as an ordinary note and the run
+  // still succeeds — which is exactly what happened on the first resumed run.
+  if (m.supersedes && !written.has(m.supersedes)) {
+    console.error(`${m.id} corrects ${m.supersedes}, which is neither generated nor on disk — refusing to write it as an ordinary note`);
+    process.exit(1);
+  }
   const supersedeBlock = m.supersedes && written.get(m.supersedes)
     ? `\nYou are revisiting an incident you already wrote up, in the note titled "${written.get(m.supersedes).title}". THIS IS THE SAME EVENT, understood better. Open by saying what that earlier note concluded and why it was wrong — name the mechanism it blamed — then give the real one. Do not describe it as a new incident.`
     : "";

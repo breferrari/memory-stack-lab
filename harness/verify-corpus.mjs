@@ -63,6 +63,20 @@ const fidelity = (() => {
   // titles of earlier notes in its repo and invites a reference; the prose takes
   // that up about a third of the time. Reporting the offer as the fact overstated
   // how interlinked this corpus is.
+  // Corrections must READ as corrections. This has now failed twice: once
+  // because the edge pointed at a different incident, once because a resumed
+  // run dropped the instruction. Both times the graph was intact and the prose
+  // was not, and both times every count said the corpus was fine.
+  let corrections = 0, correctionsThatRetract = 0;
+  const RETRACTS = /\b(earlier|previous|prior|correct|wrong|mistaken|incorrect|we thought|turned out|blamed|actually)\b/i;
+  for (const m of world.memories) {
+    if (!m.supersedes) continue;
+    let body;
+    try { body = readFileSync(join(DIR, `${m.id}.md`), "utf8"); } catch { continue; }
+    corrections++;
+    if (RETRACTS.test(body)) correctionsThatRetract++;
+  }
+
   let offered = 0, refers = 0;
   const BACKREF = /\b(earlier|previously|prior|as noted|we wrote|last month|back in|that note|the note)\b/i;
   for (const m of world.memories) {
@@ -80,6 +94,8 @@ const fidelity = (() => {
       offered_a_prior_note: offered,
       actually_refers_back: refers,
       realised_reference_rate: offered ? +(refers / offered).toFixed(3) : null,
+      corrections: corrections,
+      corrections_that_read_as_corrections: correctionsThatRetract,
     }
     : null;
 })();
@@ -118,6 +134,12 @@ const GATES = [
   ["median_words", p.median_words, ref.median_words],
   ["p90_words", p.p90_words, ref.p90_words],
 ];
+// Gated, not merely reported. A correction that does not retract anything is a
+// note about the same incident wearing a supersedes edge, and the supersession
+// slice is scored on the assumption that it retracts.
+if (fidelity?.corrections && fidelity.corrections_that_read_as_corrections / fidelity.corrections < 0.8) {
+  GATES.push(["corrections_that_read_as_corrections", +(fidelity.corrections_that_read_as_corrections / fidelity.corrections).toFixed(3), 1]);
+}
 if (fidelity && (fidelity.names_its_artefact < 0.95 || fidelity.names_its_signal < 0.95)) {
   GATES.push(["fidelity_names_its_artefact", fidelity.names_its_artefact, 1], ["fidelity_names_its_signal", fidelity.names_its_signal, 1]);
 }
