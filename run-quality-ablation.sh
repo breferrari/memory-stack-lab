@@ -63,6 +63,6 @@ for REG in symptom identifier short; do
   unset VESTIGE_RERANK VESTIGE_QUERY_SHAPE
   node hybrid/bench-e2e.mjs "$A/pool-thin" "$A/hits-thin-$REG" "$R/q-$REG.tsv" > "$A/e2e-thin-$REG.json" 2>>"$A/bench.err"
   node harness/score.mjs "$A/hits-thin-$REG" "$A/pool-thin" "thin-$REG" 5 "$N" > "$A/score-thin-$REG.json" 2>>"$A/bench.err"
-  node harness/analyse-stratum.mjs "$A/hits-thin-$REG" "$A/pool-thin" "$R/q-$REG.tsv" > "$A/analysis-thin-$REG.json" 2>>"$A/bench.err"
+  node harness/analyse-stratum.mjs "$A/hits-thin-$REG" "$A/pool-thin" "$R/q-$REG.tsv" --world "$R/world.json" > "$A/analysis-thin-$REG.json" 2>>"$A/bench.err"
 done
 echo ABLATION-DONE

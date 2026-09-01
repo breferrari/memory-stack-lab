@@ -29,7 +29,14 @@ export function profileBodies(bodies) {
     p10_words: quantile(w, 0.1),
     p90_words: quantile(w, 0.9),
     distinct_words_per_doc: +(bodies.reduce((a, b) => a + new Set(tokens(b)).size, 0) / bodies.length).toFixed(1),
+    // Occurrences AND distinct types. Counting occurrences alone lets a document
+    // reach the target by repeating three identifiers fourteen times, and the
+    // generated corpus does exactly that: it matches on occurrences (15.7 against
+    // a real 14.1) while carrying 9.3 distinct specifics against a real 11.1. The
+    // axis that would have shown it was the one not being measured — the same
+    // wrong-unit failure as the reference itself, one level down.
     specifics_per_doc: +(bodies.reduce((a, b) => a + (b.match(SPECIFIC) ?? []).length, 0) / bodies.length).toFixed(1),
+    distinct_specifics_per_doc: +(bodies.reduce((a, b) => a + new Set((b.match(SPECIFIC) ?? []).map((x) => x.toLowerCase())).size, 0) / bodies.length).toFixed(1),
   };
 }
 

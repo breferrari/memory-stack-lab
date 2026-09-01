@@ -52,6 +52,7 @@ const report = {
   distinct_words_total: new Set(bodies.flatMap(tokens)).size,
   distinct_words_per_memory: p.distinct_words_per_doc,
   specifics_per_memory: p.specifics_per_doc,
+  distinct_specifics_per_memory: p.distinct_specifics_per_doc,
   memories_naming_another_service_or_incident: bodies.filter((b) => SERVICES.test(b)).length,
   reference: `${ref.name} (n=${ref.n})`,
 };
@@ -64,6 +65,8 @@ const report = {
 const GATES = [
   ["distinct_words_per_memory", p.distinct_words_per_doc, ref.distinct_words_per_doc],
   ["specifics_per_memory", p.specifics_per_doc, ref.specifics_per_doc],
+  // The one that catches repetition dressed as density.
+  ["distinct_specifics_per_memory", p.distinct_specifics_per_doc, ref.distinct_specifics_per_doc],
   ["median_words", p.median_words, ref.median_words],
   ["p90_words", p.p90_words, ref.p90_words],
 ];

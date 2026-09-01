@@ -90,6 +90,26 @@ const strict = JSON.parse(execFileSync("node", ["harness/score.mjs", hits, pool,
 check("a same-topic sibling is not counted as the answer", strict.target_at_rank1 < 1,
 	`still ${strict.target_at_rank1}; strict gold matching is not in effect`);
 
+// Supersession grading. A world where memory 001 corrects 000 and a run that
+// returns the CORRECTION for 000's query: strict scoring calls that a miss,
+// graded scoring calls it a hit, and neither should call it a stale answer.
+// No corpus here has supersessions, so without this the grading path is only
+// ever exercised by its own empty case — which reports the same string whether
+// it was wired up or forgotten.
+const world = join(root, "world.json");
+writeFileSync(world, JSON.stringify({ memories: [
+	{ id: ids[0], supersedes: null }, { id: ids[1], supersedes: ids[0] }, { id: ids[2], supersedes: null },
+] }));
+writeFileSync(join(hits, `payments-api__${ids[0]}.txt`), `${docOf[ids[1]]}\n`);   // the correction on top
+writeFileSync(join(hits, `payments-api__${ids[1]}.txt`), `${docOf[ids[1]]}\n`);
+const graded = JSON.parse(execFileSync("node", ["harness/analyse-stratum.mjs", hits, pool, q, "--world", world], { encoding: "utf8" }));
+const sup = graded.superseded_gold_slice;
+check("the superseded slice is found and reported alone", sup?.queries === 1, JSON.stringify(sup));
+check("returning the correction is a strict miss", sup?.rank1_strict === 0);
+check("returning the correction counts when grading accepts it", sup?.rank1_accepting_the_correction === 1);
+check("returning the correction is not counted as a stale answer", sup?.stale_memory_on_top_while_its_correction_exists === 0);
+check("the candidate set is reported beside the scores", graded.candidate_set?.memories_per_project_median > 0);
+
 rmSync(root, { recursive: true, force: true });
 console.log(failures ? `\n${failures} failed` : "\nchain contract holds");
 process.exit(failures ? 1 : 0);

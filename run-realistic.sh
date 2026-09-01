@@ -44,7 +44,7 @@ for REG in symptom identifier short; do
     if [ "$ARM" = "expand" ]; then export VESTIGE_QUERY_SHAPE=expand; else unset VESTIGE_QUERY_SHAPE; fi
     node hybrid/bench-e2e.mjs "$R/pool" "$R/hits-$REG-$ARM" "$R/q-$REG.tsv" > "$R/e2e-$REG-$ARM.json" 2>>"$R/bench.err"
     node harness/score.mjs "$R/hits-$REG-$ARM" "$R/pool" "$REG-$ARM" 5 "$N" > "$R/score-$REG-$ARM.json" 2>>"$R/bench.err"
-    node harness/analyse-stratum.mjs "$R/hits-$REG-$ARM" "$R/pool" "$R/q-$REG.tsv" > "$R/analysis-$REG-$ARM.json" 2>>"$R/bench.err"
+    node harness/analyse-stratum.mjs "$R/hits-$REG-$ARM" "$R/pool" "$R/q-$REG.tsv" --world "$R/world.json" > "$R/analysis-$REG-$ARM.json" 2>>"$R/bench.err"
   done
 done
 echo REALISTIC-DONE
