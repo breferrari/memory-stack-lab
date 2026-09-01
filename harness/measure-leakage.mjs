@@ -41,8 +41,11 @@ const mean = (v) => (v.length ? v.reduce((a, b) => a + b, 0) / v.length : 0);
 const map = JSON.parse(readFileSync(join(POOL, "_map.json"), "utf8"));
 const sourceOf = new Map(Object.entries(map).filter(([, m]) => m.source).map(([id, m]) => [m.source, id]));
 const text = new Map();
+const rawText = new Map();
 for (const f of readdirSync(POOL).filter((f) => f.endsWith(".md"))) {
-	text.set(f.replace(/\.md$/, ""), tok(readFileSync(join(POOL, f), "utf8").replace(/^---[\s\S]*?---\n/, "")));
+	const prose = readFileSync(join(POOL, f), "utf8").replace(/^---[\s\S]*?---\n/, "").replace(/^\s*#[^\n]*\n/, "").replace(/^\s*\*\*Applies to:\*\*[^\n]*\n/, "").trim();
+	text.set(f.replace(/\.md$/, ""), tok(prose));
+	rawText.set(f.replace(/\.md$/, ""), prose);
 }
 const byProject = {};
 for (const [id, m] of Object.entries(map)) (byProject[m.project] ??= []).push(id);
@@ -58,6 +61,11 @@ const sample = (arr, k, not) => {
 };
 
 const golds = [], sibs = [], others = [];
+// The title came from the incident symptom and the opening line of the body
+// often restates it, so stripping the heading may only move the leak rather
+// than remove it. If the first sentence carries the symptom register, the
+// overlap concentrates there.
+const firstSent = [], restSent = [];
 const carrying = new Map();
 let scored = 0, unresolved = 0;
 
@@ -71,6 +79,12 @@ for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
 
 	const gt = text.get(gold);
 	golds.push(jac(q, gt));
+	const raw = rawText.get(gold) ?? "";
+	const cut = raw.search(/(?<=[.!?])\s/);
+	if (cut > 0) {
+		firstSent.push(jac(q, tok(raw.slice(0, cut))));
+		restSent.push(jac(q, tok(raw.slice(cut))));
+	}
 	const sibIds = sample(byProject[proj] ?? [], 5, gold);
 	sibs.push(mean(sibIds.map((id) => jac(q, text.get(id) ?? new Set()))));
 	others.push(mean(sample(allIds.filter((id) => map[id].project !== proj), 5, gold).map((id) => jac(q, text.get(id) ?? new Set()))));
@@ -94,6 +108,11 @@ console.log(JSON.stringify({
 		query_to_same_project_sibling: +mean(sibs).toFixed(4),
 		query_to_other_project: +mean(others).toFixed(4),
 		gold_over_sibling: +(mean(golds) / (mean(sibs) || 1)).toFixed(2),
+	},
+	overlap_by_position: {
+		query_to_first_sentence: +mean(firstSent).toFixed(4),
+		query_to_the_rest: +mean(restSent).toFixed(4),
+		note: "The title derives from the incident symptom and the opening line often restates it. If the first sentence carries most of the overlap, stripping the heading moved the leak rather than removing it.",
 	},
 	tokens_separating_gold_from_its_siblings: [...carrying].sort((a, b) => b[1] - a[1]).slice(0, 25).map(([t, n]) => `${t} (${n})`),
 	reading: "A large gold-over-sibling ratio is what retrieval is supposed to exploit. Read the token list to see WHY: ordinary language means the query described the problem; world-schema names — config keys, metric names, service names — in a register that was forbidden to use them means the fixture told the query its answer.",

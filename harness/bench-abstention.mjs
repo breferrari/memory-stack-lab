@@ -99,6 +99,11 @@ const result = {
 	arms: [off, on],
 	distinguishable_by_the_caller:
 		off.returned_something !== on.returned_something || off.carried_any_caveat !== on.carried_any_caveat || off.served_by_qmd !== on.served_by_qmd,
+	// Stated because it changes what the result means: these queries are issued
+	// WITH a project identity, so the question is "return five notes from
+	// payments-api for a sourdough question", which is a harder refusal than an
+	// unscoped one. The result is that it does exactly that.
+	queries_were_scoped_to_a_project: true,
 	reading: "If distinguishable_by_the_caller is false, an agent receiving these results cannot tell a question the store answers from one it has never heard of. qmd runs with --format files, so scores never reach the plugin and there is nothing for a threshold to read.",
 };
 const json = JSON.stringify(result, null, 1);
