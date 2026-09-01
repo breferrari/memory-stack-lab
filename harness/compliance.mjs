@@ -26,8 +26,9 @@
  * eventually is not compliance with a protocol that says search first.
  */
 import { execFileSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
 
 const OUT = process.argv[2] ?? "runs/compliance";
 const SAMPLES = Number(process.argv[3] ?? 1);
@@ -54,6 +55,36 @@ const EDIT = [
 
 const MEMORY_TOOL = /vestige.*__(search|recall)$/i;
 
+/**
+ * Isolate the MCP surface.
+ *
+ * The first run of this measured nothing: every session also had a SECOND
+ * memory server registered at user scope, and the agent used that one in nine
+ * episodes and Vestige in none. The endpoint counted zero and all four cells
+ * tied at zero — a null result produced entirely by the instrument.
+ *
+ * --strict-mcp-config restricts the servers to this file while leaving the
+ * plugin's hooks in place, which is what the treatment needs. Written at run
+ * time so no machine-specific path is ever committed.
+ */
+const PLUGIN = process.env.VESTIGE_PLUGIN ?? resolve(import.meta.dirname, "..", "..", "vestige");
+const MCP_CONFIG = join(
+  mkdtempSync(join(tmpdir(), "compliance-mcp-")),
+  "vestige-only.json"
+);
+writeFileSync(MCP_CONFIG, JSON.stringify({
+  mcpServers: {
+    vestige: {
+      command: process.execPath,
+      args: [
+        "--experimental-strip-types",
+        "--disable-warning=ExperimentalWarning",
+        join(PLUGIN, "core/mcp/server.mjs"),
+      ],
+    },
+  },
+}));
+
 /** Run one episode and return the ordered list of tool names it called. */
 function episode(prompt, protocolOn) {
   const env = { ...process.env, VESTIGE_GATE: "off" };
@@ -61,11 +92,27 @@ function episode(prompt, protocolOn) {
   let out = "";
   try {
     out = execFileSync("claude", [
-      "-p", "--model", "claude-haiku-4-5-20251001",
-      "--output-format", "stream-json", "--verbose",
-      "--allowedTools", "mcp__plugin_vestige_vestige__search,mcp__plugin_vestige_vestige__recall,Read,Edit,Grep,Glob",
-    ], { input: prompt, encoding: "utf8", env, timeout: 240000, maxBuffer: 64 * 1024 * 1024 });
-  } catch (e) { out = String(e?.stdout ?? ""); }
+      "-p",
+      "--model",
+      "claude-haiku-4-5-20251001",
+      "--output-format",
+      "stream-json",
+      "--verbose",
+      "--mcp-config",
+      MCP_CONFIG,
+      "--strict-mcp-config",
+      "--allowedTools",
+      "mcp__vestige__search,mcp__vestige__recall,Read,Edit,Grep,Glob,Bash",
+    ], {
+      input: prompt,
+      encoding: "utf8",
+      env,
+      timeout: 240000,
+      maxBuffer: 64 * 1024 * 1024,
+    });
+  } catch (e) {
+    out = String(e?.stdout ?? "");
+  }
 
   const tools = [];
   for (const line of out.split("\n")) {
@@ -85,9 +132,24 @@ for (const [family, prompts] of [["debug", DEBUG], ["edit", EDIT]]) {
         const tools = episode(prompt, protocolOn);
         const firstOther = tools.findIndex((t) => !MEMORY_TOOL.test(t));
         const firstMemory = tools.findIndex((t) => MEMORY_TOOL.test(t));
-        const searchedFirst = firstMemory >= 0 && (firstOther < 0 || firstMemory < firstOther);
-        rows.push({ family, protocol: protocolOn ? "present" : "absent", prompt: prompt.slice(0, 60), tools, searchedAtAll: firstMemory >= 0, searchedFirst });
-        process.stderr.write(`  ${family}/${protocolOn ? "present" : "absent"} ${searchedFirst ? "SEARCHED-FIRST" : tools.length ? "no" : "(no tools)"}\n`);
+        const searchedFirst =
+          firstMemory >= 0 && (firstOther < 0 || firstMemory < firstOther);
+        rows.push({
+          family,
+          protocol: protocolOn ? "present" : "absent",
+          prompt: prompt.slice(0, 60),
+          tools,
+          searchedAtAll: firstMemory >= 0,
+          searchedFirst,
+        });
+        const status = searchedFirst
+          ? "SEARCHED-FIRST"
+          : tools.length
+            ? "no"
+            : "(no tools)";
+        process.stderr.write(
+          `  ${family}/${protocolOn ? "present" : "absent"} ${status}\n`
+        );
       }
     }
   }
@@ -95,7 +157,11 @@ for (const [family, prompts] of [["debug", DEBUG], ["edit", EDIT]]) {
 
 const cell = (family, protocol) => {
   const r = rows.filter((x) => x.family === family && x.protocol === protocol);
-  return { n: r.length, searched_first: r.filter((x) => x.searchedFirst).length, searched_at_all: r.filter((x) => x.searchedAtAll).length };
+  return {
+    n: r.length,
+    searched_first: r.filter((x) => x.searchedFirst).length,
+    searched_at_all: r.filter((x) => x.searchedAtAll).length,
+  };
 };
 const summary = {
   samples_per_prompt: SAMPLES,
@@ -103,6 +169,17 @@ const summary = {
   debug: { present: cell("debug", "present"), absent: cell("debug", "absent") },
   edit: { present: cell("edit", "present"), absent: cell("edit", "absent") },
 };
+// Non-vacuity. If nothing searched anywhere, the instrument failed and the
+// four zeros are not a finding — which is exactly how the first run of this
+// harness produced a tidy null result that meant nothing.
+const anySearch = rows.some((r) => r.searchedAtAll);
+const anyTool = rows.some((r) => r.tools.length);
+const suspectMsg =
+  "SUSPECT: sessions ran and called tools, but no memory " +
+  "tool was ever called — check the tool surface";
+const brokenMsg = "BROKEN: no tools were called at all";
+summary.instrument = anySearch ? "ok" : anyTool ? suspectMsg : brokenMsg;
+
 writeFileSync(join(OUT, "episodes.json"), JSON.stringify(rows, null, 1));
 writeFileSync(join(OUT, "summary.json"), JSON.stringify(summary, null, 1));
 console.log(JSON.stringify(summary, null, 1));
