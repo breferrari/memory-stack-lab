@@ -30,7 +30,7 @@
  * Exits non-zero when the corpus is not something worth benchmarking on.
  */
 import { readFileSync } from "node:fs";
-import { bodiesIn, profileBodies, SPECIFIC, tokens } from "./lib/measure.mjs";
+import { bodiesIn, profileBodies, tokens } from "./lib/measure.mjs";
 
 const DIR = process.argv[2];
 const ri = process.argv.indexOf("--reference");
