@@ -42,13 +42,42 @@ for (const reg of REGISTERS) for (const arm of ARMS) {
 }
 if (loads.length) out.push(`**Machine.** Load average across the ${loads.length} benchmark legs: ${Math.min(...loads).toFixed(2)} to ${Math.max(...loads).toFixed(2)}.\n`);
 
+/**
+ * Latency split by whether the query stayed in one project.
+ *
+ * The resident search session holds ONE index, and the index name is per-caller,
+ * so a query for a different project shuts it down and starts it again — paying
+ * a model load. This fixture interleaves projects, so nearly every query pays
+ * it, and a single mean over that is neither number: on the symptom register,
+ * the 16 queries that followed a same-project query ran at a median of 26 ms
+ * while 166 project switches ran at 1559 ms.
+ *
+ * Both are real and answer different questions. An agent working in one
+ * repository pays the first. A shared team pool, or an agent moving between
+ * checkouts, pays the second. A single mean publishes a number nobody sees.
+ */
+const splitLatency = (reg, arm) => {
+	const e = read(`e2e-${reg}-${arm}.json`);
+	const s = e?.latency_ms?.samples;
+	if (!s) return null;
+	let projects;
+	try { projects = readFileSync(join(R, `q-${reg}.tsv`), "utf8").split("\n").filter(Boolean).map((l) => l.split("\t")[0]); } catch { return null; }
+	if (projects.length !== s.length) return null;
+	const same = [], switched = [];
+	for (let i = 1; i < s.length; i++) (projects[i] === projects[i - 1] ? same : switched).push(s[i]);
+	const med = (v) => (v.length ? [...v].sort((a, b) => a - b)[Math.floor(v.length / 2)] : null);
+	return { same_project: med(same), same_n: same.length, switched: med(switched), switched_n: switched.length };
+};
+
 out.push("\n## Retrieval, by how the question was asked\n");
-out.push("| register | arm | rank-1 | found@5 | MRR | warm query |");
-out.push("|---|---|---|---|---|---|");
+out.push("Two latency columns because there are two costs. The search session holds one index, so a query for a different project restarts it and pays a model load. An agent working in one repository pays the first column; one moving between projects pays the second.\n");
+out.push("| register | arm | rank-1 | found@5 | MRR | same project | after a switch |");
+out.push("|---|---|---|---|---|---|---|");
 for (const reg of REGISTERS) for (const arm of ARMS) {
 	const a = read(`analysis-${reg}-${arm}.json`), e = read(`e2e-${reg}-${arm}.json`);
 	if (!a) continue;
-	out.push(`| ${reg} | ${ARM_LABEL[arm]} | ${n(a.rank1)} | ${n(a.found_at_5)} | ${n(a.mrr)} | ${e?.latency_ms?.steady_state_mean ? `${e.latency_ms.steady_state_mean.toFixed(0)} ms` : "—"} |`);
+	const L = splitLatency(reg, arm);
+	out.push(`| ${reg} | ${ARM_LABEL[arm]} | ${n(a.rank1)} | ${n(a.found_at_5)} | ${n(a.mrr)} | ${L?.same_project != null ? `${L.same_project.toFixed(0)} ms` : "—"} | ${L?.switched != null ? `${L.switched.toFixed(0)} ms` : "—"} |`);
 }
 
 out.push("\n## What took the top slot when the right memory did not\n");
