@@ -13,6 +13,7 @@ import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSyn
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { proseOf } from "../harness/lib/measure.mjs";
 
 const PLUGIN = process.env.VESTIGE_PLUGIN ?? resolve(process.cwd(), "..", "vestige");
 const SRC = process.argv[2];                       // the 183-memory corpus
@@ -44,8 +45,15 @@ let landed = 0, refused = 0;
 for (const [id, meta] of Object.entries(srcMap)) {
 	const md = readFileSync(join(SRC, `${id}.md`), "utf8");
 	const title = (md.match(/^# (.+)$/m) ?? [])[1] ?? id;
-	const body = md.slice(md.indexOf("## Problem") >= 0 ? md.indexOf("## Problem") : md.indexOf("\n\n"))
-		.replace(/^## Problem\s*/, "").replace(/\n## /g, "\n\n").trim();
+	// The same extraction the pool was built with, so the text that gets INDEXED
+	// is the text the realism gate measured. The `\n\n` fallback kept the `# Title`
+	// heading and the `**Applies to:** <project>` line at the top of every body:
+	// the title then appeared twice in the document — once as the memory's title,
+	// once inside it — and titles here are derived from the incident symptom,
+	// which is exactly what the paraphrase queries are built from. A gate over
+	// prose and an index over prose-plus-headers are two different corpora.
+	const marker = md.indexOf("## Problem");
+	const body = (marker >= 0 ? md.slice(marker).replace(/^## Problem\s*/, "") : proseOf(md)).replace(/\n## /g, "\n\n").trim();
 	const r = remember(
 		{ title, body, confidence: "inferred", scope: "project", projects: [meta.project] },
 		{ cwd: repoOf[meta.project] },

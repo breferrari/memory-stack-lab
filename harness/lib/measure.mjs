@@ -23,6 +23,24 @@ export const words = (s) => s.trim().split(/\s+/).filter(Boolean);
 export const tokens = (s) => (s.match(/[A-Za-z][A-Za-z0-9_.-]+/g) ?? []).map((t) => t.toLowerCase());
 export const stripFrontmatter = (s) => s.replace(/^---[\s\S]*?---\n/, "");
 
+/**
+ * The prose of a memory: no frontmatter, no title heading, no `**Applies to:**`
+ * line. One definition, because three copies of it had already drifted.
+ *
+ * The pool writes a blank line between the frontmatter and the title and the
+ * generated corpus does not, so an unanchored `^#` strips the heading from one
+ * shape and silently leaves it in the other. That put the title INSIDE the
+ * indexed body for every benchmarked memory — appearing twice in the document,
+ * and titles here derive from the incident symptom, which is what the paraphrase
+ * queries are built from. The realism gate meanwhile measured prose alone. Two
+ * different corpora, one of them measured and the other one searched.
+ */
+export const proseOf = (md) => md
+	.replace(/^---[\s\S]*?---\n/, "")
+	.replace(/^\s*#[^\n]*\n/, "")
+	.replace(/^\s*\*\*Applies to:\*\*[^\n]*\n/, "")
+	.trim();
+
 /** Word count, computed rather than estimated. A model cannot count its own output. */
 export const countWords = (s) => words(s).length;
 
@@ -61,7 +79,7 @@ export function bodiesIn(dir) {
     if (e.startsWith("_") || e.startsWith(".")) continue;
     const p = join(dir, e);
     if (statSync(p).isDirectory()) out.push(...bodiesIn(p));
-    else if (e.endsWith(".md")) out.push(stripFrontmatter(readFileSync(p, "utf8")));
+    else if (e.endsWith(".md")) out.push(proseOf(readFileSync(p, "utf8")));
   }
   return out;
 }

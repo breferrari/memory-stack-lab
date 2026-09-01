@@ -15,9 +15,10 @@
  * stays fast enough to run before every corpus build.
  */
 import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { proseOf } from "./lib/measure.mjs";
 
 const root = mkdtempSync(join(tmpdir(), "chain-"));
 let failures = 0;
@@ -56,6 +57,18 @@ const summary = JSON.parse(out);
 // A body read by a marker the corpus lacks collapses to one character, and the
 // write path then refuses it for being too short. That is the whole failure.
 check("every memory lands", summary.landed === ids.length, `landed ${summary.landed}, refused ${summary.refused}, quarantined ${summary.quarantined}`);
+
+// The pool writes a blank line between frontmatter and title; the generated
+// corpus does not. An unanchored `^#` strips the heading from one shape and
+// leaves it in the other, which put the title inside every indexed body.
+{
+	const corpusShape = readFileSync(join(src, `${ids[0]}.md`), "utf8");
+	const poolFile = readdirSync(pool).find((f) => f.endsWith(".md"));
+	const poolShape = readFileSync(join(pool, poolFile), "utf8");
+	const clean = (t) => !/^\s*(#|\*\*Applies to:)/.test(t);
+	check("prose extraction strips the heading from the corpus shape", clean(proseOf(corpusShape)), JSON.stringify(proseOf(corpusShape).slice(0, 50)));
+	check("prose extraction strips the heading from the pool shape", clean(proseOf(poolShape)), JSON.stringify(proseOf(poolShape).slice(0, 50)));
+}
 
 const map = JSON.parse(readFileSync(join(pool, "_map.json"), "utf8"));
 check("no document scores as topic unknown", !Object.values(map).some((m) => m.topic === "unknown"),

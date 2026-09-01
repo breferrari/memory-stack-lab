@@ -10,6 +10,7 @@
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { capture } from "./plugin.ts";
+import { proseOf } from "../harness/lib/measure.mjs";
 
 const SRC = process.argv[2];
 const OUT = process.argv[3];
@@ -46,10 +47,7 @@ for (const f of files) {
 	// body's first sentence, so a body starting with a heading yields a
 	// description that literally begins with that heading.
 	const marker = md.indexOf("## Problem");
-	const body = (marker >= 0
-		? md.slice(marker).replace(/^## Problem\s*/, "")
-		: md.replace(/^---[\s\S]*?---\n/, "").replace(/^#[^\n]*\n/, "").replace(/^\*\*Applies to:\*\*[^\n]*\n/m, "")
-	).replace(/\n## /g, "\n\n").trim();
+	const body = (marker >= 0 ? md.slice(marker).replace(/^## Problem\s*/, "") : proseOf(md)).replace(/\n## /g, "\n\n").trim();
 	const over = rnd() < OVERCLAIM;
 
 	const r = capture(OUT, {
