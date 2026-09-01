@@ -19,6 +19,14 @@
 # would move more than one variable and attribute the result to whichever is
 # easiest to describe.
 #
+# Measured limitation, stated because it bounds the result rather than
+# invalidating it: the thin arm lands ABOVE its sampled targets. A 12-memory
+# pilot targeting a median of 75 words produced 108, because the model has a
+# floor of roughly 50 to 60 words for this prompt and the top-up loop only ever
+# adds. Forcing it lower would mean changing the prompt, which is a second
+# variable. So the arms differ by about 5x in length rather than 7x, and the
+# effect this measures is a LOWER BOUND on the gap to the original fixture.
+#
 # Run after run-realistic.sh, on an idle machine.
 set -uo pipefail
 cd "$(dirname "$0")"
