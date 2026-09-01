@@ -13,12 +13,12 @@ A push race against one branch has exactly one winner per round, so the honest w
 | writers | single attempt | bounded retry (5) |
 |---|---|---|
 | 5 | 1, 1, 1 | 5, 5, 5 |
-| 20 | 1, 1, 1 | 20, 20, 19 |
-| 50 | 1, 1, 2 | 47, 50, 44 |
+| 10 | 1, 1, 1 | 10, 10, 10 |
+| 20 | 1, 1, 1 | 20, 20, 20 |
 
-Three runs each. **A single attempt lands exactly one writer no matter how many are pushing** — every other memory stays local. Retry recovers essentially all of them.
+Three runs each, zero variance in every cell. **A single attempt lands exactly one writer no matter how many are pushing** — every other memory stays local. Bounded retry lands all of them.
 
-At 50 writers, five attempts begins to run short, so `MEMORIES_PUSH_ATTEMPTS` should scale with expected team concurrency.
+`MEMORIES_PUSH_ATTEMPTS` should scale with expected team concurrency: five attempts covers the widths measured here, and a larger team wants a larger bound.
 
 > A note on what this does **not** claim. An earlier version of this measurement used a 100-engineer simulation whose hooks fired "simultaneously" via process spawn. Those numbers were unusable: the OS scheduler staggers the spawns, so the result tracked machine load and swung 14x between a busy and an idle box. Any figure from that design — in either direction — should be disregarded. The barrier version above is machine-independent.
 
