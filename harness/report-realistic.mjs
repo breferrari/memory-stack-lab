@@ -29,7 +29,19 @@ out.push("## Conditions\n");
 if (realism) {
 	out.push(`**Corpus.** ${realism.memories} memories, median ${realism.words.median} words (p10 ${realism.words.p10}, p90 ${realism.words.p90}), ${realism.distinct_words_per_memory} distinct words and ${realism.specifics_per_memory} concrete specifics per memory, ${realism.memories_naming_another_service_or_incident} naming another service or incident. Gate reference: ${realism.reference}. Verdict: ${realism.verdict}.\n`);
 }
-if (world) out.push(`**World.** ${world.incidents} incidents across ${world.services} services, ${world.multi_service_incidents} spanning more than one, ${world.memories_referencing_another} memories referencing an earlier one, ${world.supersessions} corrections of a same-topic predecessor.\n`);
+if (world) {
+	// OFFERED, not realised. The generator hands each memory the titles of
+	// earlier notes in its repo and invites a reference; the prose takes it up
+	// about a third of the time. Reporting the offer as the fact overstated this
+	// corpus's connectivity by roughly three times, so the realised rate comes
+	// from the gate — which measured the prose — and the offer is named as an offer.
+	const offered = world.memories_offered_a_prior_note ?? world.memories_referencing_another;
+	const f = realism?.fidelity_to_the_world;
+	const realised = f && typeof f === "object" && f.realised_reference_rate != null
+		? ` — of which ${f.actually_refers_back} actually do (${(f.realised_reference_rate * 100).toFixed(0)}%)`
+		: "";
+	out.push(`**World.** ${world.incidents} incidents across ${world.services} services, ${world.multi_service_incidents} spanning more than one, ${offered} memories offered an earlier note to reference${realised}, ${world.supersessions} corrections of a same-topic predecessor${f?.corrections_that_read_as_corrections != null ? ` (${f.corrections_that_read_as_corrections} of which read as retractions)` : ""}.\n`);
+}
 if (corpus) out.push(`**Generation.** ${corpus.written} written, ${corpus.skipped} skipped, ${corpus.still_short_after_top_ups} still short of their sampled target after top-ups. Model: ${corpus.model}.\n`);
 out.push("**Queries.** Written from the incident, never from the memory. The symptom register is additionally forbidden from using the artefact or metric name, so it cannot borrow the vocabulary of the document it is meant to find.\n");
 
@@ -81,14 +93,14 @@ for (const reg of REGISTERS) for (const arm of ARMS) {
 }
 
 out.push("\n## What took the top slot when the right memory did not\n");
-out.push("A sibling is a near-duplicate in the same project, so unique-gold scoring is the limit rather than retrieval. Another project's memory means the view is too wide. Junk means the embeddings are wrong.\n");
-out.push("| register | scored | rank-1 | sibling | other project | junk | gold unresolvable |");
-out.push("|---|---|---|---|---|---|---|");
+out.push("Four causes, because they have four different fixes. **Same incident, other version** is the predecessor, its correction, or the other service's write-up of the same event — a version-policy question rather than a retrieval failure, and it stops being visible the moment it is lumped in with siblings. **Sibling** is a different incident in the same project: genuine topical confusion. **Other project** means the view is too wide. **Junk** means the embeddings are wrong.\n");
+out.push("| register | scored | rank-1 | same incident, other version | sibling | other project | junk | gold unresolvable |");
+out.push("|---|---|---|---|---|---|---|---|");
 for (const reg of REGISTERS) {
 	const a = read(`analysis-${reg}-typed.json`);
 	if (!a) continue;
 	const m = a.when_gold_not_first ?? {};
-	out.push(`| ${reg} | ${a.queries} | ${n(a.rank1)} | ${m.sibling ?? "—"} | ${m.otherProject ?? "—"} | ${m.junk ?? "—"} | ${a.unresolvable_gold} |`);
+	out.push(`| ${reg} | ${a.queries} | ${n(a.rank1)} | ${m.sameIncidentOtherVersion ?? "—"} | ${m.sibling ?? "—"} | ${m.otherProject ?? "—"} | ${m.junk ?? "—"} | ${a.unresolvable_gold} |`);
 }
 
 out.push("\n## Rank-1 against how much wording the query shares with the answer\n");
