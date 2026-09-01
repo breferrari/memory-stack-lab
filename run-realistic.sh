@@ -50,6 +50,11 @@ for REG in symptom identifier short; do
 done
 # 5 — can it decline? Every other query in this suite has an answer in the store,
 #     so nothing here could ever be punished for answering when it should not.
+for REG in symptom identifier short; do
+  node harness/measure-leakage.mjs "$R/pool" "$R/q-$REG.tsv" "$REG" > "$R/leakage-$REG.json" 2>>"$R/bench.err"
+done
+echo "STAGE leakage measured"
+
 echo "STAGE abstention"
 node harness/bench-abstention.mjs "$R/pool" "$R/abstention.json" >/dev/null 2>>"$R/bench.err"
 
