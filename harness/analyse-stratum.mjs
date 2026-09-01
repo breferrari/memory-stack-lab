@@ -48,9 +48,17 @@ const wi = process.argv.indexOf("--world");
 const correctionOf = new Map();
 // stale id -> every memory that corrects it, in order, ending with the current one
 const chainOf = new Map();
+// world memory id -> the incident it is about. Without it, another write-up of
+// the SAME incident — the predecessor, its correction, or the other service's
+// side of a dual write-up — is indistinguishable from a note about a different
+// incident that happens to share a project. Those are different failures with
+// different fixes, and merging them makes the sibling bucket a restatement of
+// the supersession slice.
+const incidentOfSource = new Map();
 if (wi > 0) {
   const world = JSON.parse(readFileSync(process.argv[wi + 1], "utf8"));
   for (const m of world.memories) if (m.supersedes) correctionOf.set(m.supersedes, m.id);
+  for (const m of world.memories) incidentOfSource.set(m.id, m.incident);
   // Corrections chain: A is corrected by B, which is itself corrected by C. The
   // memory an agent should get is the one at the END of that chain, and crediting
   // only the immediate corrector marks the CURRENT memory as a miss. One such
@@ -85,7 +93,7 @@ const target = (proj, key) => {
 };
 
 const bins = [[0, 0.005], [0.005, 0.02], [0.02, 0.06], [0.06, 1]];
-const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sibling: 0, otherProject: 0, junk: 0 }, sup: { n: 0, strict: 0, accepting: 0, stale_outranks: 0, current_on_top: 0 } };
+const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sameIncidentOtherVersion: 0, sibling: 0, otherProject: 0, junk: 0 }, sup: { n: 0, strict: 0, accepting: 0, stale_outranks: 0, current_on_top: 0 } };
 
 for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
   const [proj, key, doc] = line.split("\t");
@@ -128,7 +136,10 @@ for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
   if (rank !== 0 && ids.length) {
     const top = ids[0];
     const m = map[top];
+    const goldIncident = incidentOfSource.get(key);
+    const topIncident = m?.source ? incidentOfSource.get(m.source) : undefined;
     if (!m) acc.miss.junk++;
+    else if (goldIncident && topIncident && topIncident === goldIncident) acc.miss.sameIncidentOtherVersion++;
     else if (m.project === proj) acc.miss.sibling++;
     else acc.miss.otherProject++;
   }
@@ -145,7 +156,7 @@ console.log(JSON.stringify({
   median_rank_when_found: med(acc.ranks),
   rank1_by_overlap_bin: bins.map(([lo, hi], i) => ({ bin: `${lo}-${hi}`, n: acc.byBin[i].n, rank1: acc.byBin[i].n ? +(acc.byBin[i].r1 / acc.byBin[i].n).toFixed(3) : null })),
   when_gold_not_first: acc.miss,
-  reading: "sibling = near-duplicate in the same project, so unique-gold scoring is the problem; other-project = the view is too wide; junk = embeddings",
+  reading: "sameIncidentOtherVersion = another write-up of the SAME event (the predecessor, its correction, or the other service's side) — a version-policy question, not a retrieval failure; sibling = a different incident in the same project, which is topical confusion; other-project = the view is too wide; junk = embeddings",
   // The candidate set every found@5 above is measured against. A found@5 over 22
   // documents is not a found@5 over a real store, and quoting one without the
   // other invites the comparison it cannot support.
