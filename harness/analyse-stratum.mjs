@@ -63,7 +63,14 @@ if (wi > 0) {
   }
 }
 // world memory id -> the document it became after the plugin renamed it
-const sourceOf = new Map(Object.entries(map).filter(([, m]) => m.source).map(([id, m]) => [m.source, id]));
+const sourceOf = new Map();
+for (const [id, m] of Object.entries(map)) {
+  if (!m.source) continue;
+  // Last-write-wins would make one of the two dual-perspective write-ups of an
+  // incident silently unresolvable as a gold. Refuse instead of losing it.
+  if (sourceOf.has(m.source)) { console.error(`two documents claim source ${m.source}: ${sourceOf.get(m.source)} and ${id}`); process.exit(1); }
+  sourceOf.set(m.source, id);
+}
 /**
  * A query names its gold by memory id where the corpus has ids, and by topic in
  * the ladder's older corpora, where a project holds one memory per topic. Here a
@@ -78,7 +85,7 @@ const target = (proj, key) => {
 };
 
 const bins = [[0, 0.005], [0.005, 0.02], [0.02, 0.06], [0.06, 1]];
-const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sibling: 0, otherProject: 0, junk: 0 }, sup: { n: 0, strict: 0, accepting: 0, stale_on_top: 0, current_on_top: 0 } };
+const acc = { n: 0, rank1: 0, found5: 0, mrr: 0, noGold: 0, ranks: [], byBin: bins.map(() => ({ n: 0, r1: 0 })), miss: { sibling: 0, otherProject: 0, junk: 0 }, sup: { n: 0, strict: 0, accepting: 0, stale_outranks: 0, current_on_top: 0 } };
 
 for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
   const [proj, key, doc] = line.split("\t");
@@ -104,9 +111,17 @@ for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
   const chain = (chainOf.get(key) ?? []).map((id) => sourceOf.get(id)).filter(Boolean);
   if (chain.length) {
     acc.sup.n++;
-    if (rank === 0) { acc.sup.strict++; acc.sup.stale_on_top++; }
+    if (rank === 0) acc.sup.strict++;
     if (rank === 0 || chain.includes(ids[0])) acc.sup.accepting++;
     if (ids[0] === chain[chain.length - 1]) acc.sup.current_on_top++;
+    // The harmful outcome, and it needs its own predicate. Counting it on
+    // `rank === 0` made it a second name for the strict rate: two figures that
+    // read as different measurements and were arithmetically identical. What
+    // actually harms is the stale memory being ranked ABOVE its correction —
+    // including the case where the correction never appears at all.
+    const corrRanks = chain.map((c) => ids.indexOf(c)).filter((r) => r >= 0);
+    const bestCorrection = corrRanks.length ? Math.min(...corrRanks) : -1;
+    if (rank >= 0 && (bestCorrection < 0 || rank < bestCorrection)) acc.sup.stale_outranks++;
   }
 
   // What took the top slot when the gold did not? Three causes, three fixes.
@@ -144,7 +159,7 @@ console.log(JSON.stringify({
     queries: acc.sup.n,
     rank1_strict: +(acc.sup.strict / acc.sup.n).toFixed(3),
     rank1_accepting_the_correction: +(acc.sup.accepting / acc.sup.n).toFixed(3),
-    stale_memory_on_top_while_its_correction_exists: acc.sup.stale_on_top,
+    stale_memory_ranked_above_its_correction: acc.sup.stale_outranks,
     current_memory_on_top: acc.sup.current_on_top,
     reading: "strict scores the superseded memory as the only right answer, which is the wrong ask for a memory system; accepting counts either it or the memory that corrects it. The third row is the outcome that actually harms an agent.",
   } : wi > 0

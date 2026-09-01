@@ -18,6 +18,6 @@
  "p10_words": 318,
  "p90_words": 684,
  "distinct_words_per_doc": 240.4,
- "specifics_per_doc": 14.1,
- "distinct_specifics_per_doc": 11.1
+ "specifics_per_doc": 14.3,
+ "distinct_specifics_per_doc": 11.2
 }

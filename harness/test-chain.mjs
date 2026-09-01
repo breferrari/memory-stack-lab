@@ -106,19 +106,30 @@ writeFileSync(world, JSON.stringify({ memories: [
 ] }));
 writeFileSync(join(hits, `payments-api__${ids[0]}.txt`), `${docOf[ids[1]]}\n`);   // the correction on top
 writeFileSync(join(hits, `payments-api__${ids[1]}.txt`), `${docOf[ids[1]]}\n`);
-// 000's query returns 002, the memory at the END of the chain: the right answer,
-// and a strict miss. 001's query returns 001 itself, which IS stale because 002
-// corrects it: strictly a hit, and the outcome that actually harms an agent.
-// One run, both outcomes, and strict scoring gets each of them backwards.
+// Two queries, chosen so the strict rate and the harmful rate cannot coincide.
+//
+//   000's query returns 002, the memory at the END of the chain. That is the
+//   answer an agent wants, and strict scoring calls it a miss.
+//   001's query returns 001 at rank 2, behind an unrelated document, and its
+//   correction 002 is not in the list at all. Strict scoring calls that a miss
+//   too — but it is the harmful outcome, and nothing else would report it.
+//
+// An earlier version counted the harmful case on `rank === 0`, which made it a
+// second name for the strict rate: two figures that read as different
+// measurements and were arithmetically identical.
 writeFileSync(join(hits, `payments-api__${ids[0]}.txt`), `${docOf[ids[2]]}\n`);
-writeFileSync(join(hits, `payments-api__${ids[1]}.txt`), `${docOf[ids[1]]}\n`);
+writeFileSync(join(hits, `payments-api__${ids[1]}.txt`), `${docOf[ids[0]]}\n${docOf[ids[1]]}\n`);
 const graded = JSON.parse(execFileSync("node", ["harness/analyse-stratum.mjs", hits, pool, q, "--world", world], { encoding: "utf8" }));
 const sup = graded.superseded_gold_slice;
-check("both superseded golds are found and sliced out", sup?.queries === 2, JSON.stringify(sup));
-check("strict scoring calls the current memory a miss", sup?.rank1_strict === 0.5, `strict ${sup?.rank1_strict}`);
-check("grading accepts anything in the correction chain", sup?.rank1_accepting_the_correction === 1, `accepting ${sup?.rank1_accepting_the_correction}`);
-check("the stale-on-top case is counted separately", sup?.stale_memory_on_top_while_its_correction_exists === 1, `${sup?.stale_memory_on_top_while_its_correction_exists}`);
-check("reaching the END of a chain is credited, not just the first corrector", sup?.current_memory_on_top === 1, `${sup?.current_memory_on_top}`);
+check("both superseded golds are sliced out", sup?.queries === 2, JSON.stringify(sup));
+check("strict scoring calls both a miss", sup?.rank1_strict === 0, `strict ${sup?.rank1_strict}`);
+check("grading credits the end of the correction chain", sup?.rank1_accepting_the_correction === 0.5, `accepting ${sup?.rank1_accepting_the_correction}`);
+check("the harmful case is counted by its own predicate", sup?.stale_memory_ranked_above_its_correction === 1, `${sup?.stale_memory_ranked_above_its_correction}`);
+check("the harmful count is not a second name for the strict rate",
+  sup?.stale_memory_ranked_above_its_correction !== Math.round(sup?.rank1_strict * sup?.queries),
+  `harmful ${sup?.stale_memory_ranked_above_its_correction} vs strict-count ${Math.round(sup?.rank1_strict * sup?.queries)}`);
+check("reaching the end of a chain is credited", sup?.current_memory_on_top === 1, `${sup?.current_memory_on_top}`);
+
 check("the candidate set is reported beside the scores", graded.candidate_set?.memories_per_project_median > 0);
 
 rmSync(root, { recursive: true, force: true });

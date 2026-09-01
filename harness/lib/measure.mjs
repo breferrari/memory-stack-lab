@@ -6,9 +6,18 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 
-/** Things an embedder grips and a symptom query collides with. */
+/**
+ * Things an embedder grips and a symptom query collides with.
+ *
+ * The unit alternative ends in `\b` for the alphabetic units only. It used to
+ * close the whole group, and `%` and `×` are non-word characters, so a trailing
+ * `\b` could never fire after them: "dropped to 15%" and "2×" counted as
+ * nothing. Cost was 4% of this corpus's specifics and 2% of the reference
+ * store's, symmetric enough that it moved no conclusion — but it was silently
+ * blind to a unit class the method claims to count.
+ */
 export const SPECIFIC =
-  /`[^`]+`|\b[a-z_]+\.(?:ts|js|mjs|rs|py|json|toml|yaml|yml|md)\b|\b[A-Z][A-Za-z0-9]*(?:::|\.)[A-Za-z0-9_]+\b|\b\d+(?:\.\d+)?\s?(?:ms|s|MB|KB|GB|x|×|%)\b|\b[A-Z]{2,}[A-Z0-9_]*\b|\bv?\d+\.\d+(?:\.\d+)?\b/g;
+  /`[^`]+`|\b[a-z_]+\.(?:ts|js|mjs|rs|py|json|toml|yaml|yml|md)\b|\b[A-Z][A-Za-z0-9]*(?:::|\.)[A-Za-z0-9_]+\b|\b\d+(?:\.\d+)?\s?(?:(?:ms|s|MB|KB|GB|x)\b|[%×])|\b[A-Z]{2,}[A-Z0-9_]*\b|\bv?\d+\.\d+(?:\.\d+)?\b/g;
 
 export const words = (s) => s.trim().split(/\s+/).filter(Boolean);
 export const tokens = (s) => (s.match(/[A-Za-z][A-Za-z0-9_.-]+/g) ?? []).map((t) => t.toLowerCase());
