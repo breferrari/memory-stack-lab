@@ -23,7 +23,8 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const DIR = process.argv[2];
-if (!DIR) { console.error("usage: verify-corpus.mjs <corpus-dir>"); process.exit(1); }
+const REF = (() => { const i = process.argv.indexOf("--reference"); return i > 0 ? process.argv[i + 1] : null; })();
+if (!DIR) { console.error("usage: verify-corpus.mjs <corpus-dir> [--reference <dir>]"); process.exit(1); }
 
 const STOP = new Set("the a an and or of to in on for with is are was were be it this that as by at from not no than then when if you your we our they their can could should would must may might do does did done have has had over under into out up down off about after before while each any all some more most other another such only same so nor own too very just also its".split(/\s+/));
 const words = (s) => s.split(/\s+/).filter(Boolean);
@@ -48,17 +49,66 @@ const report = {
   distinct_words_per_memory: +distinctPer.toFixed(1),
   specifics_per_memory: +specPer.toFixed(1),
   memories_naming_another_service_or_incident: linked,
+  reference: REF ? REF : "a working vault (built-in numbers)",
 };
 
 // The reference numbers, measured from 413 real memories.
+/**
+ * Measured, not asserted.
+ *
+ * There is no universal right size for a memory. The tool imposes almost
+ * nothing — a body over 8,000 characters only earns a warning that it might
+ * want splitting — and length follows the KIND of thing being recorded: a
+ * one-line gotcha and a decision record are both legitimate and differ by an
+ * order of magnitude. So "too rich" is meaningless in the abstract.
+ *
+ * What is not meaningless is a fixture that differs from the store you claim to
+ * model. Denser than production and the benchmark flatters itself; thinner and
+ * it measures a task nobody has. Pass --reference and the bounds come from that
+ * corpus; without it they fall back to a working vault's numbers, stated below
+ * so they can be argued with.
+ */
+const REFERENCE = (() => {
+  const fallback = { distinct: 56.2, specifics: 6.0, median: 61, p90: 266 };
+  if (!REF) return fallback;
+  const rf = readdirSync(REF).filter((f) => f.endsWith(".md"));
+  if (!rf.length) return fallback;
+  const rb = rf.map((f) => readFileSync(join(REF, f), "utf8").replace(/^---[\s\S]*?---\n/, ""));
+  const rl = rb.map((b) => words(b).length).sort((a, b) => a - b);
+  const rat = (p) => rl[Math.min(rl.length - 1, Math.floor(rl.length * p))];
+  return {
+    distinct: rb.reduce((a, b) => a + new Set(tok(b)).size, 0) / rb.length,
+    specifics: rb.reduce((a, b) => a + (b.match(SPECIFIC) ?? []).length, 0) / rb.length,
+    median: rat(0.5), p90: rat(0.9),
+  };
+})();
+
+/**
+ * Two-sided, because both directions are the same mistake.
+ *
+ * A corpus thinner than reality has no information to retrieve on and makes the
+ * system look broken. A corpus RICHER than reality — more identifiers, longer
+ * documents — is easier to search than production and makes it look solved. The
+ * first version of this gate only checked minimums and passed a corpus carrying
+ * 2.3x the real density of specifics.
+ *
+ * Bounds are the real measurement, halved and doubled: close enough to be the
+ * same kind of thing, loose enough that a fixture need not be a forgery.
+ */
+// Half to double the reference on each axis: close enough to be the same kind
+// of thing, loose enough that a fixture need not be a forgery of one store.
+const R = REFERENCE;
 const GATES = [
-  ["distinct_words_per_memory", report.distinct_words_per_memory, 30, "real store: 56.2 unique tokens per memory"],
-  ["specifics_per_memory", report.specifics_per_memory, 3.5, "real store: 6.0"],
-  ["median_words", report.words.median, 40, "real store: 61"],
-  ["p90_words", report.words.p90, 150, "real store: 266 — a corpus with no long tail has nowhere for detail to live"],
+  ["distinct_words_per_memory", report.distinct_words_per_memory, R.distinct / 2, R.distinct * 2, `reference: ${R.distinct.toFixed(1)}`],
+  ["specifics_per_memory", report.specifics_per_memory, R.specifics / 2, R.specifics * 2, `reference: ${R.specifics.toFixed(1)}`],
+  ["median_words", report.words.median, R.median / 2, R.median * 2, `reference: ${R.median}`],
+  ["p90_words", report.words.p90, R.p90 / 2, R.p90 * 2, `reference: ${R.p90} — no long tail means nowhere for detail to live`],
 ];
-const failures = GATES.filter(([, v, min]) => v < min).map(([k, v, min, note]) => `${k} = ${v}, below ${min} (${note})`);
-report.verdict = failures.length ? "TOO THIN TO BENCHMARK" : "realistic enough to benchmark";
+const failures = GATES.flatMap(([k, v, min, max, note]) =>
+  v < min ? [`${k} = ${v}, BELOW ${min} — too thin to tell documents apart (${note})`]
+  : v > max ? [`${k} = ${v}, ABOVE ${max} — richer than production, which flatters the result (${note})`]
+  : []);
+report.verdict = failures.length ? "DOES NOT MATCH A REAL STORE" : "realistic enough to benchmark";
 report.failures = failures;
 
 console.log(JSON.stringify(report, null, 1));

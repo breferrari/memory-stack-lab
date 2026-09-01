@@ -34,11 +34,17 @@ const incidents = new Map(world.incidents.map((i) => [i.id, i]));
 
 let rs = 424242;
 const rnd = () => (rs = (rs * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+/**
+ * Drawn to match the real vault: median 61, p10 30, p90 266, long tail.
+ * The first version centred far too high — median 150 — which is how a fixture
+ * ends up easier to search than production.
+ */
 const targetWords = () => {
   const r = rnd();
-  if (r < 0.45) return 45 + Math.floor(rnd() * 45);
-  if (r < 0.85) return 95 + Math.floor(rnd() * 110);
-  return 230 + Math.floor(rnd() * 210);
+  if (r < 0.35) return 25 + Math.floor(rnd() * 30);   // the one-liner that is still a lesson
+  if (r < 0.75) return 55 + Math.floor(rnd() * 55);   // the ordinary note
+  if (r < 0.93) return 110 + Math.floor(rnd() * 120); // the detailed one
+  return 240 + Math.floor(rnd() * 260);               // the rare long write-up
 };
 
 const ask = (prompt) => {
@@ -81,7 +87,7 @@ What happened, on day ${m.day}: ${inc.symptom}. ${m.artefact} is central to it. 
 Rules:
 - About ${words} words. Plain paragraphs. No title, no headings, no bullet lists, no markdown.
 - Say what was true, why, and what to do instead. Concrete over general.
-- Use ${m.artefact}, ${m.signal}, ${m.configKey} and ${m.lib} by name, and add two or three more specifics of your own that fit — a function name, a table, a limit, a flag.
+- Name ${m.artefact} and ${m.signal}. Mention ${m.configKey} or ${m.lib} only if the sentence needs it. Do not pile on further identifiers — write it the way a tired engineer would, not as a reference page.
 - Never describe this as a memory, a lesson, or a note. Just write the thing.`);
 
   if (!body) { skipped++; process.stderr.write(`  ${m.id}: empty after retry\n`); continue; }
