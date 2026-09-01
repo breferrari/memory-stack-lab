@@ -60,6 +60,12 @@ for (const arm of ["rerank", "norerank"]) {
     const hits = [...r.stdout.matchAll(/qmd:\/\/[^/]+\/([^\s:,]+\.md)/g)].map((m) => m[1]);
     writeFileSync(join(out, `${proj}__${topic}.txt`), hits.join("\n"));
   }
+  // A run that answered nothing is not a fast run, it is not a run. This
+  // printed `queries: 0, mean_ms: null` and exited 0, which reads as success in
+  // any log and in any results file. The usual cause is a SRC that is already a
+  // written pool rather than the raw corpus, so every `remember` is refused for
+  // an empty body and there is nothing to index.
+  if (n === 0) { console.error(`arm ${arm} answered 0 of the supplied queries — no index was built. Is SRC the raw corpus rather than a written pool?`); process.exit(1); }
   console.log(JSON.stringify({ arm, queries: n, mean_ms: Math.round(ms / n), artifacts: out }));
 }
 console.log(JSON.stringify({ map: join(HOME, "_map.json"), home: HOME }));
