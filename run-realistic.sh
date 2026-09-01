@@ -10,6 +10,15 @@ export VESTIGE_PLUGIN="${VESTIGE_PLUGIN:-$(cd .. && pwd)/vestige}"
 R=runs/rich
 cool () { for _ in $(seq 1 40); do L=$(cut -d' ' -f1 /proc/loadavg); awk -v l="$L" 'BEGIN{exit !(l<0.7)}' && return 0; sleep 15; done; }
 
+# 0 — the corpus-to-score contract. Cheap, no search engine, and it covers the
+#     three format assumptions that once turned a changed generator into an empty
+#     pool, a corpus of topic "unknown", and gold resolved to the wrong document,
+#     all of which produced numbers rather than errors.
+if ! node harness/test-chain.mjs; then
+  echo "STAGE chain contract FAILED — not generating a corpus the scorers cannot read"; exit 1
+fi
+echo "STAGE chain contract holds"
+
 # 1 — corpus (resumable: existing files are kept)
 node harness/gen-rich-corpus.mjs "$R/world.json" "$R/corpus" haiku > "$R/corpus-summary.json" 2>>"$R/corpus.err"
 echo "STAGE corpus done: $(ls "$R/corpus"/*.md 2>/dev/null | wc -l) memories"
