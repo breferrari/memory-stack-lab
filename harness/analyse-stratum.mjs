@@ -50,7 +50,6 @@ if (wi > 0) {
   const world = JSON.parse(readFileSync(process.argv[wi + 1], "utf8"));
   for (const m of world.memories) if (m.supersedes) correctionOf.set(m.supersedes, m.id);
 }
-const docOfSource = new Map(Object.entries(map).filter(([, m]) => m.source).map(([id, m]) => [m.source, id]));
 // world memory id -> the document it became after the plugin renamed it
 const sourceOf = new Map(Object.entries(map).filter(([, m]) => m.source).map(([id, m]) => [m.source, id]));
 /**
@@ -91,7 +90,7 @@ for (const line of readFileSync(QUERIES, "utf8").split("\n").filter(Boolean)) {
 
   // Graded, on the queries whose gold the world has since corrected.
   const correction = correctionOf.get(key);
-  const correctionDoc = correction ? docOfSource.get(correction) : null;
+  const correctionDoc = correction ? sourceOf.get(correction) : null;
   if (correctionDoc) {
     acc.sup.n++;
     if (rank === 0) { acc.sup.strict++; acc.sup.stale_on_top++; }
