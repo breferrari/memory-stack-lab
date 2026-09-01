@@ -98,7 +98,13 @@ while (memories.length < COUNT) {
   for (const repo of involved) {
     if (memories.length >= COUNT) break;
     const svc = SERVICES.find((x) => x.repo === repo);
-    const prior = memories.filter((m) => m.project === repo).slice(-2);
+    // Prior notes in this repo, and — separately — prior notes in this repo ON
+    // THE SAME TOPIC. A correction is always within a subject: a caching note
+    // does not correct a retries note, and allowing it would sink the wrong
+    // memory for every retries query, since superseded entries rank last.
+    const inRepo = memories.filter((m) => m.project === repo);
+    const prior = inRepo.slice(-2);
+    const sameTopic = inRepo.filter((m) => m.topic === inc.class);
     memories.push({
       id: `${repo}__${inc.class}__${String(memories.length).padStart(3, "0")}`,
       project: repo, topic: inc.class, incident: inc.id, day: inc.day,
@@ -109,7 +115,7 @@ while (memories.length < COUNT) {
       // Later memories in the same repo can reference earlier ones by name, and
       // occasionally correct them outright.
       references: prior.map((p) => p.id),
-      supersedes: prior.length && rnd() < 0.18 ? prior[prior.length - 1].id : null,
+      supersedes: sameTopic.length && rnd() < 0.35 ? sameTopic[sameTopic.length - 1].id : null,
     });
   }
 }
