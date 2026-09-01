@@ -39,15 +39,27 @@ for _ in $(seq 1 240); do
   if pgrep -f 'run-realistic\.sh' >/dev/null 2>&1; then sleep 30; else break; fi
 done
 
-stage "1/7 realistic corpus, 3 registers x 3 arms" ./run-realistic.sh
-stage "2/7 the other stack, same corpus and queries" ./run-vs-mcs-realistic.sh
-stage "3/7 corpus-quality ablation, queries held fixed" ./run-quality-ablation.sh
-stage "4/7 variance, typed" ./run-variance.sh symptom typed
-stage "5/7 variance, expand (the stochastic arm)" ./run-variance.sh symptom expand
-stage "6/7 entity swap, symptom (informative) and identifier (control)" bash -c '
+stage "1/8 realistic corpus, 3 registers x 3 arms" ./run-realistic.sh
+stage "2/8 the other stack, all three of its arms, same corpus" ./run-vs-mcs-realistic.sh
+stage "3/8 corpus-quality ablation, queries held fixed" ./run-quality-ablation.sh
+stage "4/8 variance, typed" ./run-variance.sh symptom typed
+stage "5/8 variance, expand (the stochastic arm)" ./run-variance.sh symptom expand
+stage "6/8 entity swap, symptom (informative) and identifier (control)" bash -c '
   node harness/bench-entity-swap.mjs runs/rich/world.json runs/rich/corpus runs/rich/q-symptom.tsv symptom runs/rich/swap-symptom.json &&
   node harness/bench-entity-swap.mjs runs/rich/world.json runs/rich/corpus runs/rich/q-identifier.tsv identifier runs/rich/swap-identifier.json'
-stage "7/7 report" bash -c 'node harness/report-realistic.mjs runs/rich > runs/rich/REPORT.md && head -40 runs/rich/REPORT.md'
+stage "7/8 report" bash -c 'node harness/report-realistic.mjs runs/rich > runs/rich/REPORT.md && head -40 runs/rich/REPORT.md'
+
+# Teardown. Ollama and docs-mcp-server were installed for the shipped-MCS arm
+# only, into one directory each, precisely so this is a two-line removal rather
+# than a hunt. Brenno asked for them gone once the run is done.
+stage "8/8 remove the tools installed for the shipped-MCS arm" bash -c '
+  pkill -f "ollama-bench/bin/ollama serve" 2>/dev/null
+  sleep 2
+  rm -rf "$HOME/.local/opt/ollama-bench"
+  rm -rf tools/node_modules tools/package-lock.json
+  rm -rf runs/mcs-shipped-store
+  echo "  removed: ollama + models, docs-mcp-server, and the shipped store"
+  command -v ollama >/dev/null 2>&1 && echo "  NOTE: a system ollama exists and was left alone" || echo "  no ollama remains on PATH"'
 
 echo ""
 echo "======== ALL VARIANTS DONE in $(( ($(date +%s) - STARTED) / 60 )) min ========"
