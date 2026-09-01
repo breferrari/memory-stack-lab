@@ -36,11 +36,23 @@ done
 for i in $(seq 1 "$REPS"); do
   cool; say "rerank run=$i/$REPS"
   node hybrid/bench-rerank.mjs "$WORK/corpus" harness/queries.tsv > "$OUT/rerank-$i.json" 2>"$OUT/rerank-$i.err"
+  # Score both arms. Timing alone is how the reranker was compared for a week.
+  RRMAP=$(python3 -c "import json,sys;[print(json.loads(l).get('map','')) for l in open('$OUT/rerank-$i.json') if 'map' in l]" 2>/dev/null | tail -1)
+  if [ -n "$RRMAP" ] && [ -f "$RRMAP" ]; then
+    RRHOME=$(dirname "$RRMAP")
+    node harness/score-map.mjs "$RRHOME/res-rerank"   "$RRMAP" harness/queries.tsv "rerank-on-$i"  > "$OUT/score-rerank-on-$i.json"  2>>"$OUT/rerank-$i.err"
+    node harness/score-map.mjs "$RRHOME/res-norerank" "$RRMAP" harness/queries.tsv "rerank-off-$i" > "$OUT/score-rerank-off-$i.json" 2>>"$OUT/rerank-$i.err"
+  fi
 done
 
 for i in $(seq 1 "$REPS"); do
   cool; say "vs-mcs run=$i/$REPS"
   node hybrid/bench-vs-mcs.mjs "$WORK/pool0" harness/queries.tsv "$WORK/vs$i" > "$OUT/vs-mcs-$i.json" 2>"$OUT/vs-mcs-$i.err"
+  # The comparison arms produce hits and no score. Scoring them here is what
+  # keeps the artifacts from being deleted with $WORK before anyone reads them.
+  for ARM in mcs-perproject mcs-shared; do
+    [ -d "$WORK/vs$i/$ARM" ] && node harness/score-map.mjs "$WORK/vs$i/$ARM" "$WORK/pool0/_map.json" harness/queries.tsv "$ARM-$i" > "$OUT/score-$ARM-$i.json" 2>>"$OUT/vs-mcs-$i.err"
+  done
 done
 
 for n in 40 180; do

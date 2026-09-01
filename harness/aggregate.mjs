@@ -53,5 +53,23 @@ for (const dir of process.argv.slice(2)) {
 			: null;
 		out.arms[arm] = { runs: runs.length, quality, latency: lat };
 	}
+	// Push race: mean landed-of-N per (writers, mode) across repetitions.
+	const race = new Map();
+	for (const f of files) {
+		const m = f.match(/^race-(\d+)-(single|retry)-(\d+)\.json$/);
+		if (!m) continue;
+		let j; try { j = JSON.parse(readFileSync(join(dir, f), "utf8")); } catch { continue; }
+		const key = `${m[1]}w-${m[2]}`;
+		if (!race.has(key)) race.set(key, []);
+		race.get(key).push(j);
+	}
+	if (race.size) {
+		out.push_race = {};
+		for (const [key, runs] of [...race].sort()) {
+			const landed = runs.map((r) => r.landed);
+			const writers = runs[0].writers;
+			out.push_race[key] = { runs: runs.length, writers, landed: r3(stat(landed)), landed_fraction: +(stat(landed).mean / writers).toFixed(3) };
+		}
+	}
 	console.log(JSON.stringify(out, null, 1));
 }

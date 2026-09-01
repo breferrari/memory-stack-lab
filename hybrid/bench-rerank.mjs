@@ -43,7 +43,12 @@ const srcMap = (() => {
 	const map = {};
 	for (const f of readdirSync(SRC).filter((x) => x.endsWith(".md"))) {
 		const owner = (readFileSync(join(SRC, f), "utf8").match(/\*\*Applies to:\*\*\s*([a-z0-9-]+)/i) ?? [])[1];
-		if (owner) map[f.replace(/\.md$/, "")] = { project: owner };
+		// The TOPIC matters as much as the owner: without it the scorer cannot say
+		// which document is the correct answer for a query, and the run can only
+		// report isolation — never accuracy. The generator encodes it in the
+		// filename as <project>__<kind>_<topic>_<slug>.
+		const topic = (f.match(/__[a-z]+_([a-z0-9]+)_/i) ?? [])[1] ?? null;
+		if (owner) map[f.replace(/\.md$/, "")] = topic ? { project: owner, topic } : { project: owner };
 	}
 	if (!Object.keys(map).length) { console.error(`no _map.json in ${SRC} and no **Applies to:** lines to derive one from`); process.exit(1); }
 	return map;
