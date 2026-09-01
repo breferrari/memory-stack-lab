@@ -40,6 +40,14 @@ echo "STAGE pool: $POOL_N memories"
 for REG in symptom identifier short; do
   for ARM in typed expand rerank; do
     cool
+    # Skip a leg whose analysis already exists. bench-e2e wipes its output
+    # directory on entry, so without this an orchestrator that re-enters this
+    # script re-runs every leg — two hours of a night spent reproducing files
+    # already on disk. Delete the analysis to force a leg.
+    if [ -s "$R/analysis-$REG-$ARM.json" ]; then
+      echo "STAGE bench register=$REG arm=$ARM SKIPPED (already on disk)"
+      continue
+    fi
     echo "STAGE bench register=$REG arm=$ARM load=$(cut -d' ' -f1 /proc/loadavg)"
     if [ "$ARM" = "rerank" ]; then export VESTIGE_RERANK=1; else unset VESTIGE_RERANK; fi
     if [ "$ARM" = "expand" ]; then export VESTIGE_QUERY_SHAPE=expand; else unset VESTIGE_QUERY_SHAPE; fi
@@ -51,11 +59,11 @@ done
 # 5 — can it decline? Every other query in this suite has an answer in the store,
 #     so nothing here could ever be punished for answering when it should not.
 for REG in symptom identifier short; do
-  node harness/measure-leakage.mjs "$R/pool" "$R/q-$REG.tsv" "$REG" > "$R/leakage-$REG.json" 2>>"$R/bench.err"
+  [ -s "$R/leakage-$REG.json" ] || node harness/measure-leakage.mjs "$R/pool" "$R/q-$REG.tsv" "$REG" > "$R/leakage-$REG.json" 2>>"$R/bench.err"
 done
 echo "STAGE leakage measured"
 
 echo "STAGE abstention"
-node --experimental-strip-types harness/bench-abstention.mjs "$R/pool" "$R/abstention.json" >/dev/null 2>>"$R/bench.err"
+[ -s "$R/abstention.json" ] || node --experimental-strip-types harness/bench-abstention.mjs "$R/pool" "$R/abstention.json" >/dev/null 2>>"$R/bench.err"
 
 echo REALISTIC-DONE

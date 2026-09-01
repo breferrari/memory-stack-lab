@@ -60,6 +60,7 @@ echo "STAGE thin pool: $POOL_N memories"
 # 4 - the same queries, the same registers, retrieval held fixed at the default arm
 for REG in symptom identifier short; do
   cool
+  if [ -s "$A/analysis-thin-$REG.json" ]; then echo "STAGE ablation register=$REG SKIPPED"; continue; fi
   echo "STAGE ablation register=$REG load=$(cut -d' ' -f1 /proc/loadavg)"
   unset VESTIGE_RERANK VESTIGE_QUERY_SHAPE
   node hybrid/bench-e2e.mjs "$A/pool-thin" "$A/hits-thin-$REG" "$R/q-$REG.tsv" > "$A/e2e-thin-$REG.json" 2>>"$A/bench.err"

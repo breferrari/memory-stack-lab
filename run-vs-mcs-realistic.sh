@@ -25,6 +25,7 @@ done
 # logs and the qmd arms still run.
 for REG in symptom identifier short; do
   cool
+  if [ -s "$M/analysis-mcs-shipped-$REG.json" ]; then echo "STAGE mcs-shipped register=$REG SKIPPED"; continue; fi
   echo "STAGE mcs-shipped register=$REG load=$(cut -d' ' -f1 /proc/loadavg)"
   if node harness/bench-mcs-shipped.mjs "$R/pool" "$R/q-$REG.tsv" "$REG" "$M/$REG/mcs-shipped" > "$M/mcs-shipped-$REG.json" 2>>"$M/err"; then
     node harness/score.mjs "$M/$REG/mcs-shipped" "$R/pool" "mcs-shipped-$REG" 5 "$(grep -c . "$R/q-$REG.tsv")" > "$M/score-mcs-shipped-$REG.json" 2>>"$M/err"
@@ -36,6 +37,7 @@ done
 
 for REG in symptom identifier short; do
   cool
+  if [ -s "$M/analysis-mcs-shared-$REG.json" ]; then echo "STAGE vs-mcs register=$REG SKIPPED"; continue; fi
   echo "STAGE vs-mcs register=$REG load=$(cut -d' ' -f1 /proc/loadavg)"
   node hybrid/bench-vs-mcs.mjs "$R/pool" "$R/q-$REG.tsv" "$M/$REG" > "$M/vs-mcs-$REG.json" 2>>"$M/err"
   for ARM in mcs-perproject mcs-shared; do
