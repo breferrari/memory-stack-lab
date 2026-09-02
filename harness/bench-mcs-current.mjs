@@ -76,14 +76,21 @@ const rows = readFileSync(QUERIES, "utf8").split("\n").filter(Boolean).map((l) =
 });
 
 const run = async (indexFor) => {
-	const acc = { n: 0, r1: 0, f5: 0, f6: 0, empty: 0 };
-	let current = null;
+	const acc = { n: 0, r1: 0, f5: 0, f6: 0, empty: 0, ms: 0, same: [], sw: [] };
+	let current = null, prevProject = null;
 	for (const r of rows) {
 		const gold = sourceOf.get(r.key);
 		const index = indexFor(r.project);
 		if (!gold || !index) continue;
 		if (index !== current) { shutdownQmdSession(); current = index; }
+		const t0 = Date.now();
 		const ids = await sessionQuery({ index, signature: "mcs-current", cwd: root, query: r.q, limit: LIMIT, rerank: false });
+		const dt = Date.now() - t0;
+		acc.ms += dt;
+		// Same split this project reports for itself: a query that stays in one
+		// project against one that switches and restarts the session.
+		(prevProject === r.project ? acc.same : acc.sw).push(dt);
+		prevProject = r.project;
 		const hits = (ids ?? []).map((x) => String(x).replace(/\.md$/, ""));
 		acc.n++;
 		if (!hits.length) acc.empty++;
@@ -93,7 +100,9 @@ const run = async (indexFor) => {
 	}
 	shutdownQmdSession();
 	const d = (x) => (acc.n ? +(x / acc.n).toFixed(3) : null);
-	return { queries: acc.n, rank1: d(acc.r1), found_at_5: d(acc.f5), found_at_6: d(acc.f6), returned_nothing: acc.empty };
+	const med = (v) => (v.length ? [...v].sort((a, b) => a - b)[Math.floor(v.length / 2)] : null);
+	return { queries: acc.n, rank1: d(acc.r1), found_at_5: d(acc.f5), found_at_6: d(acc.f6), returned_nothing: acc.empty,
+		median_ms_same_project: med(acc.same), median_ms_after_switch: med(acc.sw) };
 };
 
 const results = {};
