@@ -95,11 +95,24 @@ while (memories.length < COUNT) {
   const involved = [primary.repo, ...others];
   day += int(2, 11);
 
+  // Where the fault actually lives, and therefore who the lesson is FOR.
+  //
+  // A misconfigured value in one service teaches that service. A defect in a
+  // library every service imports teaches all of them, and a write-up of it
+  // owned by one repo is a lesson the other seven cannot reach. That is the
+  // case this whole system exists for, and the previous world could not express
+  // it: every memory was scope:project, so "declared reach beats a shared pool"
+  // was never tested — only "23 files beats 183".
+  // Derived from the incident id rather than drawn, so adding this field does
+  // not shift the random stream and invalidate a corpus that already exists.
+  const sharedStack = ((id) => { let h = 0; for (const c of id) h = (h * 31 + c.charCodeAt(0)) | 0; return Math.abs(h) % 10 < 3; })(`INC-${String(incidents.length + 1).padStart(3, "0")}`);
+
   const inc = {
     id: `INC-${String(incidents.length + 1).padStart(3, "0")}`,
     day, class: cls.key, symptom: cls.symptom, involved,
     artefact: pick(cls.artefacts),
     lib: pick(SHARED.libs), key: pick(SHARED.keys),
+    sharedStack,
     ...(() => { const sig = pick(SHARED.signals); return { signal: sig.name, magnitude: sig.mag(int(0, 9)) }; })(),
   };
   incidents.push(inc);
@@ -128,6 +141,18 @@ while (memories.length < COUNT) {
       id: `${repo}__${inc.class}__${String(memories.length).padStart(3, "0")}`,
       project: repo, topic: inc.class, incident: subject.id, day: inc.day,
       revisits: Boolean(corrects),
+      // The declaration under test. A shared-stack fault reaches every service
+      // that imports the library; anything else reaches its own repo. `origin`
+      // stays the repo that wrote it, so a memory can legitimately reach a
+      // caller that did not write it — which is the only shape that separates
+      // declared reach from one folder per project.
+      // scope stays "project" and the PROJECT LIST widens. `platform` is a
+      // different axis in this model — it names a runtime, not a set of repos —
+      // and the write contract rightly refuses a platform claim that names no
+      // platform. A shared-library lesson is one that applies to these eight
+      // repositories, which is exactly what a widened project list says.
+      reach: subject.sharedStack ? "project-wide" : "project",
+      reaches: subject.sharedStack ? SERVICES.map((x) => x.repo) : [repo],
       stack: svc.stack, role: svc.role,
       perspective: repo === primary.repo ? "where it originated" : "the service that saw the effect",
       counterpart: involved.filter((r) => r !== repo),
@@ -147,6 +172,8 @@ while (memories.length < COUNT) {
 // would have caught it before a benchmark did not.
 {
   const byId = new Map(memories.map((m) => [m.id, m]));
+  const transferable = memories.filter((m) => m.reaches.length > 1);
+  if (!transferable.length) { console.error("no memory reaches more than one project — the reach model would be untestable"); process.exit(1); }
   const bad = memories.filter((m) => m.supersedes && byId.get(m.supersedes)?.incident !== m.incident);
   if (bad.length) { console.error(`${bad.length} corrections point at a different incident than the note they correct`); process.exit(1); }
   const crossTopic = memories.filter((m) => m.supersedes && byId.get(m.supersedes)?.topic !== m.topic);
@@ -166,5 +193,6 @@ console.log(JSON.stringify({
   // another" overstated the corpus's connectivity by about three times. The
   // realised rate is measured on the corpus by verify-corpus.
   memories_offered_a_prior_note: withRefs,
+  memories_reaching_more_than_their_own_project: memories.filter((m) => m.reaches.length > 1).length,
   supersessions: memories.filter((m) => m.supersedes).length,
 }, null, 1));

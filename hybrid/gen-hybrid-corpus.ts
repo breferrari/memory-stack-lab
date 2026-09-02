@@ -15,6 +15,16 @@ import { proseOf } from "../harness/lib/measure.mjs";
 const SRC = process.argv[2];
 const OUT = process.argv[3];
 const OVERCLAIM = Number(process.argv[4] ?? 0);
+// The world says who each lesson is FOR. Ignoring it made every memory
+// scope:project, which meant the reach model had nothing to demonstrate: the
+// benchmark compared a 23-file folder against a 183-file one and called the
+// difference reach.
+const WORLD = process.argv[5];
+const reachOf = new Map<string, { reach: string; reaches: string[] }>();
+if (WORLD) {
+	const w = JSON.parse(readFileSync(WORLD, "utf8")) as { memories: { id: string; reach?: string; reaches?: string[] }[] };
+	for (const m of w.memories) if (m.reach && m.reaches) reachOf.set(m.id, { reach: m.reach, reaches: m.reaches });
+}
 
 rmSync(OUT, { recursive: true, force: true });
 rmSync(join(OUT, "..", "memories-quarantine"), { recursive: true, force: true });
@@ -49,6 +59,7 @@ for (const f of files) {
 	const marker = md.indexOf("## Problem");
 	const body = (marker >= 0 ? md.slice(marker).replace(/^## Problem\s*/, "") : proseOf(md)).replace(/\n## /g, "\n\n").trim();
 	const over = rnd() < OVERCLAIM;
+	const declared = reachOf.get(f.replace(/\.md$/, ""));
 
 	const r = capture(OUT, {
 		// the filename already namespaces by project; repeating it in the title
@@ -57,7 +68,7 @@ for (const f of files) {
 		body,
 		confidence: "inferred",
 		scope: over ? "general" : "project",
-		projects: [repo],
+		projects: declared?.reaches ?? [repo],
 		...(over ? { generality: "claimed to apply across the org" } : {}),
 	}, { origin: repo });
 
@@ -90,6 +101,8 @@ mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "_map.json"), JSON.stringify(map, null, 1));
 console.log(JSON.stringify({
 	source_docs: files.length, overclaim_rate: OVERCLAIM,
+	declared_reach_applied: reachOf.size,
+	memories_reaching_beyond_their_origin: [...reachOf.values()].filter((r) => r.reaches.length > 1).length,
 	landed, quarantined, refused, downgraded_by_rule: downgraded,
 	quarantined_by_rule: blockedBy,
 	sample_refusals: refusals,
