@@ -53,7 +53,13 @@ stage "7/8 report" bash -c 'node harness/report-realistic.mjs runs/rich > runs/r
 # only, into one directory each, precisely so this is a two-line removal rather
 # than a hunt. Brenno asked for them gone once the run is done.
 stage "8/8 remove the tools installed for the shipped-MCS arm" bash -c '
-  pkill -f "ollama-bench/bin/ollama serve" 2>/dev/null
+  # NOT pkill -f: the pattern appears in this very command line, so pkill kills
+  # its own shell and the stage dies with 143 having removed nothing. That is
+  # exactly what happened the first time. Match on the executable path from ps
+  # and exclude this process and its parent.
+  me=$$; ps -eo pid=,ppid=,args= | while read -r pid ppid rest; do
+    case "$rest" in *ollama-bench*serve*) [ "$pid" != "$me" ] && [ "$ppid" != "$me" ] && kill "$pid" 2>/dev/null;; esac
+  done
   sleep 2
   rm -rf "$HOME/.local/opt/ollama-bench"
   rm -rf tools/node_modules tools/package-lock.json
