@@ -76,6 +76,12 @@ for (const [label, embed] of Object.entries(EMB)) {
 	// failed the first time: 2.1s to "build" where a real build takes 100s, then
 	// 7ms queries and a rank-1 of 0.35 that read as a finding rather than a dead
 	// index. Ask the store what it actually holds and refuse to score without it.
+	//
+	// Why that build embedded nothing was never established — the second run
+	// succeeded with no functional change, so the likeliest cause is a transient
+	// failure inside `embed` whose exit status this harness was discarding. That
+	// is the argument for the check rather than for a fix: the failure mode is
+	// not understood, so the guard has to catch the symptom, not the cause.
 	const st = String(runQmd(["--index", name, "status"], { cwd: V })?.stdout ?? "");
 	const vectors = Number(st.match(/Vectors:\s*([\d,]+)/)?.[1]?.replace(/,/g, "") ?? 0);
 	const indexed = Number(st.match(/Total:\s*([\d,]+)/)?.[1]?.replace(/,/g, "") ?? 0);
@@ -104,12 +110,12 @@ for (const [label, embed] of Object.entries(EMB)) {
 	// the index holds its embedded text.
 	built.push({ name, cfg });
 }
-// Teardown runs after every arm has been scored. Dropping an index between arms
-// is what broke the first attempt: the next build came back in 2s having
-// embedded nothing.
+// Teardown. The subject vault may hold material that should not sit in a lab
+// index, so the sqlite file goes, not just the config: `qmd cleanup` compacts an
+// index, it does not remove one, and there is no `drop` subcommand at all.
 for (const b of built) {
-	try { runQmd(["--index", b.name, "drop", "--yes"], { cwd: V }); } catch { /* best effort */ }
-	try { rmSync(b.cfg); } catch { /* already gone */ }
+	const db = join(process.env.XDG_CACHE_HOME ?? join(homedir(), ".cache"), "qmd", `${b.name}.sqlite`);
+	for (const f of [db, `${db}-wal`, `${db}-shm`, b.cfg]) { try { rmSync(f); } catch { /* already gone */ } }
 }
 const k = Object.keys(perQuery);
 let aOnly = 0, bOnly = 0;
